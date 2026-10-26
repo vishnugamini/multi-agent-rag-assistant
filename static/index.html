@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Agentic</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <button id="new-chat" class="new-chat">＋ New conversation</button>
+  </header>
+  <main class="content">
+    <section class="chat-panel" aria-label="Chat">
+      <div id="messages" aria-live="polite"></div>
+      <div class="composer-wrap">
+        <form id="chat-form">
+          <div class="composer">
+            <textarea id="query" rows="2" required maxlength="12000" placeholder="Ask a question" aria-label="Your question"></textarea>
+            <button id="send" aria-label="Send message">↑</button>
+          </div>
+        </form>
+        <div id="status" role="status"></div>
+      </div>
+    </section>
+    <aside class="activity-panel" aria-label="Activity">
+      <div class="activity-heading"><h2>Activity</h2><span id="activity-count"></span></div>
+      <div id="routing"></div>
+      <details class="trace-panel"><summary>Trace</summary><div id="trace"></div></details>
+      <div id="metrics"></div>
+    </aside>
+  </main>
+  <dialog id="source-dialog">
+    <button id="close-source" aria-label="Close source">×</button>
+    <h2 id="source-title"></h2>
+    <a id="source-link" target="_blank" rel="noopener noreferrer">Open source ↗</a>
+    <pre id="source-text"></pre>
+  </dialog>
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: [build, -f, Dockerfile.update, --build-arg, 'BASE_IMAGE=${_BASE_IMAGE}', -t, '${_IMAGE}', .]
+images: ['${_IMAGE}']

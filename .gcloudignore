@@ -1,0 +1,14 @@
+.gcloudignore
+.git
+.gitignore
+.env
+.env.*
+.venv/
+.local/
+output/
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+corpus/snapshots/
+corpus/chunks.jsonl
+tests/

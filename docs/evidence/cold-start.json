@@ -1,0 +1,1104 @@
+{
+  "idle_started": "2026-10-26T18:04:50.790558+00:00",
+  "request_started": "2026-10-26T18:19:50.854922+00:00",
+  "idle_wait_seconds": 900,
+  "revision": "agentic-ai-00009-mx7",
+  "url": "https://coldtest---agentic-ai-swz26fqsuq-uw.a.run.app",
+  "cold_start_proven_by_system_log": true,
+  "turn_passed": true,
+  "failures": [],
+  "events": [
+    {
+      "type": "turn_started",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 1,
+      "timestamp": "2026-10-26T18:20:06.393584+00:00",
+      "conversation_id": "966ec247-0629-4747-b362-dd8118378f0e",
+      "state_backend": "gcs"
+    },
+    {
+      "type": "agent_started",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 2,
+      "timestamp": "2026-10-26T18:20:07.610944+00:00",
+      "agent": "Supervisor",
+      "dispatches": 0
+    },
+    {
+      "type": "routing_decision",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 3,
+      "timestamp": "2026-10-26T18:20:07.611080+00:00",
+      "agent": "Supervisor",
+      "selected_provider": "openai",
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "reason": "Plan the next step from the request and completed work"
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 4,
+      "timestamp": "2026-10-26T18:20:09.209694+00:00",
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "agent": "Supervisor",
+      "seconds": 1.599,
+      "input_tokens": 349,
+      "output_tokens": 40,
+      "usage_available": true,
+      "estimated_usd": 5.49e-05,
+      "success": true
+    },
+    {
+      "type": "agent_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 5,
+      "timestamp": "2026-10-26T18:20:09.212114+00:00",
+      "agent": "Supervisor",
+      "decision": {
+        "next": "Research",
+        "provider": "nvidia",
+        "reason": "Need retrieve current LangGraph documentation evidence on checkpoints to answer the requested two-sentence explanation."
+      }
+    },
+    {
+      "type": "agent_started",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 6,
+      "timestamp": "2026-10-26T18:20:09.215263+00:00",
+      "agent": "Research"
+    },
+    {
+      "type": "mcp_discovery",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 7,
+      "timestamp": "2026-10-26T18:20:14.735201+00:00",
+      "server": "corpus",
+      "tools": [
+        "search_corpus",
+        "read_chunks",
+        "read_document"
+      ]
+    },
+    {
+      "type": "mcp_discovery",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 8,
+      "timestamp": "2026-10-26T18:20:15.513918+00:00",
+      "server": "tavily",
+      "tools": [
+        "tavily_search",
+        "tavily_extract",
+        "tavily_crawl",
+        "tavily_map",
+        "tavily_research"
+      ]
+    },
+    {
+      "type": "routing_decision",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 9,
+      "timestamp": "2026-10-26T18:20:15.514168+00:00",
+      "agent": "Research",
+      "selected_provider": "nvidia",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "reason": "Need retrieve current LangGraph documentation evidence on checkpoints to answer the requested two-sentence explanation."
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 10,
+      "timestamp": "2026-10-26T18:20:16.115375+00:00",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "agent": "Research",
+      "seconds": 0.601,
+      "input_tokens": 1446,
+      "output_tokens": 26,
+      "usage_available": true,
+      "estimated_usd": null,
+      "success": true
+    },
+    {
+      "type": "tool_started",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 11,
+      "timestamp": "2026-10-26T18:20:16.115510+00:00",
+      "agent": "Research",
+      "server": "corpus",
+      "tool": "search_corpus",
+      "arguments": {
+        "query": "LangGraph checkpoints explanation",
+        "top_k": 5
+      }
+    },
+    {
+      "type": "tool_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 12,
+      "timestamp": "2026-10-26T18:20:17.377309+00:00",
+      "agent": "Research",
+      "server": "corpus",
+      "tool": "search_corpus",
+      "seconds": 1.262,
+      "preview": "[{\"id\": \"doc-ebd8e3faef4e::0049\", \"score\": 0.596755147, \"text\": \"```\\nfrom langgraph.checkpoint.memory import MemorySaver\\n\\ngraph = (\\n    StateGraph(State)\\n    .add_node(refine_topic)\\n    .add_node(generate_joke)\\n    .add_edge(START, \\\"refine_topic\\\")\\n    .add_edge(\\\"refine_topic\\\", \\\"generate_joke\\\")\\n    .add_edge(\\\"generate_joke\\\", END)\\n    .compile(checkpointer=MemorySaver())\\n)\\n\\nconfig = {\\\"configurable\\\": {\\\"thread_id\\\": \\\"1\\\"}}\\n\\nfor chunk in graph.stream(\\n    {\\\"topic\\\": \\\"ice cream\\\"},\\n    config=config,\\n    stream_mode=\\\"checkpoints\\\",\\n    version=\\\"v2\\\",\\n):\\n    if chunk[\\\"type\\\"] == \\\"checkpoints\\\":\\n        print(chunk[\\\"data\\\"])\\n\\n```\", \"chunk_order\": 49.0, \"content_hash\": \"370176b7f36f0e3af138d90eb08abfa2b86aeffaec86bbf5c08359b7fb3dd34a\", \"corpus_version\": \"docs-v1\", \"document_id\": \"doc-ebd8e3faef4e\", \"heading\": \"Streaming - Docs by LangChain\", \"kind\": \"chunk\", \"snapshot_date\": \"2026-10-26T08:00:00.095679+00:00\", \"title\": \"Streaming - Docs by LangChain\", \"topic\": \"langgraph\", \"url\": \"https://docs.langchain.com/oss/python/langgraph/streaming\"}, {\"id\": \"doc-99e58642fe77::0000\", \"score\": 0.59010756, \"text\": \"Persistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions.\\nLangGraph provides two complementary persistence systems:\\nCheckpointers\\npersist a thread\u2019s graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance.\\nStores\\npersist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user pre"
+    },
+    {
+      "type": "routing_decision",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 13,
+      "timestamp": "2026-10-26T18:20:17.377527+00:00",
+      "agent": "Research",
+      "selected_provider": "nvidia",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "reason": "Need retrieve current LangGraph documentation evidence on checkpoints to answer the requested two-sentence explanation."
+    },
+    {
+      "type": "model_error",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 14,
+      "timestamp": "2026-10-26T18:20:19.010935+00:00",
+      "agent": "Research",
+      "provider": "nvidia",
+      "error": "JSONDecodeError",
+      "retry": true
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 15,
+      "timestamp": "2026-10-26T18:20:21.367955+00:00",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "agent": "Research",
+      "seconds": 1.354,
+      "input_tokens": 3777,
+      "output_tokens": 90,
+      "usage_available": true,
+      "estimated_usd": null,
+      "success": true
+    },
+    {
+      "type": "agent_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 16,
+      "timestamp": "2026-10-26T18:20:21.368052+00:00",
+      "agent": "Research",
+      "seconds": 12.153,
+      "finding": "LangGraph checkpoints are a persistence system that records a thread's graph state after each execution step, enabling short-term, thread-scoped memory for conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance. [source: doc-99e58642fe77::0000]"
+    },
+    {
+      "type": "agent_started",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 17,
+      "timestamp": "2026-10-26T18:20:21.369400+00:00",
+      "agent": "Supervisor",
+      "dispatches": 1
+    },
+    {
+      "type": "routing_decision",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 18,
+      "timestamp": "2026-10-26T18:20:21.369467+00:00",
+      "agent": "Supervisor",
+      "selected_provider": "openai",
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "reason": "Plan the next step from the request and completed work"
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 19,
+      "timestamp": "2026-10-26T18:20:22.749885+00:00",
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "agent": "Supervisor",
+      "seconds": 1.38,
+      "input_tokens": 421,
+      "output_tokens": 48,
+      "usage_available": true,
+      "estimated_usd": 6.61e-05,
+      "success": true
+    },
+    {
+      "type": "agent_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 20,
+      "timestamp": "2026-10-26T18:20:22.750071+00:00",
+      "agent": "Supervisor",
+      "decision": {
+        "next": "Summary",
+        "provider": "nvidia",
+        "reason": "Research has already searched the LangGraph documentation and found a source; summarize that finding in the requested two sentences without repeating the search."
+      }
+    },
+    {
+      "type": "agent_started",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 21,
+      "timestamp": "2026-10-26T18:20:22.752672+00:00",
+      "agent": "Summary"
+    },
+    {
+      "type": "routing_decision",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 22,
+      "timestamp": "2026-10-26T18:20:22.752840+00:00",
+      "agent": "Summary",
+      "selected_provider": "nvidia",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "reason": "Research has already searched the LangGraph documentation and found a source; summarize that finding in the requested two sentences without repeating the search."
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 23,
+      "timestamp": "2026-10-26T18:20:24.153715+00:00",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "agent": "Summary",
+      "seconds": 1.401,
+      "input_tokens": 663,
+      "output_tokens": 99,
+      "usage_available": true,
+      "estimated_usd": null,
+      "success": true
+    },
+    {
+      "type": "agent_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 24,
+      "timestamp": "2026-10-26T18:20:24.153823+00:00",
+      "agent": "Summary",
+      "seconds": 1.401,
+      "finding": "LangGraph checkpoints are a persistence system that records a thread's graph state after each execution step, enabling short-term, thread-scoped memory for conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance [source: doc-99e58642fe77::0000]"
+    },
+    {
+      "type": "agent_started",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 25,
+      "timestamp": "2026-10-26T18:20:24.155369+00:00",
+      "agent": "Supervisor",
+      "dispatches": 2
+    },
+    {
+      "type": "routing_decision",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 26,
+      "timestamp": "2026-10-26T18:20:24.155505+00:00",
+      "agent": "Supervisor",
+      "selected_provider": "openai",
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "reason": "Plan the next step from the request and completed work"
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 27,
+      "timestamp": "2026-10-26T18:20:25.641535+00:00",
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "agent": "Supervisor",
+      "seconds": 1.486,
+      "input_tokens": 493,
+      "output_tokens": 54,
+      "usage_available": true,
+      "estimated_usd": 7.630000000000001e-05,
+      "success": true
+    },
+    {
+      "type": "agent_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 28,
+      "timestamp": "2026-10-26T18:20:25.641702+00:00",
+      "agent": "Supervisor",
+      "decision": {
+        "next": "finish",
+        "provider": "nvidia",
+        "reason": "The prior research and summary already found a LangGraph documentation source and answered what checkpoints do; provide that finding in the requested two-sentence form without repeating research."
+      }
+    },
+    {
+      "type": "routing_decision",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 29,
+      "timestamp": "2026-10-26T18:20:25.647170+00:00",
+      "agent": "Answer",
+      "selected_provider": "nvidia",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "reason": "The prior research and summary already found a LangGraph documentation source and answered what checkpoints do; provide that finding in the requested two-sentence form without repeating research."
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 30,
+      "timestamp": "2026-10-26T18:20:25.946944+00:00",
+      "text": "Lang"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 31,
+      "timestamp": "2026-10-26T18:20:25.948932+00:00",
+      "text": "Graph"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 32,
+      "timestamp": "2026-10-26T18:20:25.955710+00:00",
+      "text": " check"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 33,
+      "timestamp": "2026-10-26T18:20:25.964836+00:00",
+      "text": "points"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 34,
+      "timestamp": "2026-10-26T18:20:25.976167+00:00",
+      "text": " are"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 35,
+      "timestamp": "2026-10-26T18:20:25.986749+00:00",
+      "text": " a"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 36,
+      "timestamp": "2026-10-26T18:20:25.996252+00:00",
+      "text": " persistence"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 37,
+      "timestamp": "2026-10-26T18:20:26.005890+00:00",
+      "text": " system"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 38,
+      "timestamp": "2026-10-26T18:20:26.015374+00:00",
+      "text": " that"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 39,
+      "timestamp": "2026-10-26T18:20:26.025489+00:00",
+      "text": " records"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 40,
+      "timestamp": "2026-10-26T18:20:26.075883+00:00",
+      "text": " a"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 41,
+      "timestamp": "2026-10-26T18:20:26.082040+00:00",
+      "text": " thread"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 42,
+      "timestamp": "2026-10-26T18:20:26.091959+00:00",
+      "text": "'s"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 43,
+      "timestamp": "2026-10-26T18:20:26.113184+00:00",
+      "text": " graph"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 44,
+      "timestamp": "2026-10-26T18:20:26.114393+00:00",
+      "text": " state"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 45,
+      "timestamp": "2026-10-26T18:20:26.119577+00:00",
+      "text": " after"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 46,
+      "timestamp": "2026-10-26T18:20:26.130623+00:00",
+      "text": " each"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 47,
+      "timestamp": "2026-10-26T18:20:26.139955+00:00",
+      "text": " execution"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 48,
+      "timestamp": "2026-10-26T18:20:26.149900+00:00",
+      "text": " step"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 49,
+      "timestamp": "2026-10-26T18:20:26.159913+00:00",
+      "text": ","
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 50,
+      "timestamp": "2026-10-26T18:20:26.172684+00:00",
+      "text": " enabling"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 51,
+      "timestamp": "2026-10-26T18:20:26.179963+00:00",
+      "text": " short"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 52,
+      "timestamp": "2026-10-26T18:20:26.190309+00:00",
+      "text": "-term"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 53,
+      "timestamp": "2026-10-26T18:20:26.200102+00:00",
+      "text": ","
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 54,
+      "timestamp": "2026-10-26T18:20:26.209827+00:00",
+      "text": " thread"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 55,
+      "timestamp": "2026-10-26T18:20:26.221278+00:00",
+      "text": "-sc"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 56,
+      "timestamp": "2026-10-26T18:20:26.230531+00:00",
+      "text": "oped"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 57,
+      "timestamp": "2026-10-26T18:20:26.239674+00:00",
+      "text": " memory"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 58,
+      "timestamp": "2026-10-26T18:20:26.250518+00:00",
+      "text": " for"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 59,
+      "timestamp": "2026-10-26T18:20:26.260749+00:00",
+      "text": " conversation"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 60,
+      "timestamp": "2026-10-26T18:20:26.305398+00:00",
+      "text": " continuity"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 61,
+      "timestamp": "2026-10-26T18:20:26.311387+00:00",
+      "text": ","
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 62,
+      "timestamp": "2026-10-26T18:20:26.319750+00:00",
+      "text": " human"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 63,
+      "timestamp": "2026-10-26T18:20:26.329590+00:00",
+      "text": "-in"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 64,
+      "timestamp": "2026-10-26T18:20:26.338987+00:00",
+      "text": "-the"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 65,
+      "timestamp": "2026-10-26T18:20:26.349821+00:00",
+      "text": "-loop"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 66,
+      "timestamp": "2026-10-26T18:20:26.359527+00:00",
+      "text": " workflow"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 67,
+      "timestamp": "2026-10-26T18:20:26.370569+00:00",
+      "text": "s"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 68,
+      "timestamp": "2026-10-26T18:20:26.378523+00:00",
+      "text": ","
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 69,
+      "timestamp": "2026-10-26T18:20:26.389100+00:00",
+      "text": " time"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 70,
+      "timestamp": "2026-10-26T18:20:26.398605+00:00",
+      "text": " travel"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 71,
+      "timestamp": "2026-10-26T18:20:26.409981+00:00",
+      "text": ","
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 72,
+      "timestamp": "2026-10-26T18:20:26.418422+00:00",
+      "text": " and"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 73,
+      "timestamp": "2026-10-26T18:20:26.428690+00:00",
+      "text": " fault"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 74,
+      "timestamp": "2026-10-26T18:20:26.438724+00:00",
+      "text": " tolerance"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 75,
+      "timestamp": "2026-10-26T18:20:26.449362+00:00",
+      "text": " ["
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 76,
+      "timestamp": "2026-10-26T18:20:26.459501+00:00",
+      "text": "source"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 77,
+      "timestamp": "2026-10-26T18:20:26.468463+00:00",
+      "text": ":"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 78,
+      "timestamp": "2026-10-26T18:20:26.479217+00:00",
+      "text": " doc"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 79,
+      "timestamp": "2026-10-26T18:20:26.489648+00:00",
+      "text": "-"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 80,
+      "timestamp": "2026-10-26T18:20:26.498910+00:00",
+      "text": "9"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 81,
+      "timestamp": "2026-10-26T18:20:26.509834+00:00",
+      "text": "9"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 82,
+      "timestamp": "2026-10-26T18:20:26.519007+00:00",
+      "text": "e"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 83,
+      "timestamp": "2026-10-26T18:20:26.529050+00:00",
+      "text": "5"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 84,
+      "timestamp": "2026-10-26T18:20:26.539021+00:00",
+      "text": "8"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 85,
+      "timestamp": "2026-10-26T18:20:26.625309+00:00",
+      "text": "6"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 86,
+      "timestamp": "2026-10-26T18:20:26.630497+00:00",
+      "text": "4"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 87,
+      "timestamp": "2026-10-26T18:20:26.640165+00:00",
+      "text": "2"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 88,
+      "timestamp": "2026-10-26T18:20:26.705749+00:00",
+      "text": "fe77::"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 89,
+      "timestamp": "2026-10-26T18:20:26.706679+00:00",
+      "text": "00"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 90,
+      "timestamp": "2026-10-26T18:20:26.711315+00:00",
+      "text": "0"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 91,
+      "timestamp": "2026-10-26T18:20:26.721840+00:00",
+      "text": "0"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 92,
+      "timestamp": "2026-10-26T18:20:26.730817+00:00",
+      "text": "]."
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 93,
+      "timestamp": "2026-10-26T18:20:26.743039+00:00",
+      "provider": "nvidia",
+      "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+      "agent": "Answer",
+      "seconds": 1.096,
+      "input_tokens": 1601,
+      "output_tokens": 68,
+      "usage_available": true,
+      "estimated_usd": null,
+      "success": true
+    },
+    {
+      "type": "answer_reset",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 94,
+      "timestamp": "2026-10-26T18:20:26.745362+00:00",
+      "reason": "Normalizing and verifying source citations"
+    },
+    {
+      "type": "answer_delta",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 95,
+      "timestamp": "2026-10-26T18:20:26.745411+00:00",
+      "text": "LangGraph checkpoints are a persistence system that records a thread's graph state after each execution step, enabling short-term, thread-scoped memory for conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance [doc-99e58642fe77::0000]."
+    },
+    {
+      "type": "citations",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 96,
+      "timestamp": "2026-10-26T18:20:26.745444+00:00",
+      "sources": [
+        {
+          "id": "doc-99e58642fe77::0000",
+          "score": 0.59010756,
+          "text": "Persistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions.\nLangGraph provides two complementary persistence systems:\nCheckpointers\npersist a thread\u2019s graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance.\nStores\npersist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge.\nMost applications can use both: a\ncheckpointer\ntracks the current thread, and a\nstore\ntracks durable information across threads.\n##  Quickstart\nCompile your graph with a checkpointer, a store, or both:",
+          "chunk_order": 0.0,
+          "content_hash": "12065604856b8437c1d1d1f8c006dc0d466c88a7bbbdafeb9ac034618b16310b",
+          "corpus_version": "docs-v1",
+          "document_id": "doc-99e58642fe77",
+          "heading": "Quickstart",
+          "kind": "chunk",
+          "snapshot_date": "2026-10-26T07:59:59.902853+00:00",
+          "title": "Persistence - Docs by LangChain",
+          "topic": "langgraph",
+          "url": "https://docs.langchain.com/oss/python/langgraph/persistence"
+        }
+      ]
+    },
+    {
+      "type": "metrics",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 97,
+      "timestamp": "2026-10-26T18:20:26.747484+00:00",
+      "total_seconds": 20.594,
+      "ttft_seconds": 19.793,
+      "calls": [
+        {
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "agent": "Supervisor",
+          "seconds": 1.599,
+          "input_tokens": 349,
+          "output_tokens": 40,
+          "usage_available": true,
+          "estimated_usd": 5.49e-05,
+          "success": true
+        },
+        {
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Research",
+          "seconds": 0.601,
+          "input_tokens": 1446,
+          "output_tokens": 26,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        },
+        {
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Research",
+          "seconds": 1.633,
+          "input_tokens": 3763,
+          "output_tokens": 98,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": false
+        },
+        {
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Research",
+          "seconds": 1.354,
+          "input_tokens": 3777,
+          "output_tokens": 90,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "agent": "Supervisor",
+          "seconds": 1.38,
+          "input_tokens": 421,
+          "output_tokens": 48,
+          "usage_available": true,
+          "estimated_usd": 6.61e-05,
+          "success": true
+        },
+        {
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Summary",
+          "seconds": 1.401,
+          "input_tokens": 663,
+          "output_tokens": 99,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "agent": "Supervisor",
+          "seconds": 1.486,
+          "input_tokens": 493,
+          "output_tokens": 54,
+          "usage_available": true,
+          "estimated_usd": 7.630000000000001e-05,
+          "success": true
+        },
+        {
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Answer",
+          "seconds": 1.096,
+          "input_tokens": 1601,
+          "output_tokens": 68,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        }
+      ],
+      "tools": [
+        {
+          "tool": "search_corpus",
+          "seconds": 1.262,
+          "success": true
+        }
+      ],
+      "fallback": false,
+      "revision": "agentic-ai-00009-mx7"
+    },
+    {
+      "type": "cleanup_warning",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 98,
+      "timestamp": "2026-10-26T18:20:27.461377+00:00",
+      "code": "RuntimeError",
+      "message": "Tool connection cleanup reported an issue after the conversation was saved."
+    },
+    {
+      "type": "done",
+      "turn_id": "d80c44fb631b42d9938a5594d35caaf5",
+      "sequence": 99,
+      "timestamp": "2026-10-26T18:20:27.461457+00:00",
+      "conversation_id": "966ec247-0629-4747-b362-dd8118378f0e",
+      "persisted": true
+    }
+  ],
+  "arrivals_seconds": [
+    16.728106583002955,
+    17.00430737499846,
+    17.004324540961534,
+    18.4624644999858,
+    18.462478999979794,
+    18.462718374968972,
+    24.09456566598965,
+    24.77348749997327,
+    24.773503499978688,
+    25.286920874961652,
+    25.286928665998857,
+    26.55729116598377,
+    26.55741124995984,
+    28.176778415974695,
+    30.540347250003833,
+    30.540362624975387,
+    30.540578415966593,
+    30.54059154097922,
+    31.979214457969647,
+    31.97939004097134,
+    31.97951233299682,
+    31.97952404100215,
+    33.41525754099712,
+    33.41527362499619,
+    33.415520999988075,
+    33.41553620796185,
+    34.81049633299699,
+    34.81051187496632,
+    34.81665570801124,
+    35.15555412496906,
+    35.15572058298858,
+    35.155837333004456,
+    35.15593095798977,
+    35.156020707974676,
+    35.156109208008274,
+    35.16355754097458,
+    35.171827624959406,
+    35.181164415960666,
+    35.19108720798977,
+    35.242032125010155,
+    35.247523250000086,
+    35.26155329099856,
+    35.280204999959096,
+    35.28027337498497,
+    35.28512462496292,
+    35.29631454095943,
+    35.30576354096411,
+    35.31641174998367,
+    35.32590362499468,
+    35.338756249984726,
+    35.345891750010196,
+    35.35698149999371,
+    35.36904349998804,
+    35.375623291009106,
+    35.38729554100428,
+    35.39642145799007,
+    35.40528554096818,
+    35.41609899996547,
+    35.42774379096227,
+    35.47395120799774,
+    35.477822999993805,
+    35.48552170797484,
+    35.49527549999766,
+    35.50469833298121,
+    35.516200249956455,
+    35.52499516599346,
+    35.53755174996331,
+    35.54442508297507,
+    35.55525970796589,
+    35.56472754100105,
+    35.5782273329678,
+    35.58407270797761,
+    35.59690545796184,
+    35.60465691599529,
+    35.615000124962535,
+    35.62569029099541,
+    35.636296540964395,
+    35.645795791002456,
+    35.655717415967956,
+    35.66483575000893,
+    35.67592745798174,
+    35.68590141599998,
+    35.694564915960655,
+    35.706197707972024,
+    35.793439125001896,
+    35.79636862495681,
+    35.80551170796389,
+    35.87141766597051,
+    35.87209266598802,
+    35.87687458295841,
+    35.886817707971204,
+    35.898666207969654,
+    35.90810262499144,
+    35.91077158297412,
+    35.91078491596272,
+    35.911647790984716,
+    35.91476354096085,
+    36.692654499958735,
+    36.69266741600586
+  ],
+  "system_logs": [
+    {
+      "insertId": "6adf99d60000f35d7538c85b",
+      "labels": {
+        "instanceId": "0010dd86079ea10c39da2a2285bbda59597a6d0f664cd09c4de5a268b36f5e6266246eedf3dd5f875c1d3c0be73847e95a92d9c6e2654d24fa7a5f2a213c42f101af7726b7d39d32d982829b12662cf8394872758220eb"
+      },
+      "logName": "projects/psyched-bonfire-432510-m7/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+      "receiveTimestamp": "2026-10-26T18:20:06.074471390Z",
+      "resource": {
+        "labels": {
+          "configuration_name": "agentic-ai",
+          "location": "us-west1",
+          "project_id": "psyched-bonfire-432510-m7",
+          "revision_name": "agentic-ai-00009-mx7",
+          "service_name": "agentic-ai"
+        },
+        "type": "cloud_run_revision"
+      },
+      "severity": "INFO",
+      "textPayload": "Default STARTUP TCP probe succeeded after 1 attempt for container \"app-1\" on port 8080.",
+      "timestamp": "2026-10-26T18:20:06.062301Z"
+    },
+    {
+      "insertId": "6adf99c700016f82a9ec7c81",
+      "labels": {
+        "instanceId": "0010dd86079ea10c39da2a2285bbda59597a6d0f664cd09c4de5a268b36f5e6266246eedf3dd5f875c1d3c0be73847e95a92d9c6e2654d24fa7a5f2a213c42f101af7726b7d39d32d982829b12662cf8394872758220eb",
+        "scaling_reason": "AUTOSCALING"
+      },
+      "logName": "projects/psyched-bonfire-432510-m7/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+      "receiveTimestamp": "2026-10-26T18:19:51.102635410Z",
+      "resource": {
+        "labels": {
+          "configuration_name": "agentic-ai",
+          "location": "us-west1",
+          "project_id": "psyched-bonfire-432510-m7",
+          "revision_name": "agentic-ai-00009-mx7",
+          "service_name": "agentic-ai"
+        },
+        "type": "cloud_run_revision"
+      },
+      "severity": "INFO",
+      "textPayload": "Starting new instance. Reason: AUTOSCALING - Instance started due to configured scaling factors (e.g. CPU utilization, request throughput, etc.) or no existing capacity for current traffic.",
+      "timestamp": "2026-10-26T18:19:51.094082Z"
+    }
+  ],
+  "answer": "LangGraph checkpoints are a persistence system that records a thread's graph state after each execution step, enabling short-term, thread-scoped memory for conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance [doc-99e58642fe77::0000].",
+  "client_ttft_seconds": 35.15555412496906,
+  "client_total_seconds": 36.69266741600586
+}

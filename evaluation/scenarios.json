@@ -1,0 +1,184 @@
+[
+  {
+    "id": "simple",
+    "query": "What are LangGraph checkpoints?",
+    "conversation": "simple",
+    "agents": [
+      "Research"
+    ],
+    "citations": true,
+    "generation_provider": "nvidia"
+  },
+  {
+    "id": "complex",
+    "query": "Compare GCS object generation checks and a transactional database for concurrent conversation updates. Explain failure recovery and design tradeoffs.",
+    "conversation": "complex",
+    "agents": [
+      "Research"
+    ],
+    "citations": true,
+    "generation_provider": "openai"
+  },
+  {
+    "id": "code",
+    "query": "Analyze this code and explain the problem using FastAPI documentation.",
+    "code": "import time\nasync def endpoint():\n    time.sleep(10)\n    return {\"ok\": True}",
+    "conversation": "code",
+    "agents": [
+      "Code"
+    ],
+    "tools": [
+      "analyze_python",
+      "search_corpus"
+    ],
+    "citations": true
+  },
+  {
+    "id": "live",
+    "query": "Find current official Tavily MCP setup guidance and identify the transport and authentication requirements.",
+    "conversation": "main",
+    "agents": [
+      "Research"
+    ],
+    "citations": true,
+    "any_tools": [
+      "tavily_search",
+      "tavily_extract"
+    ]
+  },
+  {
+    "id": "summary",
+    "query": "Summarize your previous findings, preserving citations.",
+    "conversation": "main",
+    "agents": [
+      "Summary"
+    ],
+    "citations": true
+  },
+  {
+    "id": "simple-followup",
+    "query": "Make your previous answer shorter.",
+    "conversation": "main",
+    "generation_provider": "nvidia"
+  },
+  {
+    "id": "complex-followup",
+    "query": "Given our earlier concurrency design, explain how it behaves when two Cloud Run instances update the same session and propose recovery.",
+    "conversation": "main",
+    "generation_provider": "openai"
+  },
+  {
+    "id": "shared-mcp",
+    "query": "Research LangGraph state usage and analyze the supplied code against that guidance.",
+    "code": "from langgraph.graph import StateGraph\ngraph = StateGraph(dict)\nprint(graph)",
+    "conversation": "shared-mcp",
+    "agents": [
+      "Research",
+      "Code"
+    ],
+    "shared_tools": [
+      [
+        "Research",
+        "search_corpus"
+      ],
+      [
+        "Code",
+        "search_corpus"
+      ]
+    ],
+    "citations": true
+  },
+  {
+    "id": "research-summary",
+    "query": "Research how LangGraph stores memory, then summarize the findings.",
+    "order": [
+      "Research",
+      "Summary"
+    ],
+    "citations": true
+  },
+  {
+    "id": "summary-followup",
+    "conversation": "research-summary",
+    "query": "Summarize those findings in three bullet points.",
+    "order": [
+      "Summary"
+    ],
+    "citations": true
+  },
+  {
+    "id": "memory-set",
+    "conversation": "memory",
+    "query": "Remember that my project nickname is Cedar. Reply only with the nickname.",
+    "answer_contains": [
+      "Cedar"
+    ]
+  },
+  {
+    "id": "memory-recall",
+    "conversation": "memory",
+    "query": "What project nickname did I tell you?",
+    "answer_contains": [
+      "Cedar"
+    ]
+  },
+  {
+    "id": "unrehearsed",
+    "query": "Search the FastAPI documentation and explain why an async endpoint can block other requests if it calls time.sleep. Keep it brief.",
+    "citations": true
+  },
+  {
+    "id": "syntax-error",
+    "query": "Inspect this Python code and explain the syntax error.",
+    "code": "def broken(",
+    "agents": [
+      "Code"
+    ],
+    "tools": [
+      "analyze_python",
+      "search_corpus"
+    ]
+  },
+  {
+    "id": "missing-sources",
+    "query": "Summarize the selected document. If it is unavailable say so.",
+    "source_ids": [
+      "doc-does-not-exist"
+    ],
+    "agents": [
+      "Summary"
+    ]
+  },
+  {
+    "id": "greeting",
+    "query": "Hi, what can you help me with?"
+  },
+  {
+    "id": "selected-chunk",
+    "query": "Summarize this selected source chunk in two sentences.",
+    "source_ids": [
+      "doc-99e58642fe77::0000"
+    ],
+    "agents": [
+      "Summary"
+    ],
+    "tools": [
+      "read_chunks"
+    ],
+    "citations": true
+  },
+  {
+    "id": "selected-document",
+    "query": "Read and summarize the selected LangGraph persistence document. Preserve citations and mention any reading limit.",
+    "source_ids": [
+      "doc-99e58642fe77"
+    ],
+    "agents": [
+      "Summary"
+    ],
+    "tools": [
+      "read_document"
+    ],
+    "citations": true
+  }
+]

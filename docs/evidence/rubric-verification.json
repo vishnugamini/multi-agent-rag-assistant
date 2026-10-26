@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-26T18:32:07.527757+00:00",
+  "revision": "agentic-ai-00014-zx8",
+  "unit_tests_passed": 87,
+  "scenarios_passed": 18,
+  "scenarios_executed": 18,
+  "scenarios_expected": 18,
+  "scenario_suite_passed": true,
+  "first_full_run_passed": 17,
+  "cases_rerun": 1,
+  "ragas_scored": {
+    "faithfulness": 24,
+    "answer_relevancy": 24,
+    "context_precision": 24,
+    "context_recall": 24
+  },
+  "integrations": {
+    "fallback": true,
+    "supervisor_after_fallback": true,
+    "gcs": true
+  },
+  "cold_start_proven": true
+}

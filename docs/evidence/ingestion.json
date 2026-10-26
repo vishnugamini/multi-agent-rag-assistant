@@ -1,0 +1,6 @@
+{
+  "pages": 51,
+  "chunks": 2462,
+  "namespace": "docs-v1",
+  "embedding_tokens": "Unavailable: initial run completed upserts before manifest validation failed; no embeddings repeated."
+}

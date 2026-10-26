@@ -1,0 +1,1943 @@
+{
+  "unit_tests_passed": 89,
+  "saved_answer_cleanup_passed": true,
+  "greeting": {
+    "passed": true,
+    "observed_answer": "Hello! How can I help you today?"
+  },
+  "health": {
+    "status": "ok",
+    "state_backend": "gcs",
+    "revision": "agentic-ai-00016-djl",
+    "configured": {
+      "openai_api_key": true,
+      "nvidia_api_key": true,
+      "pinecone_api_key": true,
+      "tavily_api_key": true
+    }
+  },
+  "removed_controls": true,
+  "code_in_chat": {
+    "passed": true,
+    "failures": [],
+    "answer": "The issue is that `time.sleep(10)` inside an `async def` blocks the event loop, preventing other tasks from running. To make the delay nonblocking, import `asyncio` and use `await asyncio.sleep(10)` instead. As the documentation explains, merely declaring a function `async def` does not make synchronous calls nonblocking; suspension occurs through awaitable operations [doc-d3a85dd7e6a4::0018].",
+    "events": [
+      {
+        "type": "turn_started",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 1,
+        "timestamp": "2026-10-26T18:56:38.183440+00:00",
+        "conversation_id": "837e9b58-3c62-4ad6-a776-62145adcadd6",
+        "state_backend": "gcs"
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 2,
+        "timestamp": "2026-10-26T18:56:39.687783+00:00",
+        "agent": "Supervisor",
+        "dispatches": 0
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 3,
+        "timestamp": "2026-10-26T18:56:39.687892+00:00",
+        "agent": "Supervisor",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6-luna",
+        "reason": "Plan the next step from the request and completed work"
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 4,
+        "timestamp": "2026-10-26T18:56:41.708528+00:00",
+        "provider": "openai",
+        "model": "gpt-6-luna",
+        "agent": "Supervisor",
+        "seconds": 2.021,
+        "input_tokens": 389,
+        "output_tokens": 41,
+        "usage_available": true,
+        "estimated_usd": 5.940000000000001e-05,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 5,
+        "timestamp": "2026-10-26T18:56:41.710632+00:00",
+        "agent": "Supervisor",
+        "decision": {
+          "next": "Code",
+          "provider": "openai",
+          "reason": "The user supplied Python code and asks for an explanation; inspect its async blocking behavior before answering."
+        }
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 6,
+        "timestamp": "2026-10-26T18:56:41.713428+00:00",
+        "agent": "Code"
+      },
+      {
+        "type": "mcp_discovery",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 7,
+        "timestamp": "2026-10-26T18:56:48.670192+00:00",
+        "server": "corpus",
+        "tools": [
+          "search_corpus",
+          "read_chunks",
+          "read_document"
+        ]
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 8,
+        "timestamp": "2026-10-26T18:56:48.670356+00:00",
+        "agent": "Code",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "reason": "The user supplied Python code and asks for an explanation; inspect its async blocking behavior before answering."
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 9,
+        "timestamp": "2026-10-26T18:56:50.689414+00:00",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Code",
+        "seconds": 2.019,
+        "input_tokens": 464,
+        "output_tokens": 32,
+        "usage_available": true,
+        "estimated_usd": 0.001248,
+        "success": true
+      },
+      {
+        "type": "tool_started",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 10,
+        "timestamp": "2026-10-26T18:56:50.689557+00:00",
+        "agent": "Code",
+        "server": "local",
+        "tool": "analyze_python",
+        "arguments": {
+          "code": "import time\nasync def endpoint():\n    time.sleep(10)\n"
+        }
+      },
+      {
+        "type": "tool_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 11,
+        "timestamp": "2026-10-26T18:56:50.689882+00:00",
+        "agent": "Code",
+        "server": "local",
+        "tool": "analyze_python",
+        "seconds": 0.0,
+        "preview": "{\"valid_syntax\": true, \"functions\": [{\"name\": \"endpoint\", \"line\": 2, \"async\": true}], \"imports\": [\"import time\"], \"calls\": [\"time.sleep\"], \"note\": \"Static syntax/structure inspection only; no execution or proof of correctness.\"}"
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 12,
+        "timestamp": "2026-10-26T18:56:50.689943+00:00",
+        "agent": "Code",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "reason": "The user supplied Python code and asks for an explanation; inspect its async blocking behavior before answering."
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 13,
+        "timestamp": "2026-10-26T18:56:52.856192+00:00",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Code",
+        "seconds": 2.166,
+        "input_tokens": 573,
+        "output_tokens": 35,
+        "usage_available": true,
+        "estimated_usd": 0.001496,
+        "success": true
+      },
+      {
+        "type": "tool_started",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 14,
+        "timestamp": "2026-10-26T18:56:52.856325+00:00",
+        "agent": "Code",
+        "server": "corpus",
+        "tool": "search_corpus",
+        "arguments": {
+          "query": "FastAPI async def blocking time.sleep normal def threadpool await asyncio.sleep",
+          "top_k": 3
+        }
+      },
+      {
+        "type": "tool_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 15,
+        "timestamp": "2026-10-26T18:56:54.400714+00:00",
+        "agent": "Code",
+        "server": "corpus",
+        "tool": "search_corpus",
+        "seconds": 1.544,
+        "preview": "[{\"id\": \"doc-d3a85dd7e6a4::0018\", \"score\": 0.449465066, \"text\": \"With\\nasync def\\n, Python knows that, inside that function, it has to be aware of\\nawait\\nexpressions, and that it can \\\"pause\\\" \u23f8 the execution of that function and go do something else \ud83d\udd00 before coming back.\\nWhen you want to call an\\nasync def\\nfunction, you have to \\\"await\\\" it. So, this won't work:\", \"chunk_order\": 18.0, \"content_hash\": \"6ed6a50111d6f5637632cd64f8c607d240ff9192f9e78172329fd833563e9812\", \"corpus_version\": \"docs-v1\", \"document_id\": \"doc-d3a85dd7e6a4\", \"heading\": \"Concurrency and async / await - FastAPI\", \"kind\": \"chunk\", \"snapshot_date\": \"2026-10-26T08:00:03.638004+00:00\", \"title\": \"Concurrency and async / await - FastAPI\", \"topic\": \"fastapi\", \"url\": \"https://fastapi.tiangolo.com/async/\"}, {\"id\": \"doc-d3a85dd7e6a4::0012\", \"score\": 0.433946282, \"text\": \"## async and await \u00b6\\nModern versions of Python have a very intuitive way to define asynchronous code. This makes it look just like normal \\\"sequential\\\" code and do the \\\"awaiting\\\" for you at the right moments.\\nWhen there is an operation that will require waiting before giving the results and has support for these new Python features, you can code it like:\", \"chunk_order\": 12.0, \"content_hash\": \"6ed6a50111d6f5637632cd64f8c607d240ff9192f9e78172329fd833563e9812\", \"corpus_version\": \"docs-v1\", \"document_id\": \"doc-d3a85dd7e6a4\", \"heading\": \"async and await \u00b6\", \"kind\": \"chunk\", \"snapshot_date\": \"2026-10-26T08:00:03.638004+00:00\", \"title\": \"Concurrency and async / await - FastAPI\", \"topic\": \"fastapi\", \"url\": \"https://fastapi.tiangolo.com/async/\"}, {\"id\": \"doc-d3a85dd7e6a4::0006\", \"score\": 0.412305772, \"text\": \"If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use\\nasync def\\n, even if you "
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 16,
+        "timestamp": "2026-10-26T18:56:54.400891+00:00",
+        "agent": "Code",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "reason": "The user supplied Python code and asks for an explanation; inspect its async blocking behavior before answering."
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 17,
+        "timestamp": "2026-10-26T18:56:57.060976+00:00",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Code",
+        "seconds": 2.66,
+        "input_tokens": 1572,
+        "output_tokens": 35,
+        "usage_available": true,
+        "estimated_usd": 0.003494,
+        "success": true
+      },
+      {
+        "type": "tool_started",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 18,
+        "timestamp": "2026-10-26T18:56:57.061115+00:00",
+        "agent": "Code",
+        "server": "corpus",
+        "tool": "search_corpus",
+        "arguments": {
+          "query": "FastAPI \"threadpool\" \"time.sleep\" \"path operation\"",
+          "top_k": 2
+        }
+      },
+      {
+        "type": "tool_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 19,
+        "timestamp": "2026-10-26T18:56:57.416029+00:00",
+        "agent": "Code",
+        "server": "corpus",
+        "tool": "search_corpus",
+        "seconds": 0.355,
+        "preview": "[{\"id\": \"doc-d3a85dd7e6a4::0006\", \"score\": 0.480837792, \"text\": \"If your application (somehow) doesn't have to communicate with anything else and wait for it to respond, use\\nasync def\\n, even if you don't need to use\\nawait\\ninside.\\nIf you just don't know, use normal\\ndef\\n.\\nNote\\n: You can mix\\ndef\\nand\\nasync def\\nin your\\npath operation functions\\nas much as you need and define each one using the best option for you. FastAPI will do the right thing with them.\\nAnyway, in any of the cases above, FastAPI will still work asynchronously and be extremely fast.\\nBut by following the steps above, it will be able to do some performance optimizations.\\n## Technical Details \u00b6\\nModern versions of Python have support for\\n\\\"asynchronous code\\\"\\nusing something called\\n\\\"coroutines\\\"\\n, with\\nasync\\nand\\nawait\\nsyntax.\\nLet's see that phrase by parts in the sections below:\\nAsynchronous Code\\nasync\\nand\\nawait\\nCoroutines\", \"chunk_order\": 6.0, \"content_hash\": \"6ed6a50111d6f5637632cd64f8c607d240ff9192f9e78172329fd833563e9812\", \"corpus_version\": \"docs-v1\", \"document_id\": \"doc-d3a85dd7e6a4\", \"heading\": \"Technical Details \u00b6\", \"kind\": \"chunk\", \"snapshot_date\": \"2026-10-26T08:00:03.638004+00:00\", \"title\": \"Concurrency and async / await - FastAPI\", \"topic\": \"fastapi\", \"url\": \"https://fastapi.tiangolo.com/async/\"}, {\"id\": \"doc-d3a85dd7e6a4::0023\", \"score\": 0.479924649, \"text\": \"## Conclusion \u00b6\\nLet's see the same phrase from above:\\nModern versions of Python have support for\\n\\\"asynchronous code\\\"\\nusing something called\\n\\\"coroutines\\\"\\n, with\\nasync\\nand\\nawait\\nsyntax.\\nThat should make more sense now. \u2728\\nAll that is what powers FastAPI (through Starlette) and what makes it have such an impressive performance.\\n## Very Technical Details \u00b6\\nWarning\\nYou can probably skip this.\\nThes"
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 20,
+        "timestamp": "2026-10-26T18:56:57.416257+00:00",
+        "agent": "Code",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "reason": "The user supplied Python code and asks for an explanation; inspect its async blocking behavior before answering."
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 21,
+        "timestamp": "2026-10-26T18:57:05.459407+00:00",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Code",
+        "seconds": 8.043,
+        "input_tokens": 2857,
+        "output_tokens": 317,
+        "usage_available": true,
+        "estimated_usd": 0.008884,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 22,
+        "timestamp": "2026-10-26T18:57:05.459515+00:00",
+        "agent": "Code",
+        "seconds": 23.746,
+        "finding": "Static inspection reports valid Python syntax; the problem is blocking behavior, not syntax. In `async def endpoint()`, `time.sleep(10)` is a synchronous call: when the coroutine runs, it blocks its event-loop thread for roughly 10 seconds rather than yielding. Other tasks on that event loop cannot progress during the sleep. Merely declaring a function `async def` does not make its synchronous calls nonblocking; FastAPI explains that suspension occurs through awaitable operations [doc-d3a85dd7e6a4::0018].\n\nFor a nonblocking delay, use `import asyncio` and replace `time.sleep(10)` with `await asyncio.sleep(10)`. Do not use `await time.sleep(10)`: it still blocks first and returns `None`, which is not awaitable.\n\nIf blocking work is necessary, an alternative is a normal `def` path operation: FastAPI runs those in an external threadpool. This automatic offloading applies to functions FastAPI invokes as path operations or dependencies, not arbitrary synchronous helpers called inside async code [doc-d3a85dd7e6a4::0023].\n\nAs supplied, the snippet only defines a coroutine function: it neither calls it nor registers it as a FastAPI route. Its body runs only when awaited or scheduled, and it implicitly returns `None` after the delay [doc-d3a85dd7e6a4::0018]. These are static findings; no code execution is claimed."
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 23,
+        "timestamp": "2026-10-26T18:57:05.461187+00:00",
+        "agent": "Supervisor",
+        "dispatches": 1
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 24,
+        "timestamp": "2026-10-26T18:57:05.461272+00:00",
+        "agent": "Supervisor",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6-luna",
+        "reason": "Plan the next step from the request and completed work"
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 25,
+        "timestamp": "2026-10-26T18:57:07.017022+00:00",
+        "provider": "openai",
+        "model": "gpt-6-luna",
+        "agent": "Supervisor",
+        "seconds": 1.556,
+        "input_tokens": 710,
+        "output_tokens": 48,
+        "usage_available": true,
+        "estimated_usd": 9.5e-05,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 26,
+        "timestamp": "2026-10-26T18:57:07.017191+00:00",
+        "agent": "Supervisor",
+        "decision": {
+          "next": "finish",
+          "provider": "nvidia",
+          "reason": "The prior Code finding already analyzes this exact snippet and cites relevant FastAPI documentation; no selected sources or evidence gaps require another worker."
+        }
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 27,
+        "timestamp": "2026-10-26T18:57:07.021708+00:00",
+        "agent": "Answer",
+        "selected_provider": "nvidia",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "reason": "The prior Code finding already analyzes this exact snippet and cites relevant FastAPI documentation; no selected sources or evidence gaps require another worker."
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 28,
+        "timestamp": "2026-10-26T18:57:07.408417+00:00",
+        "text": "In the provided"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 29,
+        "timestamp": "2026-10-26T18:57:07.410716+00:00",
+        "text": " code"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 30,
+        "timestamp": "2026-10-26T18:57:07.415399+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 31,
+        "timestamp": "2026-10-26T18:57:07.421565+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 32,
+        "timestamp": "2026-10-26T18:57:07.430941+00:00",
+        "text": "time"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 33,
+        "timestamp": "2026-10-26T18:57:07.438256+00:00",
+        "text": ".sleep"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 34,
+        "timestamp": "2026-10-26T18:57:07.447224+00:00",
+        "text": "("
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 35,
+        "timestamp": "2026-10-26T18:57:07.455659+00:00",
+        "text": "1"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 36,
+        "timestamp": "2026-10-26T18:57:07.464122+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 37,
+        "timestamp": "2026-10-26T18:57:07.473142+00:00",
+        "text": ")`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 38,
+        "timestamp": "2026-10-26T18:57:07.527862+00:00",
+        "text": " inside"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 39,
+        "timestamp": "2026-10-26T18:57:07.528778+00:00",
+        "text": " an `async def`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 40,
+        "timestamp": "2026-10-26T18:57:07.531928+00:00",
+        "text": " function"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 41,
+        "timestamp": "2026-10-26T18:57:07.546506+00:00",
+        "text": " is"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 42,
+        "timestamp": "2026-10-26T18:57:07.552169+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 43,
+        "timestamp": "2026-10-26T18:57:07.558064+00:00",
+        "text": " synchronous"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 44,
+        "timestamp": "2026-10-26T18:57:07.566591+00:00",
+        "text": " blocking"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 45,
+        "timestamp": "2026-10-26T18:57:07.573764+00:00",
+        "text": " call"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 46,
+        "timestamp": "2026-10-26T18:57:07.580019+00:00",
+        "text": "."
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 47,
+        "timestamp": "2026-10-26T18:57:07.587470+00:00",
+        "text": " This"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 48,
+        "timestamp": "2026-10-26T18:57:07.594943+00:00",
+        "text": " blocks"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 49,
+        "timestamp": "2026-10-26T18:57:07.602446+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 50,
+        "timestamp": "2026-10-26T18:57:07.609641+00:00",
+        "text": " event"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 51,
+        "timestamp": "2026-10-26T18:57:07.617334+00:00",
+        "text": " loop"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 52,
+        "timestamp": "2026-10-26T18:57:07.624178+00:00",
+        "text": " for"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 53,
+        "timestamp": "2026-10-26T18:57:07.631755+00:00",
+        "text": " approximately"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 54,
+        "timestamp": "2026-10-26T18:57:07.640057+00:00",
+        "text": " "
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 55,
+        "timestamp": "2026-10-26T18:57:07.660976+00:00",
+        "text": "1"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 56,
+        "timestamp": "2026-10-26T18:57:07.662140+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 57,
+        "timestamp": "2026-10-26T18:57:07.662656+00:00",
+        "text": " seconds"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 58,
+        "timestamp": "2026-10-26T18:57:07.669390+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 59,
+        "timestamp": "2026-10-26T18:57:07.677103+00:00",
+        "text": " preventing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 60,
+        "timestamp": "2026-10-26T18:57:07.684151+00:00",
+        "text": " other"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 61,
+        "timestamp": "2026-10-26T18:57:07.691757+00:00",
+        "text": " tasks"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 62,
+        "timestamp": "2026-10-26T18:57:07.698666+00:00",
+        "text": " from"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 63,
+        "timestamp": "2026-10-26T18:57:07.706949+00:00",
+        "text": " progressing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 64,
+        "timestamp": "2026-10-26T18:57:07.714909+00:00",
+        "text": "."
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 65,
+        "timestamp": "2026-10-26T18:57:07.721601+00:00",
+        "text": " To"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 66,
+        "timestamp": "2026-10-26T18:57:07.728462+00:00",
+        "text": " achieve"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 67,
+        "timestamp": "2026-10-26T18:57:07.736841+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 68,
+        "timestamp": "2026-10-26T18:57:07.744073+00:00",
+        "text": " non"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 69,
+        "timestamp": "2026-10-26T18:57:07.752138+00:00",
+        "text": "block"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 70,
+        "timestamp": "2026-10-26T18:57:07.758766+00:00",
+        "text": "ing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 71,
+        "timestamp": "2026-10-26T18:57:07.766757+00:00",
+        "text": " delay"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 72,
+        "timestamp": "2026-10-26T18:57:07.773875+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 73,
+        "timestamp": "2026-10-26T18:57:07.780663+00:00",
+        "text": " replace"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 74,
+        "timestamp": "2026-10-26T18:57:07.788776+00:00",
+        "text": " it"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 75,
+        "timestamp": "2026-10-26T18:57:07.797003+00:00",
+        "text": " with"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 76,
+        "timestamp": "2026-10-26T18:57:07.803695+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 77,
+        "timestamp": "2026-10-26T18:57:07.811125+00:00",
+        "text": "await"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 78,
+        "timestamp": "2026-10-26T18:57:07.819318+00:00",
+        "text": " async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 79,
+        "timestamp": "2026-10-26T18:57:07.826905+00:00",
+        "text": "io"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 80,
+        "timestamp": "2026-10-26T18:57:07.833853+00:00",
+        "text": ".sleep"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 81,
+        "timestamp": "2026-10-26T18:57:07.840548+00:00",
+        "text": "("
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 82,
+        "timestamp": "2026-10-26T18:57:07.847768+00:00",
+        "text": "1"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 83,
+        "timestamp": "2026-10-26T18:57:07.875173+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 84,
+        "timestamp": "2026-10-26T18:57:07.875488+00:00",
+        "text": ")`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 85,
+        "timestamp": "2026-10-26T18:57:07.952408+00:00",
+        "text": " after"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 86,
+        "timestamp": "2026-10-26T18:57:07.956868+00:00",
+        "text": " importing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 87,
+        "timestamp": "2026-10-26T18:57:07.964417+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 88,
+        "timestamp": "2026-10-26T18:57:07.971996+00:00",
+        "text": "async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 89,
+        "timestamp": "2026-10-26T18:57:07.981217+00:00",
+        "text": "io"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 90,
+        "timestamp": "2026-10-26T18:57:07.990412+00:00",
+        "text": "`."
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 91,
+        "timestamp": "2026-10-26T18:57:07.997968+00:00",
+        "text": " Path"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 92,
+        "timestamp": "2026-10-26T18:57:08.007278+00:00",
+        "text": " operation"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 93,
+        "timestamp": "2026-10-26T18:57:08.015586+00:00",
+        "text": " functions"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 94,
+        "timestamp": "2026-10-26T18:57:08.025616+00:00",
+        "text": " declared"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 95,
+        "timestamp": "2026-10-26T18:57:08.068795+00:00",
+        "text": " with"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 96,
+        "timestamp": "2026-10-26T18:57:08.069437+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 97,
+        "timestamp": "2026-10-26T18:57:08.075118+00:00",
+        "text": "def"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 98,
+        "timestamp": "2026-10-26T18:57:08.085812+00:00",
+        "text": "`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 99,
+        "timestamp": "2026-10-26T18:57:08.092410+00:00",
+        "text": " are"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 100,
+        "timestamp": "2026-10-26T18:57:08.100903+00:00",
+        "text": " automatically"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 101,
+        "timestamp": "2026-10-26T18:57:08.108821+00:00",
+        "text": " off"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 102,
+        "timestamp": "2026-10-26T18:57:08.117489+00:00",
+        "text": "loaded"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 103,
+        "timestamp": "2026-10-26T18:57:08.126564+00:00",
+        "text": " to"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 104,
+        "timestamp": "2026-10-26T18:57:08.134239+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 105,
+        "timestamp": "2026-10-26T18:57:08.143106+00:00",
+        "text": " thread"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 106,
+        "timestamp": "2026-10-26T18:57:08.151425+00:00",
+        "text": " pool"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 107,
+        "timestamp": "2026-10-26T18:57:08.160320+00:00",
+        "text": " by"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 108,
+        "timestamp": "2026-10-26T18:57:08.168696+00:00",
+        "text": " Fast"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 109,
+        "timestamp": "2026-10-26T18:57:08.177275+00:00",
+        "text": "API"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 110,
+        "timestamp": "2026-10-26T18:57:08.186026+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 111,
+        "timestamp": "2026-10-26T18:57:08.194436+00:00",
+        "text": " but"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 112,
+        "timestamp": "2026-10-26T18:57:08.203136+00:00",
+        "text": " synchronous"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 113,
+        "timestamp": "2026-10-26T18:57:08.211855+00:00",
+        "text": " helpers"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 114,
+        "timestamp": "2026-10-26T18:57:08.220057+00:00",
+        "text": " called"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 115,
+        "timestamp": "2026-10-26T18:57:08.228308+00:00",
+        "text": " inside"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 116,
+        "timestamp": "2026-10-26T18:57:08.237256+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 117,
+        "timestamp": "2026-10-26T18:57:08.246486+00:00",
+        "text": "async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 118,
+        "timestamp": "2026-10-26T18:57:08.254222+00:00",
+        "text": "`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 119,
+        "timestamp": "2026-10-26T18:57:08.264638+00:00",
+        "text": " code"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 120,
+        "timestamp": "2026-10-26T18:57:08.272172+00:00",
+        "text": " must"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 121,
+        "timestamp": "2026-10-26T18:57:08.281027+00:00",
+        "text": " use"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 122,
+        "timestamp": "2026-10-26T18:57:08.290907+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 123,
+        "timestamp": "2026-10-26T18:57:08.297042+00:00",
+        "text": "await"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 124,
+        "timestamp": "2026-10-26T18:57:08.306539+00:00",
+        "text": " async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 125,
+        "timestamp": "2026-10-26T18:57:08.315627+00:00",
+        "text": "io"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 126,
+        "timestamp": "2026-10-26T18:57:08.323349+00:00",
+        "text": ".sleep"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 127,
+        "timestamp": "2026-10-26T18:57:08.331678+00:00",
+        "text": "()`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 128,
+        "timestamp": "2026-10-26T18:57:08.340551+00:00",
+        "text": " for"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 129,
+        "timestamp": "2026-10-26T18:57:08.350348+00:00",
+        "text": " non"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 130,
+        "timestamp": "2026-10-26T18:57:08.357248+00:00",
+        "text": "block"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 131,
+        "timestamp": "2026-10-26T18:57:08.367734+00:00",
+        "text": "ing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 132,
+        "timestamp": "2026-10-26T18:57:08.375391+00:00",
+        "text": " behavior"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 133,
+        "timestamp": "2026-10-26T18:57:08.383868+00:00",
+        "text": "."
+      },
+      {
+        "type": "answer_reset",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 134,
+        "timestamp": "2026-10-26T18:57:08.400695+00:00",
+        "reason": "Provider stream interrupted; regenerating answer"
+      },
+      {
+        "type": "model_error",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 135,
+        "timestamp": "2026-10-26T18:57:08.400782+00:00",
+        "agent": "Answer",
+        "provider": "nvidia",
+        "error": "InvalidOutput",
+        "retry": true
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 136,
+        "timestamp": "2026-10-26T18:57:09.599926+00:00",
+        "text": "The"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 137,
+        "timestamp": "2026-10-26T18:57:09.605586+00:00",
+        "text": " issue"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 138,
+        "timestamp": "2026-10-26T18:57:09.614816+00:00",
+        "text": " is"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 139,
+        "timestamp": "2026-10-26T18:57:09.621019+00:00",
+        "text": " that"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 140,
+        "timestamp": "2026-10-26T18:57:09.635263+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 141,
+        "timestamp": "2026-10-26T18:57:09.658993+00:00",
+        "text": "time"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 142,
+        "timestamp": "2026-10-26T18:57:09.659261+00:00",
+        "text": ".sleep"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 143,
+        "timestamp": "2026-10-26T18:57:09.659458+00:00",
+        "text": "("
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 144,
+        "timestamp": "2026-10-26T18:57:09.661626+00:00",
+        "text": "1"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 145,
+        "timestamp": "2026-10-26T18:57:09.668966+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 146,
+        "timestamp": "2026-10-26T18:57:09.681484+00:00",
+        "text": ")`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 147,
+        "timestamp": "2026-10-26T18:57:09.727040+00:00",
+        "text": " inside"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 148,
+        "timestamp": "2026-10-26T18:57:09.730777+00:00",
+        "text": " an"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 149,
+        "timestamp": "2026-10-26T18:57:09.737254+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 150,
+        "timestamp": "2026-10-26T18:57:09.745044+00:00",
+        "text": "async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 151,
+        "timestamp": "2026-10-26T18:57:09.752520+00:00",
+        "text": " def"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 152,
+        "timestamp": "2026-10-26T18:57:09.761390+00:00",
+        "text": "`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 153,
+        "timestamp": "2026-10-26T18:57:09.770181+00:00",
+        "text": " blocks"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 154,
+        "timestamp": "2026-10-26T18:57:09.777258+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 155,
+        "timestamp": "2026-10-26T18:57:09.794196+00:00",
+        "text": " event"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 156,
+        "timestamp": "2026-10-26T18:57:09.798888+00:00",
+        "text": " loop"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 157,
+        "timestamp": "2026-10-26T18:57:09.804587+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 158,
+        "timestamp": "2026-10-26T18:57:09.809976+00:00",
+        "text": " preventing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 159,
+        "timestamp": "2026-10-26T18:57:09.900575+00:00",
+        "text": " other"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 160,
+        "timestamp": "2026-10-26T18:57:09.989419+00:00",
+        "text": " tasks"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 161,
+        "timestamp": "2026-10-26T18:57:10.068850+00:00",
+        "text": " from"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 162,
+        "timestamp": "2026-10-26T18:57:10.186603+00:00",
+        "text": " running"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 163,
+        "timestamp": "2026-10-26T18:57:10.189276+00:00",
+        "text": "."
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 164,
+        "timestamp": "2026-10-26T18:57:10.199040+00:00",
+        "text": " To"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 165,
+        "timestamp": "2026-10-26T18:57:10.205857+00:00",
+        "text": " make"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 166,
+        "timestamp": "2026-10-26T18:57:10.216541+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 167,
+        "timestamp": "2026-10-26T18:57:10.224383+00:00",
+        "text": " delay"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 168,
+        "timestamp": "2026-10-26T18:57:10.233306+00:00",
+        "text": " non"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 169,
+        "timestamp": "2026-10-26T18:57:10.242177+00:00",
+        "text": "block"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 170,
+        "timestamp": "2026-10-26T18:57:10.251671+00:00",
+        "text": "ing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 171,
+        "timestamp": "2026-10-26T18:57:10.262911+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 172,
+        "timestamp": "2026-10-26T18:57:10.271130+00:00",
+        "text": " import"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 173,
+        "timestamp": "2026-10-26T18:57:10.279409+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 174,
+        "timestamp": "2026-10-26T18:57:10.288725+00:00",
+        "text": "async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 175,
+        "timestamp": "2026-10-26T18:57:10.298318+00:00",
+        "text": "io"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 176,
+        "timestamp": "2026-10-26T18:57:10.307144+00:00",
+        "text": "`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 177,
+        "timestamp": "2026-10-26T18:57:10.315741+00:00",
+        "text": " and"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 178,
+        "timestamp": "2026-10-26T18:57:10.324786+00:00",
+        "text": " use"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 179,
+        "timestamp": "2026-10-26T18:57:10.335580+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 180,
+        "timestamp": "2026-10-26T18:57:10.345053+00:00",
+        "text": "await"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 181,
+        "timestamp": "2026-10-26T18:57:10.352646+00:00",
+        "text": " async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 182,
+        "timestamp": "2026-10-26T18:57:10.362442+00:00",
+        "text": "io"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 183,
+        "timestamp": "2026-10-26T18:57:10.369772+00:00",
+        "text": ".sleep"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 184,
+        "timestamp": "2026-10-26T18:57:10.379468+00:00",
+        "text": "("
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 185,
+        "timestamp": "2026-10-26T18:57:10.437135+00:00",
+        "text": "10)` instead. As"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 186,
+        "timestamp": "2026-10-26T18:57:10.441874+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 187,
+        "timestamp": "2026-10-26T18:57:10.450709+00:00",
+        "text": " documentation"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 188,
+        "timestamp": "2026-10-26T18:57:10.459230+00:00",
+        "text": " explains"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 189,
+        "timestamp": "2026-10-26T18:57:10.469388+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 190,
+        "timestamp": "2026-10-26T18:57:10.481696+00:00",
+        "text": " merely"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 191,
+        "timestamp": "2026-10-26T18:57:10.487006+00:00",
+        "text": " declaring"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 192,
+        "timestamp": "2026-10-26T18:57:10.495983+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 193,
+        "timestamp": "2026-10-26T18:57:10.504460+00:00",
+        "text": " function"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 194,
+        "timestamp": "2026-10-26T18:57:10.514167+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 195,
+        "timestamp": "2026-10-26T18:57:10.522652+00:00",
+        "text": "async"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 196,
+        "timestamp": "2026-10-26T18:57:10.531672+00:00",
+        "text": " def"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 197,
+        "timestamp": "2026-10-26T18:57:10.541168+00:00",
+        "text": "`"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 198,
+        "timestamp": "2026-10-26T18:57:10.550551+00:00",
+        "text": " does"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 199,
+        "timestamp": "2026-10-26T18:57:10.559288+00:00",
+        "text": " not"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 200,
+        "timestamp": "2026-10-26T18:57:10.571564+00:00",
+        "text": " make"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 201,
+        "timestamp": "2026-10-26T18:57:10.577795+00:00",
+        "text": " synchronous"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 202,
+        "timestamp": "2026-10-26T18:57:10.587257+00:00",
+        "text": " calls"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 203,
+        "timestamp": "2026-10-26T18:57:10.597100+00:00",
+        "text": " non"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 204,
+        "timestamp": "2026-10-26T18:57:10.603839+00:00",
+        "text": "block"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 205,
+        "timestamp": "2026-10-26T18:57:10.613648+00:00",
+        "text": "ing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 206,
+        "timestamp": "2026-10-26T18:57:10.622028+00:00",
+        "text": ";"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 207,
+        "timestamp": "2026-10-26T18:57:10.630213+00:00",
+        "text": " suspension"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 208,
+        "timestamp": "2026-10-26T18:57:10.640617+00:00",
+        "text": " occurs"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 209,
+        "timestamp": "2026-10-26T18:57:10.648830+00:00",
+        "text": " through"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 210,
+        "timestamp": "2026-10-26T18:57:10.657507+00:00",
+        "text": " await"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 211,
+        "timestamp": "2026-10-26T18:57:10.666803+00:00",
+        "text": "able"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 212,
+        "timestamp": "2026-10-26T18:57:10.676175+00:00",
+        "text": " operations"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 213,
+        "timestamp": "2026-10-26T18:57:10.685103+00:00",
+        "text": " ["
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 214,
+        "timestamp": "2026-10-26T18:57:10.694095+00:00",
+        "text": "doc"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 215,
+        "timestamp": "2026-10-26T18:57:10.703691+00:00",
+        "text": "-d"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 216,
+        "timestamp": "2026-10-26T18:57:10.712370+00:00",
+        "text": "3"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 217,
+        "timestamp": "2026-10-26T18:57:10.721844+00:00",
+        "text": "a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 218,
+        "timestamp": "2026-10-26T18:57:10.730791+00:00",
+        "text": "8"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 219,
+        "timestamp": "2026-10-26T18:57:10.741229+00:00",
+        "text": "5"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 220,
+        "timestamp": "2026-10-26T18:57:10.750223+00:00",
+        "text": "dd"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 221,
+        "timestamp": "2026-10-26T18:57:10.758421+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 222,
+        "timestamp": "2026-10-26T18:57:10.767273+00:00",
+        "text": "e"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 223,
+        "timestamp": "2026-10-26T18:57:10.777146+00:00",
+        "text": "6"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 224,
+        "timestamp": "2026-10-26T18:57:10.785726+00:00",
+        "text": "a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 225,
+        "timestamp": "2026-10-26T18:57:10.794314+00:00",
+        "text": "4"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 226,
+        "timestamp": "2026-10-26T18:57:10.803835+00:00",
+        "text": "::"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 227,
+        "timestamp": "2026-10-26T18:57:10.813565+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 228,
+        "timestamp": "2026-10-26T18:57:10.821652+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 229,
+        "timestamp": "2026-10-26T18:57:10.829976+00:00",
+        "text": "1"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 230,
+        "timestamp": "2026-10-26T18:57:10.839547+00:00",
+        "text": "8"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 231,
+        "timestamp": "2026-10-26T18:57:10.849089+00:00",
+        "text": "]."
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 232,
+        "timestamp": "2026-10-26T18:57:10.860512+00:00",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Answer",
+        "seconds": 1.459,
+        "input_tokens": 1830,
+        "output_tokens": 102,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "type": "citations",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 233,
+        "timestamp": "2026-10-26T18:57:10.861673+00:00",
+        "sources": [
+          {
+            "id": "doc-d3a85dd7e6a4::0018",
+            "score": 0.449465066,
+            "text": "With\nasync def\n, Python knows that, inside that function, it has to be aware of\nawait\nexpressions, and that it can \"pause\" \u23f8 the execution of that function and go do something else \ud83d\udd00 before coming back.\nWhen you want to call an\nasync def\nfunction, you have to \"await\" it. So, this won't work:",
+            "chunk_order": 18.0,
+            "content_hash": "6ed6a50111d6f5637632cd64f8c607d240ff9192f9e78172329fd833563e9812",
+            "corpus_version": "docs-v1",
+            "document_id": "doc-d3a85dd7e6a4",
+            "heading": "Concurrency and async / await - FastAPI",
+            "kind": "chunk",
+            "snapshot_date": "2026-10-26T08:00:03.638004+00:00",
+            "title": "Concurrency and async / await - FastAPI",
+            "topic": "fastapi",
+            "url": "https://fastapi.tiangolo.com/async/"
+          }
+        ]
+      },
+      {
+        "type": "metrics",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 234,
+        "timestamp": "2026-10-26T18:57:10.863028+00:00",
+        "total_seconds": 32.942,
+        "ttft_seconds": 29.487,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6-luna",
+            "agent": "Supervisor",
+            "seconds": 2.021,
+            "input_tokens": 389,
+            "output_tokens": 41,
+            "usage_available": true,
+            "estimated_usd": 5.940000000000001e-05,
+            "success": true
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Code",
+            "seconds": 2.019,
+            "input_tokens": 464,
+            "output_tokens": 32,
+            "usage_available": true,
+            "estimated_usd": 0.001248,
+            "success": true
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Code",
+            "seconds": 2.166,
+            "input_tokens": 573,
+            "output_tokens": 35,
+            "usage_available": true,
+            "estimated_usd": 0.001496,
+            "success": true
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Code",
+            "seconds": 2.66,
+            "input_tokens": 1572,
+            "output_tokens": 35,
+            "usage_available": true,
+            "estimated_usd": 0.003494,
+            "success": true
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Code",
+            "seconds": 8.043,
+            "input_tokens": 2857,
+            "output_tokens": 317,
+            "usage_available": true,
+            "estimated_usd": 0.008884,
+            "success": true
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6-luna",
+            "agent": "Supervisor",
+            "seconds": 1.556,
+            "input_tokens": 710,
+            "output_tokens": 48,
+            "usage_available": true,
+            "estimated_usd": 9.5e-05,
+            "success": true
+          },
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Answer",
+            "seconds": 1.379,
+            "input_tokens": 1791,
+            "output_tokens": 113,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": false
+          },
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Answer",
+            "seconds": 1.459,
+            "input_tokens": 1830,
+            "output_tokens": 102,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ],
+        "tools": [
+          {
+            "tool": "analyze_python",
+            "seconds": 0.0,
+            "success": true
+          },
+          {
+            "tool": "search_corpus",
+            "seconds": 1.544,
+            "success": true
+          },
+          {
+            "tool": "search_corpus",
+            "seconds": 0.355,
+            "success": true
+          }
+        ],
+        "fallback": false,
+        "revision": "agentic-ai-00016-djl"
+      },
+      {
+        "type": "cleanup_warning",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 235,
+        "timestamp": "2026-10-26T18:57:12.110303+00:00",
+        "code": "RuntimeError",
+        "message": "Tool connection cleanup reported an issue after the conversation was saved."
+      },
+      {
+        "type": "done",
+        "turn_id": "a3b4b7e6198f4a17ad4be8902e07f1b4",
+        "sequence": 236,
+        "timestamp": "2026-10-26T18:57:12.110386+00:00",
+        "conversation_id": "837e9b58-3c62-4ad6-a776-62145adcadd6",
+        "persisted": true
+      }
+    ]
+  }
+}

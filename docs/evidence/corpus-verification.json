@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-26T18:18:35.623992+00:00",
+  "namespace": "docs-v1",
+  "dimension": 1536,
+  "vectors": 2513,
+  "expected_chunks": 2462,
+  "expected_manifests": 51
+}

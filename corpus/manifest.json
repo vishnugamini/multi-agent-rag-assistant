@@ -1,0 +1,210 @@
+[
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/overview"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/graph-api"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/persistence"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/streaming"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/workflows-agents"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/durable-execution"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/interrupts"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/use-graph-api"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/use-functional-api"
+  },
+  {
+    "topic": "langgraph",
+    "url": "https://docs.langchain.com/oss/python/langgraph/thinking-in-langgraph"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/overview"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/agents"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/tools"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/messages"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/models"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/retrieval"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+  },
+  {
+    "topic": "langchain",
+    "url": "https://docs.langchain.com/oss/python/langchain/long-term-memory"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/tutorial/first-steps/"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/tutorial/path-params/"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/tutorial/query-params/"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/tutorial/body/"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/tutorial/handling-errors/"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/async/"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/advanced/custom-response/"
+  },
+  {
+    "topic": "fastapi",
+    "url": "https://fastapi.tiangolo.com/tutorial/static-files/"
+  },
+  {
+    "topic": "mcp",
+    "url": "https://modelcontextprotocol.io/docs/learn/architecture"
+  },
+  {
+    "topic": "mcp",
+    "url": "https://modelcontextprotocol.io/docs/learn/client-concepts"
+  },
+  {
+    "topic": "mcp",
+    "url": "https://modelcontextprotocol.io/docs/learn/server-concepts"
+  },
+  {
+    "topic": "mcp",
+    "url": "https://modelcontextprotocol.io/docs/develop/build-client"
+  },
+  {
+    "topic": "mcp",
+    "url": "https://modelcontextprotocol.io/docs/develop/build-server"
+  },
+  {
+    "topic": "pinecone",
+    "url": "https://docs.pinecone.io/guides/get-started/overview"
+  },
+  {
+    "topic": "pinecone",
+    "url": "https://docs.pinecone.io/guides/index-data/create-an-index"
+  },
+  {
+    "topic": "pinecone",
+    "url": "https://docs.pinecone.io/guides/index-data/upsert-data"
+  },
+  {
+    "topic": "pinecone",
+    "url": "https://docs.pinecone.io/guides/search/semantic-search"
+  },
+  {
+    "topic": "pinecone",
+    "url": "https://docs.pinecone.io/guides/search/filter-by-metadata"
+  },
+  {
+    "topic": "pinecone",
+    "url": "https://docs.pinecone.io/guides/manage-data/fetch-data"
+  },
+  {
+    "topic": "gcp",
+    "url": "https://docs.cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-python-service"
+  },
+  {
+    "topic": "gcp",
+    "url": "https://docs.cloud.google.com/run/docs/configuring/request-timeout"
+  },
+  {
+    "topic": "gcp",
+    "url": "https://docs.cloud.google.com/run/docs/configuring/services/memory-limits"
+  },
+  {
+    "topic": "gcp",
+    "url": "https://docs.cloud.google.com/run/docs/configuring/services/service-identity"
+  },
+  {
+    "topic": "gcp",
+    "url": "https://docs.cloud.google.com/storage/docs/request-preconditions"
+  },
+  {
+    "topic": "gcp",
+    "url": "https://docs.cloud.google.com/storage/docs/consistency"
+  },
+  {
+    "topic": "gcp",
+    "url": "https://docs.cloud.google.com/storage/docs/access-control/iam"
+  },
+  {
+    "topic": "openai",
+    "url": "https://developers.openai.com/api/docs/guides/embeddings"
+  },
+  {
+    "topic": "openai",
+    "url": "https://developers.openai.com/api/docs/guides/streaming-responses"
+  },
+  {
+    "topic": "openai",
+    "url": "https://developers.openai.com/api/docs/guides/function-calling"
+  },
+  {
+    "topic": "openai",
+    "url": "https://developers.openai.com/api/docs/guides/conversation-state"
+  },
+  {
+    "topic": "nvidia",
+    "url": "https://docs.api.nvidia.com/nim/reference/llm-apis"
+  },
+  {
+    "topic": "tavily",
+    "url": "https://docs.tavily.com/documentation/mcp"
+  },
+  {
+    "topic": "tavily",
+    "url": "https://docs.tavily.com/documentation/api-reference/endpoint/search"
+  },
+  {
+    "topic": "tavily",
+    "url": "https://docs.tavily.com/documentation/api-reference/endpoint/extract"
+  }
+]

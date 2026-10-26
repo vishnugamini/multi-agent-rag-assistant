@@ -1,0 +1,97 @@
+{
+  "fallback": {
+    "passed": true,
+    "calls": [
+      {
+        "provider": "nvidia",
+        "model": "invalid-model-for-fallback-test",
+        "agent": "Research",
+        "seconds": 0.3,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "usage_available": false,
+        "estimated_usd": null,
+        "success": false
+      },
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Research",
+        "seconds": 1.81,
+        "input_tokens": 11,
+        "output_tokens": 5,
+        "usage_available": true,
+        "estimated_usd": 7.2e-05,
+        "success": true
+      }
+    ],
+    "trace": [
+      {
+        "type": "routing_decision",
+        "turn_id": "24cb16819d064ed0b82573d3f0130eeb",
+        "sequence": 1,
+        "timestamp": "2026-10-26T17:52:35.219007+00:00",
+        "agent": "Research",
+        "selected_provider": "nvidia",
+        "provider": "nvidia",
+        "model": "invalid-model-for-fallback-test",
+        "reason": "Injected invalid NIM model to verify one-way recovery"
+      },
+      {
+        "type": "model_error",
+        "turn_id": "24cb16819d064ed0b82573d3f0130eeb",
+        "sequence": 2,
+        "timestamp": "2026-10-26T17:52:35.519112+00:00",
+        "agent": "Research",
+        "provider": "nvidia",
+        "error": "HTTP 404",
+        "retry": false
+      },
+      {
+        "type": "provider_fallback",
+        "turn_id": "24cb16819d064ed0b82573d3f0130eeb",
+        "sequence": 3,
+        "timestamp": "2026-10-26T17:52:35.519238+00:00",
+        "agent": "Research",
+        "from_provider": "nvidia",
+        "to_provider": "openai",
+        "reason": "NVIDIA request failed; remaining calls use OpenAI for this turn"
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "24cb16819d064ed0b82573d3f0130eeb",
+        "sequence": 4,
+        "timestamp": "2026-10-26T17:52:37.328953+00:00",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Research",
+        "seconds": 1.81,
+        "input_tokens": 11,
+        "output_tokens": 5,
+        "usage_available": true,
+        "estimated_usd": 7.2e-05,
+        "success": true
+      }
+    ]
+  },
+  "supervisor_after_fallback": {
+    "passed": true,
+    "call": {
+      "provider": "openai",
+      "model": "gpt-6-luna",
+      "agent": "Supervisor",
+      "seconds": 0.564,
+      "input_tokens": 11,
+      "output_tokens": 5,
+      "usage_available": true,
+      "estimated_usd": null,
+      "success": true
+    }
+  },
+  "gcs": {
+    "passed": true,
+    "conversation_id": "55839e65-ec64-4dae-aad0-07b5fd29359e",
+    "independent_clients": true,
+    "stale_write_rejected": true
+  }
+}

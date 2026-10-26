@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-26T18:05:23.316959+00:00",
+  "questions_requested": 24,
+  "questions_answered": 24,
+  "ragas": {
+    "faithfulness": 0.9467078877005347,
+    "answer_relevancy": 0.7406215794196433,
+    "context_precision": 0.8787615740392711,
+    "context_recall": 0.9583333333333334
+  },
+  "environment": "local; not Cloud Run latency"
+}

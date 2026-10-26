@@ -1,0 +1,76 @@
+{
+  "answer": "FALLBACK_OK",
+  "fallback_used": true,
+  "calls": [
+    {
+      "provider": "nvidia",
+      "model": "deliberately-unavailable-fallback-probe",
+      "agent": "FallbackProbe",
+      "seconds": 0.216,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "usage_available": false,
+      "estimated_usd": null,
+      "success": false
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "agent": "FallbackProbe",
+      "seconds": 2.765,
+      "input_tokens": 13,
+      "output_tokens": 8,
+      "usage_available": true,
+      "estimated_usd": 0.000106,
+      "success": true
+    }
+  ],
+  "events": [
+    {
+      "type": "routing_decision",
+      "turn_id": "c330770457d8483ba0dd2cacf73765c5",
+      "sequence": 1,
+      "timestamp": "2026-10-26T08:43:37.069989+00:00",
+      "agent": "FallbackProbe",
+      "selected_provider": "nvidia",
+      "provider": "nvidia",
+      "model": "deliberately-unavailable-fallback-probe",
+      "reason": "Deliberately unavailable NVIDIA model"
+    },
+    {
+      "type": "model_error",
+      "turn_id": "c330770457d8483ba0dd2cacf73765c5",
+      "sequence": 2,
+      "timestamp": "2026-10-26T08:43:37.286073+00:00",
+      "agent": "FallbackProbe",
+      "provider": "nvidia",
+      "error": "HTTP 404",
+      "retry": false
+    },
+    {
+      "type": "provider_fallback",
+      "turn_id": "c330770457d8483ba0dd2cacf73765c5",
+      "sequence": 3,
+      "timestamp": "2026-10-26T08:43:37.286165+00:00",
+      "agent": "FallbackProbe",
+      "from_provider": "nvidia",
+      "to_provider": "openai",
+      "reason": "NVIDIA request failed; remaining calls use OpenAI for this turn"
+    },
+    {
+      "type": "model_finished",
+      "turn_id": "c330770457d8483ba0dd2cacf73765c5",
+      "sequence": 4,
+      "timestamp": "2026-10-26T08:43:40.051435+00:00",
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "agent": "FallbackProbe",
+      "seconds": 2.765,
+      "input_tokens": 13,
+      "output_tokens": 8,
+      "usage_available": true,
+      "estimated_usd": 0.000106,
+      "success": true
+    }
+  ]
+}

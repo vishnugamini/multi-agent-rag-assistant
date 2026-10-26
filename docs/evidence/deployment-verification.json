@@ -1,0 +1,177 @@
+{
+  "url": "https://agentic-ai-118532811016.us-west1.run.app",
+  "first_revision": "agentic-ai-00001-7dj",
+  "state_backend": "gcs",
+  "conversation_id": "4023dfb0-f049-4fa2-9b43-537c12c349de",
+  "completed": true,
+  "saved_messages": 2,
+  "first_request_metrics": {
+    "total_seconds": 20.463,
+    "ttft_seconds": 19.039,
+    "calls": [
+      {
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Supervisor",
+        "seconds": 0.993,
+        "input_tokens": 283,
+        "output_tokens": 38,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Research",
+        "seconds": 2.71,
+        "input_tokens": 1414,
+        "output_tokens": 30,
+        "usage_available": true,
+        "estimated_usd": 0.003128,
+        "success": true
+      },
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Research",
+        "seconds": 5.35,
+        "input_tokens": 1480,
+        "output_tokens": 30,
+        "usage_available": true,
+        "estimated_usd": 0.00326,
+        "success": true
+      },
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Research",
+        "seconds": 2.772,
+        "input_tokens": 1546,
+        "output_tokens": 46,
+        "usage_available": true,
+        "estimated_usd": 0.003552,
+        "success": true
+      },
+      {
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Supervisor",
+        "seconds": 0.791,
+        "input_tokens": 336,
+        "output_tokens": 29,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Answer",
+        "seconds": 1.652,
+        "input_tokens": 195,
+        "output_tokens": 129,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      }
+    ],
+    "tools": [
+      {
+        "tool": "search_corpus",
+        "seconds": 0.007,
+        "success": false
+      },
+      {
+        "tool": "search_corpus",
+        "seconds": 0.004,
+        "success": false
+      }
+    ],
+    "fallback": false,
+    "revision": "agentic-ai-00001-7dj"
+  },
+  "cold_start_status": "First post-deployment request; idle scale-to-zero cold start not established.",
+  "restored_after_first_revision_replacement": true,
+  "restored_messages": 2,
+  "final_revision": "agentic-ai-00006-txv",
+  "health": {
+    "status": "ok",
+    "state_backend": "gcs",
+    "revision": "agentic-ai-00006-txv",
+    "configured": {
+      "openai_api_key": true,
+      "nvidia_api_key": true,
+      "pinecone_api_key": true,
+      "tavily_api_key": true
+    }
+  },
+  "restored_after_final_revision_replacement": true,
+  "gcs_verification": {
+    "bucket": "psyched-bonfire-432510-m7-agentic-memory",
+    "separate_store_read": true,
+    "stale_write_rejected": true,
+    "conversation_id": "db211be4-eac7-4c4b-a631-21d4b683d24d"
+  },
+  "budget_usd": 10,
+  "project": "psyched-bonfire-432510-m7",
+  "billing_account_verified": true,
+  "acceptance_scenarios": 8,
+  "shared_mcp_agents": [
+    "Code",
+    "Research"
+  ],
+  "providers_verified": [
+    "nvidia",
+    "openai"
+  ],
+  "tool_failures_in_final_suite": [],
+  "cross_revision_context_followup": {
+    "answer": "Cedar",
+    "passed": true,
+    "metrics": {
+      "type": "metrics",
+      "turn_id": "849860886d24447a8fafb51999dd6401",
+      "sequence": 12,
+      "timestamp": "2026-10-26T08:56:53.715578+00:00",
+      "total_seconds": 1.24,
+      "ttft_seconds": 1.21,
+      "calls": [
+        {
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Supervisor",
+          "seconds": 0.916,
+          "input_tokens": 456,
+          "output_tokens": 60,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        },
+        {
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Answer",
+          "seconds": 0.223,
+          "input_tokens": 317,
+          "output_tokens": 4,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        }
+      ],
+      "tools": [],
+      "fallback": false,
+      "revision": "agentic-ai-00005-7cf"
+    }
+  },
+  "initial_verification_note": "Initial revision corpus MCP calls lacked child environment secrets. This was fixed before the final eight-scenario suite, which had no tool failures.",
+  "latency_limitation": "Recorded first post-deployment timing is not an established idle scale-to-zero cold-start measurement; final suite records steady-state per-query timing.",
+  "final_completion_check": {
+    "single_done": true,
+    "no_error_after_done": true,
+    "retrieval_succeeded": true,
+    "local_tests": 19,
+    "persisted_messages": 2
+  }
+}

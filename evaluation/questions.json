@@ -1,0 +1,266 @@
+[
+  {
+    "id": "q01",
+    "question": "What is LangGraph intended to orchestrate?",
+    "reference": "LangGraph is a low-level orchestration framework for stateful agents.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langgraph/overview"
+    ],
+    "document_ids": [
+      "doc-399cf6369bd3"
+    ]
+  },
+  {
+    "id": "q02",
+    "question": "What does a LangGraph state graph describe?",
+    "reference": "It describes state, nodes, and transitions between nodes.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langgraph/graph-api"
+    ],
+    "document_ids": [
+      "doc-0a2b7c9e7505"
+    ]
+  },
+  {
+    "id": "q03",
+    "question": "What are checkpoints used for in LangGraph?",
+    "reference": "Checkpoints persist graph state at execution steps, supporting memory and recovery.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langgraph/persistence"
+    ],
+    "document_ids": [
+      "doc-99e58642fe77"
+    ]
+  },
+  {
+    "id": "q04",
+    "question": "How can LangGraph stream progress to a client?",
+    "reference": "It exposes streaming modes for state updates, messages, and custom events.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langgraph/streaming"
+    ],
+    "document_ids": [
+      "doc-ebd8e3faef4e"
+    ]
+  },
+  {
+    "id": "q05",
+    "question": "How do workflows differ from agents?",
+    "reference": "Workflows follow predetermined paths, while agents dynamically choose processes and tools.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langgraph/workflows-agents"
+    ],
+    "document_ids": [
+      "doc-be28ccd063ec"
+    ]
+  },
+  {
+    "id": "q06",
+    "question": "What does durable execution allow?",
+    "reference": "It permits interrupted workflows to resume from persisted progress.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langgraph/persistence"
+    ],
+    "document_ids": [
+      "doc-99e58642fe77"
+    ]
+  },
+  {
+    "id": "q07",
+    "question": "What is a LangGraph interrupt used for?",
+    "reference": "It pauses execution for external input or human review before resuming.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langgraph/interrupts"
+    ],
+    "document_ids": [
+      "doc-7dd57631bd24"
+    ]
+  },
+  {
+    "id": "q08",
+    "question": "What role do tools play in LangChain agents?",
+    "reference": "Tools let agents invoke functions and interact with external systems.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langchain/tools"
+    ],
+    "document_ids": [
+      "doc-9b57a78206f3"
+    ]
+  },
+  {
+    "id": "q09",
+    "question": "What is retrieval augmentation?",
+    "reference": "Relevant external knowledge is retrieved and supplied to a model as context.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langchain/retrieval"
+    ],
+    "document_ids": [
+      "doc-d3262052a35f"
+    ]
+  },
+  {
+    "id": "q10",
+    "question": "What does short-term memory track?",
+    "reference": "It tracks context within a conversation or thread.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langchain/short-term-memory"
+    ],
+    "document_ids": [
+      "doc-5ae2b5ec9130"
+    ]
+  },
+  {
+    "id": "q11",
+    "question": "What does long-term memory provide?",
+    "reference": "Information can persist across conversations and sessions.",
+    "source_urls": [
+      "https://docs.langchain.com/oss/python/langchain/long-term-memory"
+    ],
+    "document_ids": [
+      "doc-eb2f73c3dee2"
+    ]
+  },
+  {
+    "id": "q12",
+    "question": "How does FastAPI infer a JSON request body?",
+    "reference": "Parameters declared as Pydantic models are interpreted and validated as request bodies.",
+    "source_urls": [
+      "https://fastapi.tiangolo.com/tutorial/body/"
+    ],
+    "document_ids": [
+      "doc-db923f63183d"
+    ]
+  },
+  {
+    "id": "q13",
+    "question": "How do you return an HTTP error in FastAPI?",
+    "reference": "Raise HTTPException with a status code and detail.",
+    "source_urls": [
+      "https://fastapi.tiangolo.com/tutorial/handling-errors/"
+    ],
+    "document_ids": [
+      "doc-9e3b6bbf2b53"
+    ]
+  },
+  {
+    "id": "q14",
+    "question": "When is async def appropriate in FastAPI?",
+    "reference": "Use async def with awaitable I/O libraries; avoid blocking the event loop.",
+    "source_urls": [
+      "https://fastapi.tiangolo.com/async/"
+    ],
+    "document_ids": [
+      "doc-d3a85dd7e6a4"
+    ]
+  },
+  {
+    "id": "q15",
+    "question": "How can FastAPI return streamed content?",
+    "reference": "StreamingResponse accepts an iterator or asynchronous iterator.",
+    "source_urls": [
+      "https://fastapi.tiangolo.com/advanced/custom-response/"
+    ],
+    "document_ids": [
+      "doc-891f7e3e2ffb"
+    ]
+  },
+  {
+    "id": "q16",
+    "question": "How are static assets served by FastAPI?",
+    "reference": "Mount a StaticFiles application at a path.",
+    "source_urls": [
+      "https://fastapi.tiangolo.com/tutorial/static-files/"
+    ],
+    "document_ids": [
+      "doc-08b76fb1539e"
+    ]
+  },
+  {
+    "id": "q17",
+    "question": "What are the main MCP architecture participants?",
+    "reference": "A host creates clients that communicate with MCP servers.",
+    "source_urls": [
+      "https://modelcontextprotocol.io/docs/learn/architecture"
+    ],
+    "document_ids": [
+      "doc-172e80d74829"
+    ]
+  },
+  {
+    "id": "q18",
+    "question": "What capabilities can an MCP server expose?",
+    "reference": "Tools, resources, and prompts are server capabilities.",
+    "source_urls": [
+      "https://modelcontextprotocol.io/docs/learn/server-concepts"
+    ],
+    "document_ids": [
+      "doc-a76ca51de3c0"
+    ]
+  },
+  {
+    "id": "q19",
+    "question": "What does an MCP client do before calling tools?",
+    "reference": "It initializes the session and discovers available tools.",
+    "source_urls": [
+      "https://modelcontextprotocol.io/docs/develop/build-client"
+    ],
+    "document_ids": [
+      "doc-f0c7f3a72443"
+    ]
+  },
+  {
+    "id": "q20",
+    "question": "What is required when creating a vector index?",
+    "reference": "Choose vector type, dimension, metric, and deployment specification appropriate to embeddings.",
+    "source_urls": [
+      "https://docs.pinecone.io/guides/index-data/create-an-index"
+    ],
+    "document_ids": [
+      "doc-dbad68e5a25f"
+    ]
+  },
+  {
+    "id": "q21",
+    "question": "How can Pinecone restrict results to a topic?",
+    "reference": "Store topic metadata and apply a metadata filter in the query.",
+    "source_urls": [
+      "https://docs.pinecone.io/guides/search/filter-by-metadata"
+    ],
+    "document_ids": [
+      "doc-32fa8eb5a515"
+    ]
+  },
+  {
+    "id": "q22",
+    "question": "How can Pinecone retrieve exact records by ID?",
+    "reference": "Use the fetch operation with record IDs and namespace.",
+    "source_urls": [
+      "https://docs.pinecone.io/guides/manage-data/fetch-data"
+    ],
+    "document_ids": [
+      "doc-3c883900d26b"
+    ]
+  },
+  {
+    "id": "q23",
+    "question": "How can GCS prevent concurrent writes from overwriting changes?",
+    "reference": "Use generation-match preconditions for conditional read-modify-write updates.",
+    "source_urls": [
+      "https://docs.cloud.google.com/storage/docs/request-preconditions"
+    ],
+    "document_ids": [
+      "doc-6396f9fb6633"
+    ]
+  },
+  {
+    "id": "q24",
+    "question": "What consistency does GCS provide after successful object writes?",
+    "reference": "Object reads and listings are strongly consistent after successful writes.",
+    "source_urls": [
+      "https://docs.cloud.google.com/storage/docs/consistency"
+    ],
+    "document_ids": [
+      "doc-9d64aded02f7"
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "bucket": "psyched-bonfire-432510-m7-agentic-memory",
+  "separate_store_read": true,
+  "stale_write_rejected": true,
+  "conversation_id": "db211be4-eac7-4c4b-a631-21d4b683d24d"
+}

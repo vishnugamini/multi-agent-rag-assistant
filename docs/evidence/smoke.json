@@ -1,0 +1,63 @@
+{
+  "nvidia": {
+    "ok": true,
+    "calls": [
+      {
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Smoke",
+        "seconds": 0.432,
+        "input_tokens": 21,
+        "output_tokens": 2,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      }
+    ]
+  },
+  "openai": {
+    "ok": true,
+    "calls": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Smoke",
+        "seconds": 2.853,
+        "input_tokens": 11,
+        "output_tokens": 5,
+        "usage_available": true,
+        "estimated_usd": 7.2e-05,
+        "success": true
+      }
+    ]
+  },
+  "corpus_mcp": {
+    "ok": true,
+    "tools": [
+      "search_corpus",
+      "read_chunks",
+      "read_document"
+    ]
+  },
+  "tavily_mcp": {
+    "ok": true,
+    "tools": [
+      "tavily_search",
+      "tavily_extract",
+      "tavily_crawl",
+      "tavily_map",
+      "tavily_research"
+    ]
+  },
+  "retrieval": {
+    "ok": false,
+    "count": 1
+  },
+  "live_search": {
+    "ok": true
+  },
+  "gcs": {
+    "ok": false,
+    "error": "Not configured"
+  }
+}

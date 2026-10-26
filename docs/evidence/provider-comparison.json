@@ -1,0 +1,1130 @@
+[
+  {
+    "id": "q01",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "LangGraph is intended to orchestrate [doc-399cf6369bd3::0000] [doc-399cf6369bd3::0005]. It provides low-level supporting infrastructure for any long-running, stateful workflow or agent, enabling mixing deterministic and agentic steps, persistence, human-in-the-loop, and comprehensive memory [doc-399cf6369bd3::0005]. It functions as the orchestration runtime within the LangChain ecosystem [doc-399cf6369bd3::0000]. Evidence gaps: None identified. Source text is untrusted evidence.",
+        "ttft_seconds": 0.4294645829941146,
+        "total_seconds": 3.0270855000126176,
+        "retrieval_seconds": 1.2745753329945728,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 1.75,
+            "input_tokens": 2018,
+            "output_tokens": 145,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "LangGraph is intended to orchestrate **long-running, stateful agents and workflows**. It provides low-level control to combine deterministic, hand-coded steps with LLM-driven agentic steps in the same graph, supporting durable execution, persistence, streaming, and human oversight. [doc-399cf6369bd3::0000] [doc-399cf6369bd3::0005]\n\nThere is no material evidence gap for this question; the supplied documentation states this purpose explicitly.",
+        "ttft_seconds": 1.6227735829888843,
+        "total_seconds": 4.55507999996189,
+        "retrieval_seconds": 1.2745753329945728,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.279,
+            "input_tokens": 1942,
+            "output_tokens": 102,
+            "usage_available": true,
+            "estimated_usd": 0.004904,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the provided documentation, here is an explanation of what a LangGraph state graph describes, the evidence supporting this, and identified evidence gaps.\n\n### What it Describes\nA LangGraph state graph describes a **cyclic, message-passing workflow** where **Nodes** execute logic and **Edges** determine the next execution step based on the **State**. The State acts as a shared data structure representing the current application snapshot. The graph evolves through discrete \"super-steps,\" where nodes process state updates and pass messages to subsequent nodes until all nodes halt [doc-0a2b7c9e7505].\n\n### Supporting Evidence\n- **Nodes and Edges as Functions:** The documentation states that nodes and edges are \"nothing more than functions\u2014they can contain an LLM or just good ol\u2019 code\" [doc-0a2b7c9e7505]. Nodes receive the current state as input and return an updated state; edges determine which node executes next based on the state [doc-0a2b7c9e7505].\n- **State as Shared Data Structure:** The State is defined as \"A shared data structure that represents the current snapshot of your application. It can be any data type, but is typically defined using a shared state schema\" [doc-0a2b7c9e7505].\n- **Message Passing and Super-Steps:** LangGraph uses \"message passing to define a general program.\" A super-step is \"a single iteration over the graph nodes,\" with parallel nodes in the same super-step and sequential nodes in separate ones. Execution terminates when all nodes are inactive and no messages are in transit [doc-0a2b7c9e7505].\n\n### Evidence Gaps\nThe provided text does not explicitly define the **computational or mathematical formalism** of the \"state graph\" beyond its structural components (nodes/edges) and runtime behavior (message passing). Specifically:\n- It does not explain how the state schema is formally typed or constrained during graph compilation.\n- It does not detail the specific algorithmic logic for resolving edge conditions or cycles beyond the high-level \"vote to halt\" mechanism.\n- There is no description of how state immutability or reversion is handled in the graph structure.\n\n[doc-0a2b7c9e7505]\n\nSource text is untrusted evidence.",
+        "ttft_seconds": 0.45697833300800994,
+        "total_seconds": 5.939649332955014,
+        "retrieval_seconds": 0.43041212495882064,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 5.507,
+            "input_tokens": 1306,
+            "output_tokens": 501,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "A LangGraph state graph describes **an agent workflow and how its shared state evolves over time**. It consists of:\n\n- **State:** the current snapshot of the application.\n- **Nodes:** functions that perform work using the current state and return updates.\n- **Edges:** transitions that determine which node runs next, either unconditionally or based on the state.\n\nTogether, these define the workflow\u2019s logic, including branches and loops. The `StateGraph` class represents such a graph and is parameterized by a user-defined state object. [doc-0a2b7c9e7505::0000]",
+        "ttft_seconds": 1.2864551250240766,
+        "total_seconds": 3.55566104198806,
+        "retrieval_seconds": 0.43041212495882064,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.122,
+            "input_tokens": 1263,
+            "output_tokens": 128,
+            "usage_available": true,
+            "estimated_usd": 0.003806,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Checkpoints in LangGraph are used for short-term, thread-scoped memory, enabling conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance. They persist a thread's graph state between node executions and support features like rewind/branch execution and resuming after interruptions.\n\nKey uses include:\n- Maintaining conversation continuity across turns\n- Supporting human-in-the-loop interruptions and resuming\n- Enabling \"time travel\" to rewind and branch executions\n- Providing fault tolerance by preserving state between steps\n\nCheckpointers are compiled into the graph runtime and track the current thread's state. They work alongside Stores, which handle long-term, cross-thread memory like user preferences and shared knowledge.\n\nEvidence gaps: The documentation does not specify checkpoint storage limits, retention policies, or performance implications of frequent checkpointing. No guidance is given on checkpoint format or how to integrate custom checkpoint backends beyond the MemorySaver example.",
+        "ttft_seconds": 0.3803000830230303,
+        "total_seconds": 2.7190269580460154,
+        "retrieval_seconds": 0.6189929160173051,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 2.098,
+            "input_tokens": 1898,
+            "output_tokens": 193,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "In LangGraph, **checkpoints save a thread\u2019s graph state**, allowing an application to preserve progress beyond a single run. A **checkpointer** creates and persists these saved states. [doc-99e58642fe77::0000]\n\nThey\u2019re used for:\n\n- **Conversation continuity:** retaining short-term, thread-scoped memory across interactions.\n- **Human-in-the-loop workflows:** pausing execution and resuming after human input.\n- **Fault tolerance:** recovering from failures and continuing from saved progress.\n- **Time travel:** rewinding to an earlier state and branching execution from there. [doc-99e58642fe77::0000] [doc-5268d48ca5c2::0088]\n\nState can be checkpointed between node executions, so how you divide work into nodes determines the points at which progress can be saved and resumed. [doc-5268d48ca5c2::0088]\n\n**Distinction:** checkpoints are for thread-scoped state; long-term information shared across threads, such as user preferences, belongs in a **store**. The supplied excerpts do not specify checkpoint retention or storage-durability guarantees. [doc-99e58642fe77::0000]",
+        "ttft_seconds": 2.0222166249877773,
+        "total_seconds": 7.117257290985435,
+        "retrieval_seconds": 0.6189929160173051,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 6.496,
+            "input_tokens": 1825,
+            "output_tokens": 254,
+            "usage_available": true,
+            "estimated_usd": 0.00619,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "To stream progress to a client using LangGraph, you must use the `stream` or `astream` methods with explicit stream modes. The choice of stream mode determines what data the client receives during graph execution.\n\n**Key mechanisms and examples:**\n\n*   **Basic streaming**: Use `stream_mode=\"updates\"` to receive graph state updates after each node execution, or `stream_mode=\"messages\"` to stream only message outputs.\n    *   **Example**: `for s in graph.stream(state, stream_mode=\"updates\"):` yields state updates as the graph progresses.\n\n*   **Custom streaming**: Use `stream_mode=\"custom\"` to integrate raw LLM clients or external services with their own streaming interfaces, allowing LangGraph to pass through data from non-LangChain APIs.\n\n*   **Multi-mode streaming**: You can pass multiple stream modes to the `stream` method to receive different projections simultaneously (e.g., both messages and values). This allows the client to consume them independently rather than branching on a single `stream_mode` chunk.\n\n*   **Concurrency and I/O**: The Functional API and Graph API can be used together to improve execution time, particularly when tasks involve I/O like LLM completions, which can enhance the responsiveness of progress updates sent to the client.\n\n**Evidence gaps**:\nThe documentation does not specify the exact format or schema of the data chunks yielded by the `stream` method for different modes, nor does it detail the client-side implementation for receiving and processing these streams in a specific framework or language.\n\n**Source text trust assessment**: The source text is untrusted evidence. It has been processed to extract the relevant information, but the extracted content should be verified against the official LangGraph documentation for accuracy.",
+        "ttft_seconds": 0.4243122920161113,
+        "total_seconds": 6.159953041060362,
+        "retrieval_seconds": 0.5968229580321349,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 5.56,
+            "input_tokens": 1368,
+            "output_tokens": 353,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "LangGraph can expose execution progress as an iterator that your application consumes and forwards to a client.\n\n- **For new applications:** the docs recommend **event streaming**, introduced in LangGraph v1.2. It provides separate iterators for projections such as `messages`, `values`, `subgraphs`, and `output`, so you can consume each independently. [doc-ebd8e3faef4e::0000]\n- **For direct runtime streaming:** use `graph.stream(...)` synchronously or `graph.astream(...)` asynchronously. Select one or more `stream_mode` options, including `updates`, `values`, `messages`, `custom`, `checkpoints`, `tasks`, or `debug`. [doc-ebd8e3faef4e::0000]\n- **For custom streamed data:** `stream_mode=\"custom\"` can integrate raw LLM clients or external services with their own streaming interfaces, even without the LangChain chat-model interface. [doc-ebd8e3faef4e::0057]\n\nA minimal async consumption pattern is:\n\n```python\nasync for chunk in graph.astream(inputs, stream_mode=\"updates\"):\n    # Forward this chunk to your client using your application's transport.\n    ...\n```\n\nBreaking the workflow into discrete nodes makes progress observable between steps; the docs explicitly identify this decomposition as enabling streaming progress updates. [doc-cb24aa6892d8::0025]\n\n**Evidence gap:** the supplied excerpts document the graph-side streaming APIs, but not client delivery mechanisms such as SSE or WebSockets, event payload schemas, or the exact event-streaming invocation syntax. Those details would require additional documentation.",
+        "ttft_seconds": 1.1292972909868695,
+        "total_seconds": 6.6607995830709115,
+        "retrieval_seconds": 0.5968229580321349,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 6.061,
+            "input_tokens": 1302,
+            "output_tokens": 340,
+            "usage_available": true,
+            "estimated_usd": 0.006004,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "# Workflows vs. Agents\n\n## Key Differences\n\n| Aspect | Workflows | Agents |\n|--------|-----------|--------|\n| **Process** | Predetermined code paths designed to operate in a certain order | Dynamic; the agent defines its own processes and tool usage |\n| **Decision-making** | Fixed sequence of steps | Agents make decisions about which tools to use and how to solve problems |\n| **Autonomy** | Less autonomy; follows set paths | More autonomy with continuous feedback loops |\n| **Problem suitability** | Suitable when problems and solutions are predictable | Suitable when problems and solutions are unpredictable |\n| **Structure** | Linear or branched code paths | Continuous loops of thought \u2192 action \u2192 observation |\n\n## Specific Patterns\n\n- **Routing workflows** process inputs and direct them to context-specific tasks [be28ccd063ec::0012]\n- **Orchestrator-worker** configurations break down tasks into subtasks, delegate to workers, and synthesize outputs [be28ccd063ec::0015]\n\n## LangGraph Benefits\n\nLangGraph offers several benefits when building agents and workflows, including:\n\n- **Persistence**\n- **Streaming**\n- **Support for debugging**\n- **Support for deployment**\n\n> \"We recommend you also set up LangSmith Engine which monitors your traces, detects issues, and proposes fixes.\" [be28ccd063ec::0000]\n\n## When to Choose Each\n\n- **Choose workflows** when you have predictable tasks with definable steps\n- **Choose agents** when facing unpredictable problems requiring flexible tool usage and decision-making\n\n## Evidence Gaps\n\nThe documentation does not provide:\n- Quantitative comparison metrics (performance, cost, accuracy)\n- Specific examples of when one pattern clearly outperforms the other\n- Implementation details for transitioning between workflow and agent patterns\n- Guidelines for hybrid approaches combining both patterns",
+        "ttft_seconds": 0.3193965000100434,
+        "total_seconds": 3.931014333036728,
+        "retrieval_seconds": 0.5513457920169458,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 3.379,
+            "input_tokens": 671,
+            "output_tokens": 394,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "The main difference is **who determines the execution path**: workflows follow predefined logic, while agents decide dynamically how to proceed. [doc-be28ccd063ec::0000]\n\n| Aspect | Workflows | Agents |\n|---|---|---|\n| **Control flow** | Follow predetermined code paths in a designed order. | Define their own process and tool usage dynamically. |\n| **Decision-making** | Use defined logic, such as routing a question to a pricing, refund, or returns flow. | Typically use an LLM to choose actions and tools in a continuous feedback loop. |\n| **Best fit** | Tasks that can be organized into defined flows. | Situations where problems and solutions are unpredictable. |\n\n[doc-be28ccd063ec::0000] [doc-be28ccd063ec::0012] [doc-be28ccd063ec::0023]\n\n**The boundary isn\u2019t simply \u201cfixed versus flexible.\u201d** An orchestrator-worker workflow can dynamically break a task into subtasks, delegate them, and combine the results\u2014even when the subtasks cannot be predefined. Agents, meanwhile, can still be constrained by an explicitly defined toolset and behavioral guidelines. [doc-be28ccd063ec::0015] [doc-be28ccd063ec::0023]\n\n**Evidence gap:** The supplied documentation does not compare their cost, latency, or reliability, so it does not establish that either approach is universally better on those dimensions.",
+        "ttft_seconds": 1.8360954169766046,
+        "total_seconds": 7.107885667006485,
+        "retrieval_seconds": 0.5513457920169458,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 6.554,
+            "input_tokens": 613,
+            "output_tokens": 298,
+            "usage_available": true,
+            "estimated_usd": 0.004206,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "[doc-789ee2606e93::0031] Use the functional API - Docs by LangChain / Use the functional API - Docs by LangChain\nEvidence gaps: None identified. Source text is untrusted evidence.",
+        "ttft_seconds": 0.3335017500212416,
+        "total_seconds": 1.254479416005779,
+        "retrieval_seconds": 0.5232706660171971,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 0.728,
+            "input_tokens": 1127,
+            "output_tokens": 56,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Durable execution allows a workflow to **save progress and resume after an interruption or failure without repeating already completed, checkpointed work**. Completed task results are restored from checkpoints, and successful parallel branches need not run again when a failed branch is retried. [doc-0a2b7c9e7505::0044] [doc-5268d48ca5c2::0111]\n\nIt also supports pausing for human approval\u2014for example, to approve, edit, or cancel a tool action. [doc-7dd57631bd24::0024]\n\n**Caveat:** This does not mean execution resumes at the exact line where it stopped. Nodes restart from the beginning, so side effects must be designed to tolerate re-execution. The supplied excerpts do not establish broader durability guarantees. [doc-0a2b7c9e7505::0044]",
+        "ttft_seconds": 1.8907936670002528,
+        "total_seconds": 5.617823499022052,
+        "retrieval_seconds": 0.5232706660171971,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 5.092,
+            "input_tokens": 1067,
+            "output_tokens": 186,
+            "usage_available": true,
+            "estimated_usd": 0.003994,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "[doc-7dd57631bd24::0000] Interrupts allow you to pause graph execution at specific points and wait for external input before continuing. This enables human-in-the-loop patterns where you need external input to proceed. When an interrupt is triggered, LangGraph saves the graph state using its persistence layer and waits indefinitely until you resume execution. Interrupts work by calling the interrupt() function at any point in your graph nodes. The function accepts any JSON-serializable value which is surfaced to the caller. When you\u2019re ready to continue, you resume execution by re-invoking the graph using Command, which then becomes the return value of the interrupt() call from inside the node. Unlike static breakpoints (which pause before or after specific nodes), interrupts are dynamic: they can be placed anywhere in your code and can be conditional based on your application logic. Checkpointing keeps your place: the checkpointer writes the exact graph state so you can resume later, even when in an error state. thread_id is your pointer: set config={\"configurable\": {\"thread_id\": ...}} to tell the checkpointer which state to load. Interrupt payloads surface via stream.interrupts: when using event streaming (graph.stream_events(..., version=\"v3\")), the values you pass to interrupt() appear on stream.interrupts, and stream.interrupted is True when the run pauses for input. The thread_id you choose is effectively your persistent cursor. Reusing it resumes the same checkpoint; using a new value starts a brand-new thread with an empty state.\n\n[doc-7dd57631bd24::0030] When you call interrupt within a node, LangGraph suspends execution by raising an exception that signals the runtime to pause. This exception propagates up through the call stack and is caught by the runtime, which notifies the graph to save the current state and wait for external input. When execution resumes (after you provide the requested input), the runtime restarts the entire node from the beginning\u2014it does not resume from the exact line where interrupt was called. This means any code that ran before the interrupt will execute again. Because of this, there\u2019s a few important rules to follow when working with interrupts to ensure they behave as expected.\n\n[doc-7dd57631bd24::0035] Do not wrap interrupt calls in try/except: The way that interrupt pauses execution at the point of the call is by throwing a special exception. If you wrap the interrupt call in a try/except block, you will catch this exception and the interrupt will not be passed back to the graph.\n\n[doc-7dd57631bd24::0055] Debugging with interrupts: To debug and test a graph, you can use static interrupts as breakpoints to step through the graph execution one node at a time. Static interrupts are triggered at defined points either before or after a node executes. You can set these by specifying interrupt_before and interrupt_after when compiling the graph. Static interrupts are not recommended for human-in-the-loop workflows. Use the interrupt function instead.\n\n[doc-7dd57631bd24::0059] Interrupts can be configured at runtime using interrupt_before and interrupt_after parameters with graph.invoke. interrupt_before specifies the nodes where execution should pause before the node is executed. interrupt_after specifies the nodes where execution should pause after the node is executed. The graph is run until the first breakpoint is hit. The graph is resumed by passing in None for the input. This will run the graph until the next breakpoint is hit.\n\n[doc-7dd57631bd24::0055] Static interrupts are not recommended for human-in-the-loop workflows. Use the interrupt function instead.\n\nEvidence gaps: The provided documentation does not specify specific programming language syntax or example code for the interrupt() function. The documentation also lacks detailed explanation of how to structure the Command object used to resume execution. No information is provided about error handling when the external input never arrives or times out. The documentation does not explain how interrupts interact with graph branching or parallel execution paths. Specific limitations on payload size or type constraints for interrupt values are not documented.",
+        "ttft_seconds": 0.32385545899160206,
+        "total_seconds": 10.417116333032027,
+        "retrieval_seconds": 0.47138183302013204,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 9.943,
+            "input_tokens": 1345,
+            "output_tokens": 885,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "A LangGraph interrupt is used to **pause graph execution and wait for external input**, enabling human-in-the-loop workflows. LangGraph saves the graph state and waits indefinitely until execution is resumed. [doc-7dd57631bd24::0000]\n\nYou call `interrupt()` inside a node with a JSON-serializable payload to surface to the caller. You then resume using `Command`; the supplied input becomes the return value of the `interrupt()` call. This requires a checkpointer and a thread ID. [doc-7dd57631bd24::0000]\n\n**Important:** Resuming restarts the node from the beginning, so code before the interrupt runs again. Static interrupts, by contrast, are intended as debugging breakpoints before or after nodes\u2014not for human-in-the-loop workflows. [doc-7dd57631bd24::0030] [doc-7dd57631bd24::0055]\n\nThere are no material evidence gaps for this basic purpose in the supplied documentation.",
+        "ttft_seconds": 1.711752874951344,
+        "total_seconds": 4.792771790991537,
+        "retrieval_seconds": 0.47138183302013204,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 4.32,
+            "input_tokens": 1261,
+            "output_tokens": 206,
+            "usage_available": true,
+            "estimated_usd": 0.004582,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the provided documentation, here is the role of tools in LangChain agents:\n\n**Tools enable agents to interact with external systems and data.** [doc-f11ebc5c64e4::0016] Agents are implemented as an LLM performing actions using tools. [doc-be28ccd063ec::0023] They operate in continuous feedback loops and are used when problems and solutions are unpredictable. Agents have more autonomy than workflows and can make decisions about which tools to use and how to solve the problem. [doc-be28ccd063ec::0023]\n\n**Tool execution and capabilities.** [doc-9b57a78206f3::0027] In LangChain, tools are used by agents (e.g., via `create_agent`). Tool error handling is configured through middleware. Tools can return different types of values depending on the need: a `string` for human-readable results, an `object` for structured results the model should parse, or a `Command` with an optional message when writing to state is needed. [doc-9b57a78206f3::0027]\n\n**Agent harness and configuration.** [doc-872e37cc4ce0::0000] The `create_agent` function provides a minimal, highly configurable harness. The harness encompasses the model loop, the tools, and any middleware that shapes behavior. [doc-872e37cc4ce0::0000] Tools are composed incrementally through middleware, allowing for capabilities like guardrails, retries, routing, and custom tool policies. [doc-872e37cc4ce0::0011]\n\n**Evidence gaps:** The documentation does not detail specific tool types beyond the general category, nor does it explain the exact mechanics of tool selection decision-making within the agent loop beyond the statement that agents \"can make decisions about the tools they use.\"",
+        "ttft_seconds": 0.380100125039462,
+        "total_seconds": 5.655466208059806,
+        "retrieval_seconds": 0.5414523330400698,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 5.112,
+            "input_tokens": 1059,
+            "output_tokens": 425,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Tools are the **means by which LangChain agents take actions**. An agent\u2019s LLM chooses which available tools to use and uses their results in a continuous feedback loop to solve problems, especially when the solution path is unpredictable. Developers still define the available toolset and behavioral guidelines. [doc-be28ccd063ec::0023]\n\nIn practice:\n- **Providing capabilities:** Tools can be supplied as Python callables, LangChain tools, or tool dictionaries. [doc-f11ebc5c64e4::0016]\n- **Feeding results back:** Tools can return plain-text strings for the model to read, structured objects for it to parse, or a `Command` to update state. [doc-9b57a78206f3::0027]\n- **Controlling execution:** Tools are part of the agent\u2019s surrounding \u201charness,\u201d alongside prompts and middleware; tool error handling is configured through middleware. [doc-872e37cc4ce0::0000] [doc-9b57a78206f3::0027]\n\n**Evidence gap:** The supplied excerpts do not explain the detailed mechanism by which the model selects a particular tool.",
+        "ttft_seconds": 1.556900208001025,
+        "total_seconds": 5.392245916009415,
+        "retrieval_seconds": 0.5414523330400698,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 4.849,
+            "input_tokens": 1009,
+            "output_tokens": 244,
+            "usage_available": true,
+            "estimated_usd": 0.004458,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Retrieval-augmented generation (RAG) is a framework that enhances a large language model's answers with context-specific information retrieved at query time, addressing LLMs' finite context and static knowledge limitations [doc-d3262052a35f::0000][doc-d3262052a35f::0005]. It follows a retrieval pipeline where relevant documents are fetched and then used as context for generation [doc-d3262052a35f::0000][doc-d3262052a35f::0005]. Different RAG architectures exist, including 2-Step RAG (retrieval always happens before generation, with high control but low flexibility and fast latency) and Agentic RAG (an LLM-powered agent decides when and how to retrieve during reasoning, offering low control but high flexibility and variable latency) [doc-d3262052a35f::0001]. Hybrid RAG combines characteristics of both approaches with intermediate steps like query preprocessing, retrieval validation, and post-generation checks [doc-d3262052a35f::0005].\n\nEvidence gaps: None identified.",
+        "ttft_seconds": 0.4537527920329012,
+        "total_seconds": 3.3129243750008754,
+        "retrieval_seconds": 0.4786978329648264,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 2.832,
+            "input_tokens": 1948,
+            "output_tokens": 268,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "**Retrieval augmentation** means fetching relevant external information at query time and giving it to a language model as context. When combined with generating an answer, this is called **Retrieval-Augmented Generation (RAG)**. It helps address two limitations: models have a limited context window, and their training knowledge is frozen at a point in time. [doc-d3262052a35f::0000]\n\nA simple RAG workflow is:\n1. **Retrieve** passages relevant to the user\u2019s question from a knowledge base.\n2. **Supply** those passages as context to the model.\n3. **Generate** an answer grounded in that context. [doc-d3262052a35f::0000]\n\nRetrieval can always happen before generation (**2-step RAG**), or an agent can decide when and how to retrieve information (**agentic RAG**). [doc-d3262052a35f::0001]\n\n**Evidence gap:** The supplied documentation explains the approach but does not establish that retrieval guarantees accurate answers; it describes retrieval and answer validation as additional quality-control steps. [doc-d3262052a35f::0005]",
+        "ttft_seconds": 1.26046712504467,
+        "total_seconds": 4.399861874990165,
+        "retrieval_seconds": 0.4786978329648264,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.919,
+            "input_tokens": 1828,
+            "output_tokens": 238,
+            "usage_available": true,
+            "estimated_usd": 0.006036,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Short-term memory tracks **previous interactions within a single thread or conversation** ([doc-5ae2b5ec9130::0000]).\n\nIt acts as a system that remembers information about prior interactions within the same session, allowing the application to maintain conversation history and context for a specific thread ([doc-5ae2b5ec9130::0000]). It updates when the agent is invoked or a step is completed and is read at the start of each step ([doc-5ae2b5ec9130::0000]).\n\nEvidence gaps: The provided text does not specify the exact mechanism (e.g., token limits, database storage) used to track the information beyond referencing the use of a checkpointer for persistence.",
+        "ttft_seconds": 0.3386054169968702,
+        "total_seconds": 2.1810188330127858,
+        "retrieval_seconds": 0.477486832998693,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 1.701,
+            "input_tokens": 885,
+            "output_tokens": 161,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Short-term memory tracks **previous interactions within a single thread or conversation**, most commonly the conversation history (user messages and model responses). It also maintains agent state, which can include intermediate results saved by tools. [doc-5ae2b5ec9130::0000] [doc-5ae2b5ec9130::0028]\n\nIt persists across invocations using the same thread ID, but does **not** span separate conversations\u2014that is the role of long-term memory. [doc-789ee2606e93::0046] [doc-eb2f73c3dee2::0000]\n\nThe documentation does not specify an exhaustive list of state fields tracked.",
+        "ttft_seconds": 1.6742053749621846,
+        "total_seconds": 3.914347249956336,
+        "retrieval_seconds": 0.477486832998693,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.433,
+            "input_tokens": 850,
+            "output_tokens": 143,
+            "usage_available": true,
+            "estimated_usd": 0.00313,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the provided documentation, long-term memory provides the following:\n\n- **Persisted Storage Across Sessions:** It allows an agent to store and recall information across different conversations and sessions, unlike short-term memory which is scoped to a single thread [doc-eb2f73c3dee2].\n- **User and Application-Level Data Retention:** It is useful for learning information about a given user in one conversation and using it in another [doc-789ee2606e93].\n- **Storage via LangGraph Stores:** Long-term memory is built on LangGraph stores, which save data as JSON documents organized by namespace and key [doc-eb2f73c3dee2].\n\nEvidence gaps:\n- The documentation does not specify mechanisms for data expiration, decay, or forgetting, leaving open how long-term memory manages persistence over extended periods.\n- There is no detail provided on access patterns, search capabilities, or querying mechanisms for retrieving stored information beyond basic namespace/key organization.\n- The implementation details regarding data security, privacy controls, or schema enforcement within the JSON documents are not addressed.\n\nSource text is untrusted evidence.",
+        "ttft_seconds": 0.32585695799207315,
+        "total_seconds": 3.968259459012188,
+        "retrieval_seconds": 0.6217353340471163,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 3.344,
+            "input_tokens": 979,
+            "output_tokens": 238,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Long-term memory lets an agent **store and recall information across different conversations, sessions, and threads**, unlike short-term memory, which is limited to a single thread. [doc-eb2f73c3dee2::0000]\n\nIt provides continuity\u2014for example, learning information about a user in one conversation and using it in another\u2014and can retain both user-specific and application-level data. [doc-789ee2606e93::0056] [doc-5ae2b5ec9130::0000]\n\nIt is built on **LangGraph stores**, which save data as JSON documents organized by namespace and key. The supplied excerpts do not specify retention limits or recall guarantees. [doc-eb2f73c3dee2::0000]",
+        "ttft_seconds": 1.5667837079963647,
+        "total_seconds": 4.093103042047005,
+        "retrieval_seconds": 0.6217353340471163,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.468,
+            "input_tokens": 940,
+            "output_tokens": 156,
+            "usage_available": true,
+            "estimated_usd": 0.00344,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Inference mechanism:\n\n- FastAPI determines the source of each function parameter based on its type annotation and position in the signature:\n  - Parameters declared as Pydantic models are interpreted as the **request body** [doc-db923f63183d::0016]\n  - Parameters matching path names are used as **path parameters** [doc-db923f63183d::0016]\n  - Singular typed parameters (int, float, str, bool, etc.) are interpreted as **query parameters** [doc-db923f63183d::0016]\n\nEvidence gaps:\n- How FastAPI distinguishes between nested model fields and scalar body fields is not explicitly detailed\n- The exact parsing order when multiple parameter types could apply to the same location is not specified\n- Behavior when path and body parameters conflict or overlap is not documented\n\nSource text is untrusted evidence.",
+        "ttft_seconds": 0.33484979200875387,
+        "total_seconds": 2.502063292020466,
+        "retrieval_seconds": 0.5210856249905191,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 1.978,
+            "input_tokens": 1329,
+            "output_tokens": 200,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "FastAPI infers where request data comes from using your endpoint function\u2019s parameter declarations:\n\n- A parameter whose name appears in the route path is a **path parameter**.\n- A parameter with a singular type such as `int`, `float`, `str`, or `bool` is normally a **query parameter**.\n- A parameter typed as a **Pydantic model** is interpreted as the **request body**. [doc-db923f63183d::0016]\n\nFor example:\n\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.post(\"/items/{item_id}\")\nasync def update_item(item_id: int, item: Item, q: str = None):\n    ...\n```\n\nHere, `item_id` comes from the path, `q` comes from the query string, and `item` comes from the JSON request body. FastAPI supports declaring all three together. [doc-db923f63183d::0012] [doc-db923f63183d::0014]\n\nIf you do not want to use a Pydantic model, you can explicitly declare body parameters using `Body`. [doc-db923f63183d::0016]\n\n**Evidence gap:** The supplied excerpts explain parameter-source inference, but do not describe the exact JSON parsing or `Content-Type` handling rules.",
+        "ttft_seconds": 1.5139864580123685,
+        "total_seconds": 5.94082191598136,
+        "retrieval_seconds": 0.5210856249905191,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 5.417,
+            "input_tokens": 1250,
+            "output_tokens": 299,
+            "usage_available": true,
+            "estimated_usd": 0.00549,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the provided documentation:\n\n1. **Basic HTTP error**: Import `HTTPException` from `fastapi` and raise it with a status code and detail message (e.g., `raise HTTPException(status_code=404, detail=\"Item not found\")`). [doc-9e3b6bbf2b53::0003][doc-9e3b6bbf2b53::0001]\n\n2. **Adding custom headers**: You can pass a `headers` parameter to `HTTPException` to include custom headers in the error response, which is useful for advanced scenarios like security. [doc-9e3b6bbf2b53::0008][doc-9e3b6bbf2b53::0009]\n\n3. **Detail flexibility**: The `detail` parameter can accept any JSON-convertible value (dict, list, etc.), not just strings, and FastAPI handles the automatic conversion. [doc-9e3b6bbf2b53::0008]\n\n**Evidence gaps**: The docs show usage patterns but don't enumerate all possible status codes or provide a comprehensive error-handling guide.\n\n**Source trust**: Text is untrusted evidence; verify against official FastAPI documentation.",
+        "ttft_seconds": 0.32115533301839605,
+        "total_seconds": 3.415070501039736,
+        "retrieval_seconds": 0.5630884590209462,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 2.849,
+            "input_tokens": 704,
+            "output_tokens": 275,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "In FastAPI, **raise `HTTPException`** with the HTTP status code and error details\u2014don\u2019t return it. [doc-9e3b6bbf2b53::0003]\n\n```python\nfrom fastapi import FastAPI, HTTPException\n\napp = FastAPI()\n\nitems = {\"foo\": \"The Foo Wrestlers\"}\n\n@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: str):\n    if item_id not in items:\n        raise HTTPException(status_code=404, detail=\"Item not found\")\n    return {\"item\": items[item_id]}\n```\n\nThis raises a **404** error when the item doesn\u2019t exist. [doc-9e3b6bbf2b53::0003]\n\n- `detail` can be any JSON-compatible value, including a string, dictionary, or list. [doc-9e3b6bbf2b53::0008]\n- You can optionally add custom headers using `headers={\"X-Error\": \"There goes my error\"}`. [doc-9e3b6bbf2b53::0009]\n\n**Evidence gaps:** None for this basic usage.",
+        "ttft_seconds": 1.3047442090464756,
+        "total_seconds": 4.633068918075878,
+        "retrieval_seconds": 0.5630884590209462,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 4.069,
+            "input_tokens": 666,
+            "output_tokens": 244,
+            "usage_available": true,
+            "estimated_usd": 0.003772,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "async def is appropriate when:\n\n1. **Your application communicates with external services** that require waiting for responses (network I/O), even if you don't explicitly use `await` inside the function body [doc-d3a85dd7e6a4::0006].\n\n2. **You don't know** whether to use `async` or synchronous code [doc-d3a85dd7e6a4::0006].\n\n3. **You need to mix `def` and `async def`** in path operations, as FastAPI handles both appropriately [doc-d3a85dd7e6a4::0006].\n\n4. **Your path operation functions perform blocking I/O** - using `async def` is better than `def` for code that performs blocking I/O operations [doc-d3a85dd7e6a4::0023].\n\n5. **Using Python 3.10+** for modern async support [doc-1d1f5505857e::0038].\n\nKey considerations:\n- FastAPI runs normal `def` functions in an external threadpool that is then awaited, so there's minimal performance difference between `def` and `async def` for compute-only operations (about 100 nanoseconds gain for `def` would actually be counterproductive in FastAPI) [doc-d3a85dd7e6a4::0023].\n- Mixing `def` and `async def` is fully supported in FastAPI - dependencies and sub-dependencies can use either style [doc-d3a85dd7e6a4::0023].\n- Use `async def` when awaiting external resources; use normal `def` for pure compute-bound work without I/O.\n\nEvidence gaps: The documentation doesn't specify exact thresholds for when async overhead outweighs benefits for specific I/O patterns, nor does it provide guidance on migrating existing synchronous codebases to async in FastAPI contexts.",
+        "ttft_seconds": 0.3648369580041617,
+        "total_seconds": 4.554533667047508,
+        "retrieval_seconds": 0.4641236670431681,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 4.088,
+            "input_tokens": 1950,
+            "output_tokens": 428,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Use **`async def` when your FastAPI endpoint needs to `await` asynchronous functions**: `await` can only be used inside `async def`, and FastAPI handles calling the async endpoint for you. [doc-d3a85dd7e6a4::0022]\n\nA practical decision guide:\n\n- **Async calls that you need to `await`: use `async def`.** [doc-d3a85dd7e6a4::0022]\n- **Trivial computation, with no external communication or waiting: use `async def`**, even without an `await` inside. [doc-d3a85dd7e6a4::0006] [doc-d3a85dd7e6a4::0023]\n- **Blocking I/O: prefer normal `def`.** FastAPI runs normal `def` endpoints in an external threadpool rather than calling them directly. The same applies to dependencies. [doc-d3a85dd7e6a4::0023]\n- **Unsure: use normal `def`.** You can mix `def` and `async def` endpoints in the same application. [doc-d3a85dd7e6a4::0006]\n\n**Important caveat:** FastAPI does not automatically put ordinary utility functions you call yourself into a threadpool. A synchronous helper is called directly; an async helper should be awaited. [doc-d3a85dd7e6a4::0023]\n\n**Evidence gap:** The supplied excerpts do not identify which particular database or HTTP clients support async operations; that choice depends on the library you use.",
+        "ttft_seconds": 1.1994228750118054,
+        "total_seconds": 6.321033000014722,
+        "retrieval_seconds": 0.4641236670431681,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 5.854,
+            "input_tokens": 1878,
+            "output_tokens": 338,
+            "usage_available": true,
+            "estimated_usd": 0.007136,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "FastAPI can return streamed content using the `StreamingResponse` class, which allows an async generator to yield chunks of data incrementally. This is useful for large files or real-time data. The generator must be an async function that yields bytes, and `anyio.sleep()` (or similar async sleeps) is often used within the generator to control the stream rate without blocking the event loop. Additionally, `FileResponse` can serve static files, though it may block the event loop during transfer unless configured otherwise.\n\n**Evidence gaps:**\n- The documentation does not explain how to handle backpressure or client disconnection during streaming.\n- It is unclear if `StreamingResponse` supports non-byte payloads (e.g., JSON chunks) or how to set appropriate `media_type` headers for different content types.\n- The examples use `anyio.sleep`, but the documentation does not clarify if `asyncio.sleep` or other async frameworks are compatible.\n\n**Source text is untrusted evidence.**",
+        "ttft_seconds": 0.33751500002108514,
+        "total_seconds": 2.5701713750022464,
+        "retrieval_seconds": 0.3811014170059934,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 2.186,
+            "input_tokens": 502,
+            "output_tokens": 203,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Use **`StreamingResponse`** from `fastapi.responses`, passing a generator that yields chunks of content. The supplied example uses an async generator yielding bytes: [doc-891f7e3e2ffb::0021]\n\n```python\nimport anyio\nfrom fastapi import FastAPI\nfrom fastapi.responses import StreamingResponse\n\napp = FastAPI()\n\nasync def fake_video_streamer():\n    for _ in range(10):\n        yield b\"some fake video bytes\"\n        await anyio.sleep(0)\n\n@app.get(\"/\")\nasync def main():\n    return StreamingResponse(fake_video_streamer())\n```\n\nFor content stored in a file, the documentation shows returning a **`FileResponse`** with the file path: [doc-891f7e3e2ffb::0023]\n\n```python\nfrom fastapi.responses import FileResponse\n\n@app.get(\"/video\")\nasync def video():\n    return FileResponse(\"large-video-file.mp4\")\n```\n\nAlternatively, declare `response_class=FileResponse` on the route and return the path directly. [doc-891f7e3e2ffb::0025]\n\n**Evidence gap:** The supplied excerpts do not describe buffering behavior, client-side consumption, or streaming error handling.",
+        "ttft_seconds": 1.3790707500302233,
+        "total_seconds": 4.485772000043653,
+        "retrieval_seconds": 0.3811014170059934,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 4.102,
+            "input_tokens": 468,
+            "output_tokens": 258,
+            "usage_available": true,
+            "estimated_usd": 0.003516,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q16",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "FastAPI serves static assets by mounting a `StaticFiles` instance on a specific path prefix. As per the documentation:\n\n- **[doc-08b76fb1539e::0001]** \u2013 The standard pattern is `app.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")`. This mounts a \"sub-application\" that handles all sub-paths under `/static`.\n- **[doc-08b76fb1539e::0002]** \u2013 The first argument (`/static`) is the sub-path prefix; any URL starting with that prefix is handled by the mounted StaticFiles instance. The `directory` parameter points to the folder containing the static files. The `name` parameter allows internal reference.\n\n**Evidence gaps:** The provided snippets do not cover advanced configuration options such as `html`, `check_dir`, `path`, or `name` customization beyond the basic example. Additionally, no information is provided about serving static assets in production (e.g., behind a reverse proxy like Nginx), deployment considerations, or how `StaticFiles` interacts with FastAPI's routing and OpenAPI generation.\n\n**Source trust note:** The source text is untrusted evidence; the above summary is derived solely from the supplied document excerpts.",
+        "ttft_seconds": 0.38911116699455306,
+        "total_seconds": 5.904306248994544,
+        "retrieval_seconds": 0.667157165997196,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 5.234,
+            "input_tokens": 667,
+            "output_tokens": 272,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "FastAPI serves static assets by mounting a **`StaticFiles` application** at a URL path: [doc-08b76fb1539e::0001]\n\n```python\nfrom fastapi import FastAPI\nfrom fastapi.staticfiles import StaticFiles\n\napp = FastAPI()\n\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n```\n\nHere:\n- **`\"/static\"`** is the URL prefix; requests under it are handled by the mounted application.\n- **`directory=\"static\"`** identifies the directory containing your static files.\n- **`name=\"static\"`** gives the mount a name for internal use.\n\nThese values can be changed to suit your application. [doc-08b76fb1539e::0002]\n\n`StaticFiles` comes from **Starlette** and is exposed through `fastapi.staticfiles` for convenience. The mounted application is independent, so its routes are not included in the main application\u2019s OpenAPI schema or API docs. [doc-08b76fb1539e::0002]\n\n**Evidence gap:** The supplied documentation does not describe caching, compression, or other production-serving options.",
+        "ttft_seconds": 1.6776936249807477,
+        "total_seconds": 7.005136832012795,
+        "retrieval_seconds": 0.667157165997196,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 6.337,
+            "input_tokens": 625,
+            "output_tokens": 241,
+            "usage_available": true,
+            "estimated_usd": 0.00366,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q17",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "MCP follows a client-server architecture. The main participants are [0001]:\n- **MCP Host**: The AI application (e.g., Claude Code, Claude Desktop, Visual Studio Code) that coordinates and manages one or multiple MCP clients.\n- **MCP Client**: A component that maintains a dedicated connection to an MCP server and obtains context for the host.\n- **MCP Server**: A program that provides context to MCP clients; it can execute locally or remotely depending on the transport used.\n\nThese participants operate across two layers: the data layer (defining JSON-RPC 2.0 primitives like tools, resources, and prompts) and the transport layer (managing communication channels, including STDIO for local and Streamable HTTP for remote connections) [0002].\n\n**Evidence gaps:** None identified in the provided text.",
+        "ttft_seconds": 0.42680391704197973,
+        "total_seconds": 3.4751985410111956,
+        "retrieval_seconds": 0.44100504100788385,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 3.033,
+            "input_tokens": 2311,
+            "output_tokens": 173,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "The main MCP architecture participants are:\n\n- **MCP Host:** The AI application\u2014such as Claude Desktop or Visual Studio Code\u2014that coordinates and manages one or more MCP clients.\n- **MCP Client:** A component that maintains a dedicated connection to an MCP server and obtains context for the host.\n- **MCP Server:** A program that provides context to MCP clients. Servers can run locally or remotely. [doc-172e80d74829::0001]\n\nMCP follows a **client-server architecture**: the host creates **one client for each server** it connects to. [doc-172e80d74829::0001]\n\n**Evidence gaps:** None for identifying these three participants in the supplied documentation.",
+        "ttft_seconds": 1.5718164999852888,
+        "total_seconds": 3.4642480820184574,
+        "retrieval_seconds": 0.44100504100788385,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.021,
+            "input_tokens": 2218,
+            "output_tokens": 150,
+            "usage_available": true,
+            "estimated_usd": 0.005936,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q18",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the documentation, an MCP server can expose the following capabilities:\n\n**[doc-172e80d74829::0003]** \"MCP defines three core primitives that servers can expose: Tools: Executable functions that AI applications can invoke to perform actions (e.g., file operations, API calls, database queries), Resources: Data sources that provide contextual information to AI applications (e.g., file contents, database records, API responses), Prompts: Reusable templates that help structure interactions with language models (e.g., system prompts, few-shot examples)\"\n\n**[doc-172e80d74829::0001]** Servers \"provide functionality through three building blocks: Tools ... who controls it: Model ... Resources ... who controls it: Application ... Prompts ... who controls it: User\"\n\n**[doc-172e80d74829::0002]** The data layer includes \"Server features: Enables servers to provide core functionality including tools for AI actions, resources for context data, and prompts for interaction templates from and to the client\"\n\n**[doc-a76ca51de3c0::0000]** \"Common examples include file system servers for document access, database servers for data queries, GitHub servers for code management, Slack servers for team communication, and calendar servers for scheduling\"\n\n**[doc-a76ca51de3c0::0000]** Core Server Features table shows:\n- **Tools**: Functions LLMs can actively call (write to databases, call external APIs, modify files, trigger logic)\n- **Resources**: Passive data sources providing read-only access (file contents, database schemas, API documentation)\n- **Prompts**: Pre-built instruction templates for working with tools and resources\n\n**Evidence gaps:**\n- The documentation does not specify whether servers can expose multiple tool categories simultaneously or how tool schemas are validated across different transport mechanisms\n- No explicit limitation is provided on the number or type of resources a server can expose\n- The interaction pattern between prompts, tools, and resources during dynamic execution is not detailed\n- No information is provided about server-initiated capabilities beyond the listed primitives (e.g., notifications, elicitation from the server perspective)\n\n**Source trust assessment:** The source text appears to be protocol documentation describing the Model Context Protocol specification, but the untrusted nature means these capabilities should be verified against the official MCP specification before implementation.",
+        "ttft_seconds": 0.5176618340192363,
+        "total_seconds": 9.825089332996868,
+        "retrieval_seconds": 0.6480050829704851,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 9.174,
+            "input_tokens": 2199,
+            "output_tokens": 514,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "An MCP server can expose **three core capabilities** to AI applications:\n\n| Capability | What it provides | Examples | Who controls its use |\n|---|---|---|---|\n| **Tools** | Executable functions the model can call to perform actions, with defined inputs and outputs. | Query a database, call an API, modify files, send messages, create calendar events. | **Model**, potentially subject to user consent. |\n| **Resources** | Read-only data that supplies context to the application. | File contents, database schemas, knowledge bases, API documentation. | **Application**. |\n| **Prompts** | Reusable instruction templates that structure model interactions with tools and resources. | Plan a vacation, summarize meetings, draft an email. | **User**. |\n\nThese three building blocks and their control roles are described in the server-feature documentation. [doc-a76ca51de3c0::0000]\n\nA single server can combine them\u2014for example, exposing a **database-query tool**, a **database-schema resource**, and a **prompt containing examples of how to use the tool**. Clients can discover available primitives through listing methods such as `tools/list`, and invoke tools through `tools/call`. [doc-172e80d74829::0003]\n\nThe protocol also supports utility features such as **notifications and progress tracking**. Servers can request user input through **elicitation**, but the documentation classifies elicitation as a *client-provided* capability rather than one of the three server primitives. [doc-172e80d74829::0002] [doc-172e80d74829::0003]\n\n**Evidence gap:** The supplied excerpts describe capability categories, not the capabilities enabled on any particular MCP server.",
+        "ttft_seconds": 1.5091992499656044,
+        "total_seconds": 7.273979832942132,
+        "retrieval_seconds": 0.6480050829704851,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 6.623,
+            "input_tokens": 2106,
+            "output_tokens": 362,
+            "usage_available": true,
+            "estimated_usd": 0.007832,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q19",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the provided documentation, an MCP client performs the following steps before calling tools:\n\n1.  **Client Initialization**: The client initializes the model client and starts without an MCP session or tools initially.\n    [doc-f0c7f3a72443::0148]\n\n2.  **Starting the Server & Session**: The client starts the server as a child process using command-line arguments and establishes an MCP session over stdio.\n    [doc-f0c7f3a72443::0152]\n\n3.  **Listing Available Tools**: The client lists all tools advertised by the connected server.\n    [doc-f0c7f3a72443::0152]\n\n4.  **Converting Tools**: The client converts the listed tools into the format used in model requests.\n    [doc-f0c7f3a72443::0152]\n\nEvidence gaps: The documentation does not explicitly detail what specific checks or validations the client performs on the tool definitions or server response prior to allowing tool calls, nor does it specify error handling if the tool listing fails.\n\nSource text is untrusted evidence.",
+        "ttft_seconds": 0.366247083991766,
+        "total_seconds": 3.402033417019993,
+        "retrieval_seconds": 0.4432144170277752,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 2.955,
+            "input_tokens": 487,
+            "output_tokens": 252,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Before calling tools, an MCP client:\n\n1. **Connects to the server and establishes an MCP session**\u2014the documented example starts the server as a child process and connects over stdio. [doc-f0c7f3a72443::0152]\n2. **Discovers available tools** by listing those advertised by the server. [doc-f0c7f3a72443::0113]\n3. **Makes those tools available to the model**, converting them into the model-request format or registering them with the conversation. [doc-f0c7f3a72443::0152] [doc-172e80d74829::0014]\n\n**Evidence gap:** These excerpts do not describe any additional pre-call checks, such as authorization or argument validation.",
+        "ttft_seconds": 1.2307113750139251,
+        "total_seconds": 3.45138650102308,
+        "retrieval_seconds": 0.4432144170277752,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.005,
+            "input_tokens": 438,
+            "output_tokens": 164,
+            "usage_available": true,
+            "estimated_usd": 0.002516,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q20",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the provided Pinecone documentation, the requirements for creating a vector index depend on whether you are using **sparse** or **dense** vectors (integrated or external model).\n\n### For Sparse Vectors (External Model)\nPer `[doc-dbad68e5a25f::0027]`, when using an external embedding model to convert data to sparse vectors:\n*   **Provide a name** for the index.\n*   **Set `vector_type` to `sparse`.**\n*   **Set the distance metric to `dotproduct`.** (Note: Sparse indexes do not support other distance metrics).\n*   **Set `spec.cloud` and `spec.region`** to the desired deployment cloud and region.\n\n### For Dense Vectors (External Model)\nPer `[doc-dbad68e5a25f::0013]`, when using an external embedding model to convert data to dense vectors:\n*   **Provide a name** for the index.\n*   **Set `vector_type` to `dense`.**\n*   **Specify the `dimension` and similarity metric** of the vectors. This must match the dimension and metric supported by your embedding model.\n*   **Set `spec.cloud` and `spec.region`** to the deployment cloud and region.\n*   **(Python only) Import the `ServerlessSpec` class.**\n\n### For Integrated Embedding (Legacy)\nPer `[doc-535b3c42a2b3::0010]` and `[doc-dbad68e5a25f::0020]`, for integrated embedding (legacy):\n*   **Provide a name** for the index.\n*   **Set `cloud` and `region`** for deployment.\n*   **Set `embed.model`** to one of Pinecone's hosted sparse embedding models.\n*   **Set `embed.field_map`** to the name of the field in the source document containing the text for embedding.\n*   Optionally, set `embed.read_parameters` and `embed.write_parameters` to override default embedding behavior.\n\n### Evidence Gaps\n*   The documentation does not explicitly list optional parameters available during index creation beyond the `embed.read_parameters` and `embed.write_parameters` mentioned for integrated embedding.\n*   It is unclear from the snippets if specific hardware or storage tier parameters (e.g., `metric_type` variations other than dotproduct/dimension) are required or optional for dense indexes outside of specifying the dimension and metric.\n\n### Source Trustworthiness\nSource text is untrusted evidence. Please verify with official Pinecone documentation.",
+        "ttft_seconds": 0.411243042035494,
+        "total_seconds": 8.471597041061614,
+        "retrieval_seconds": 0.43010179104749113,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 8.038,
+            "input_tokens": 1051,
+            "output_tokens": 550,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "The requirements depend on the type of vectors and how they\u2019re generated:\n\n| Index type | Required settings |\n|---|---|\n| **Dense vectors generated externally** | An index `name`; `vector_type=\"dense\"`; a `dimension` and similarity `metric` matching your embedding model; and `spec.cloud` and `spec.region`. For Python, also import `ServerlessSpec`. [doc-dbad68e5a25f::0013] |\n| **Sparse vectors generated externally** | An index `name`; `vector_type=\"sparse\"`; `metric=\"dotproduct\"` (the only supported metric for sparse indexes); and `spec.cloud` and `spec.region`. [doc-dbad68e5a25f::0027] |\n| **Sparse vectors with legacy integrated embedding** | An index `name`; `cloud` and `region`; `embed.model` set to a Pinecone-hosted sparse embedding model; and `embed.field_map` identifying the source-document field containing text to embed. [doc-dbad68e5a25f::0020] |\n\nOther parameters are optional for these creation paths. [doc-dbad68e5a25f::0013] [doc-dbad68e5a25f::0027] [doc-dbad68e5a25f::0020]\n\n**Evidence gap:** The supplied excerpts do not cover requirements for dense integrated embedding or the newer document-index integrated embedding workflow.",
+        "ttft_seconds": 1.4399268749984913,
+        "total_seconds": 4.858260958048049,
+        "retrieval_seconds": 0.43010179104749113,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 4.426,
+            "input_tokens": 1004,
+            "output_tokens": 303,
+            "usage_available": true,
+            "estimated_usd": 0.005038,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q21",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Based on the provided documentation, Pinecone restricts results to a topic or category primarily through **metadata filtering** applied during the search operation.\n\n### How to Restrict Results\nAccording to the documentation, you can apply a `filter` argument (in the SDK) or a `filter` object (in the console/API) to limit results to specific metadata fields.\n\n*   **Python SDK (`index.search`):** You can pass a `filter` dictionary to the search query. For example, to restrict results to the \"digestive system\" category, the filter would be `{\"category\": \"digestive system\"}`.\n    *   [doc-32fa8eb5a515::0011]\n*   **Python SDK (`index.documents.search`):** Similar filtering is supported using a filter object with operator syntax (e.g., `{\"category\": {\"$eq\": \"digestive system\"}}`).\n    *   [doc-32fa8eb5a515::0001]\n*   **Node.js SDK:** The `includeFields` and `scoreBy` parameters are used in conjunction with filtering logic defined by the API, though specific filter syntax examples are not detailed in the snippets.\n    *   [doc-535b3c42a2b3::0002]\n\n### Evidence Gaps\n*   The documentation does not specify the full range of supported filter operators (e.g., `$gt`, `$lt`, `$ne`) beyond the example `$eq` (equals).\n*   It is unclear if filtering applies to the initial vector search/embedding generation or if it is applied post-retrieval.\n*   The interaction between `top_k` (result limit) and filtering logic regarding how many results are evaluated before returning the top K is not explained.\n\n### Source Trust Assessment\nSource text is untrusted evidence. The snippets appear to be extracted from Pinecone documentation, but veracity has not been independently verified.",
+        "ttft_seconds": 0.5232365829870105,
+        "total_seconds": 6.087422207987402,
+        "retrieval_seconds": 0.5209627500153147,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 5.563,
+            "input_tokens": 891,
+            "output_tokens": 416,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Use a **metadata filter** to restrict semantic search results to a topic. For example, represent the topic with a `category` field and filter for `\"digestive system\"` while searching for `\"Disease prevention\"`. [doc-32fa8eb5a515::0011]\n\n```python\nfiltered_results = index.search(\n    namespace=\"example-namespace\",\n    query={\n        \"inputs\": {\"text\": \"Disease prevention\"},\n        \"top_k\": 3,\n        \"filter\": {\"category\": \"digestive system\"},\n    },\n    fields=[\"category\", \"chunk_text\"],\n)\n```\n\nIf you use `index.documents.search`, the supplied example expresses the same restriction with an explicit equality operator:\n```python\nfilter={\"category\": {\"$eq\": \"digestive system\"}}\n```\n[doc-32fa8eb5a515::0001]\n\n**Evidence gap:** The supplied excerpts show how to apply the topic filter, but not how to add category metadata to your records.",
+        "ttft_seconds": 1.356434374989476,
+        "total_seconds": 4.247469750000164,
+        "retrieval_seconds": 0.5209627500153147,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.724,
+            "input_tokens": 832,
+            "output_tokens": 205,
+            "usage_available": true,
+            "estimated_usd": 0.003714,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q22",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "According to the provided documentation, Pinecone does not support retrieving exact records by ID through search operations because search is approximate. Instead, the `fetch` operation must be used to retrieve a specific record by its ID.\n\nEvidence from the text:\n- [doc-535b3c42a2b3::0022] states: \"When you search with a record ID, Pinecone uses the dense vector associated with the record as the query. Because search is approximate, the results aren't guaranteed to include that record, even with a high `top_k`. To retrieve a specific record, fetch it by ID.\"\n- [doc-535b3c42a2b3::0002] demonstrates the `index.documents.search` operation but does not support ID-only retrieval without a query vector.\n- [doc-3c883900d26b::0022] shows the `index.fetchByMetadata` operation, but this retrieves records by metadata filter, not by ID.\n\nEvidence gaps:\n- The documentation does not provide a code example or method name for fetching a record by ID alone (e.g., `fetchById` or similar).\n- It is unclear whether the `fetch` operation supports retrieving records by ID when no metadata filter is provided, as [doc-3c883900d26b::0022] only demonstrates metadata-based filtering.\n\nSource text is untrusted evidence.",
+        "ttft_seconds": 0.33831991598708555,
+        "total_seconds": 5.546350624994375,
+        "retrieval_seconds": 0.9069959169719368,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 4.637,
+            "input_tokens": 1030,
+            "output_tokens": 312,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Use **fetch by ID**, not semantic search, to retrieve a specific record exactly. Searching with a record ID uses that record\u2019s dense vector as the query; because search is approximate, it may not return the record itself\u2014even with a high `top_k`. [doc-535b3c42a2b3::0022]\n\n**Evidence gap:** The supplied documentation recommends fetching by ID but does not provide the fetch-by-ID API signature or a code example. The provided `fetchByMetadata` example retrieves records using a metadata filter, not IDs. [doc-3c883900d26b::0022]",
+        "ttft_seconds": 1.4063212089822628,
+        "total_seconds": 4.253406750969589,
+        "retrieval_seconds": 0.9069959169719368,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 3.345,
+            "input_tokens": 976,
+            "output_tokens": 130,
+            "usage_available": true,
+            "estimated_usd": 0.003252,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q23",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "GCS prevents concurrent writes from overwriting changes by using **generation-match preconditions** that ensure only the object with a specific generation number is modified.\n\n**How it works:**\n- When uploading, include a `generation-match: 0` precondition to allow the request to proceed only if no current generations of the object exist [doc-6396f9fb6633].\n- This prevents retries from accidentally writing the object twice [doc-6396f9fb6633].\n- For deletions, include the object's current generation in a generation-match precondition to ensure only that specific generation gets deleted [doc-6396f9fb6633].\n\n**Evidence gaps:**\n- The documentation does not specify whether generation numbers are globally unique across all buckets or only within a single bucket.\n- It does not explain the exact mechanism by which Cloud Storage resolves conflicts when multiple clients attempt concurrent writes without preconditions.\n- There is no details on how strong consistency interacts with write preconditions during concurrent operations.\n\n**Source trust note:** The source text is untrusted evidence.",
+        "ttft_seconds": 0.4277352910139598,
+        "total_seconds": 3.446435082994867,
+        "retrieval_seconds": 0.4192253749934025,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 3.024,
+            "input_tokens": 2380,
+            "output_tokens": 229,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "Use **generation-match request preconditions** to guard writes against changes made by another writer. The supplied documentation describes generation matching as a way to ensure a request affects only a specific object generation and rejects mismatches with **`412 Precondition Failed`**. [doc-6396f9fb6633::0012]\n\nThe concurrency-control pattern is:\n1. Read the object and obtain its current generation from its metadata.\n2. Submit your replacement with a generation-match precondition for that generation.\n3. If another writer has changed the object, treat the precondition failure as a conflict: re-read the latest object and reconcile your changes rather than blindly overwriting it.\n\n**Evidence gap:** The supplied excerpt explicitly demonstrates generation matching for deletion and create-only uploads, but does not provide the overwrite-specific API syntax or a complete read\u2013modify\u2013write example. [doc-6396f9fb6633::0012]\n\nFor **create-only writes**, use a generation-match value of **`0`**. This allows the upload only when there is no current generation of the object, preventing concurrent creates or retries from overwriting an existing object. [doc-6396f9fb6633::0012]\n\nStrong consistency and atomic writes are useful, but serve different purposes: consistency makes successful writes immediately visible, and atomicity prevents partial uploads. Use preconditions to guard against race conditions. [doc-9d64aded02f7::0000] [doc-9d64aded02f7::0001]",
+        "ttft_seconds": 1.3021914580021985,
+        "total_seconds": 6.943030166963581,
+        "retrieval_seconds": 0.4192253749934025,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 6.521,
+            "input_tokens": 2294,
+            "output_tokens": 313,
+            "usage_available": true,
+            "estimated_usd": 0.007718,
+            "success": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "q24",
+    "measurements": [
+      {
+        "provider_requested": "nvidia",
+        "fallback": false,
+        "answer": "Strong global consistency (after successful write request, object is immediately available for reading/metadata) [doc-9d64aded02f7::0001]",
+        "ttft_seconds": 0.39587095903698355,
+        "total_seconds": 1.472389042028226,
+        "retrieval_seconds": 0.5121204170281999,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Evaluation",
+            "seconds": 0.958,
+            "input_tokens": 1998,
+            "output_tokens": 37,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ]
+      },
+      {
+        "provider_requested": "openai",
+        "fallback": false,
+        "answer": "GCS provides **strong global read-after-write consistency**: once an object write returns success, the object is immediately available for reads and metadata operations. This applies to uploads, copies, and compositions, for both new objects and overwrites, across all buckets and storage classes\u2014including dual- and multi-region buckets. Object listings also immediately reflect successful creations. [doc-9d64aded02f7::0000]\n\nTwo caveats:\n- **Caching:** Publicly readable cached objects can remain stale until their cache lifetime expires. [doc-9d64aded02f7::0001]\n- **Rare regional unavailability:** If the original write location becomes unavailable before replication completes, reads return a retryable **500**, rather than stale data or a **404**. [doc-9d64aded02f7::0000]\n\n**Evidence gaps:** None for this question in the supplied documentation.",
+        "ttft_seconds": 1.3646890420350246,
+        "total_seconds": 6.61222687602276,
+        "retrieval_seconds": 0.5121204170281999,
+        "calls": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Evaluation",
+            "seconds": 6.098,
+            "input_tokens": 1896,
+            "output_tokens": 187,
+            "usage_available": true,
+            "estimated_usd": 0.005662,
+            "success": true
+          }
+        ]
+      }
+    ]
+  }
+]

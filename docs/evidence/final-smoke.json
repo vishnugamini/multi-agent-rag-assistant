@@ -1,0 +1,2444 @@
+[
+  {
+    "id": "simple",
+    "expect": "Research; normally NVIDIA",
+    "completed": true,
+    "events": [
+      {
+        "type": "turn_started",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 1,
+        "timestamp": "2026-10-26T09:00:15.627867+00:00",
+        "conversation_id": "2a3bfe88-2152-401f-aa53-09edc2d5e6e4",
+        "state_backend": "gcs"
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 2,
+        "timestamp": "2026-10-26T09:00:15.704114+00:00",
+        "agent": "Supervisor",
+        "dispatches": 0
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 3,
+        "timestamp": "2026-10-26T09:00:15.704204+00:00",
+        "agent": "Supervisor",
+        "selected_provider": "nvidia",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "reason": "Low-cost orchestration classification"
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 4,
+        "timestamp": "2026-10-26T09:00:18.693528+00:00",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Supervisor",
+        "seconds": 2.989,
+        "input_tokens": 271,
+        "output_tokens": 45,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 5,
+        "timestamp": "2026-10-26T09:00:18.694305+00:00",
+        "agent": "Supervisor",
+        "decision": {
+          "next": "Research",
+          "provider": "openai",
+          "reason": "Initial lookup for a technical concept definition. openai recommended for initial research to ensure comprehensive coverage and accurate terminology."
+        }
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 6,
+        "timestamp": "2026-10-26T09:00:18.696225+00:00",
+        "agent": "Research"
+      },
+      {
+        "type": "mcp_discovery",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 7,
+        "timestamp": "2026-10-26T09:00:23.236729+00:00",
+        "server": "corpus",
+        "tools": [
+          "search_corpus",
+          "read_chunks",
+          "read_document"
+        ]
+      },
+      {
+        "type": "mcp_discovery",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 8,
+        "timestamp": "2026-10-26T09:00:23.990830+00:00",
+        "server": "tavily",
+        "tools": [
+          "tavily_search",
+          "tavily_extract",
+          "tavily_crawl",
+          "tavily_map",
+          "tavily_research"
+        ]
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 9,
+        "timestamp": "2026-10-26T09:00:23.991036+00:00",
+        "agent": "Research",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "reason": "Initial lookup for a technical concept definition. openai recommended for initial research to ensure comprehensive coverage and accurate terminology."
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 10,
+        "timestamp": "2026-10-26T09:00:46.277408+00:00",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Research",
+        "seconds": 22.286,
+        "input_tokens": 1402,
+        "output_tokens": 30,
+        "usage_available": true,
+        "estimated_usd": 0.003104,
+        "success": true
+      },
+      {
+        "type": "tool_started",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 11,
+        "timestamp": "2026-10-26T09:00:46.277677+00:00",
+        "agent": "Research",
+        "server": "corpus",
+        "tool": "search_corpus",
+        "arguments": {
+          "query": "LangGraph checkpoints state snapshots threads checkpointer persistence",
+          "top_k": 5
+        }
+      },
+      {
+        "type": "tool_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 12,
+        "timestamp": "2026-10-26T09:00:48.354828+00:00",
+        "agent": "Research",
+        "server": "corpus",
+        "tool": "search_corpus",
+        "seconds": 2.077,
+        "preview": "[{\"id\": \"doc-99e58642fe77::0000\", \"score\": 0.677338421, \"chunk_order\": 0, \"content_hash\": \"12065604856b8437c1d1d1f8c006dc0d466c88a7bbbdafeb9ac034618b16310b\", \"corpus_version\": \"docs-v1\", \"document_id\": \"doc-99e58642fe77\", \"heading\": \"Quickstart\", \"kind\": \"chunk\", \"snapshot_date\": \"2026-10-26T07:59:59.902853+00:00\", \"text\": \"Persistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions.\\nLangGraph provides two complementary persistence systems:\\nCheckpointers\\npersist a thread\u2019s graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance.\\nStores\\npersist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge.\\nMost applications can use both: a\\ncheckpointer\\ntracks the current thread, and a\\nstore\\ntracks durable information across threads.\\n##  Quickstart\\nCompile your graph with a checkpointer, a store, or both:\", \"title\": \"Persistence - Docs by LangChain\", \"topic\": \"langgraph\", \"url\": \"https://docs.langchain.com/oss/python/langgraph/persistence\"}, {\"id\": \"doc-ebd8e3faef4e::0049\", \"score\": 0.611588836, \"chunk_order\": 49, \"content_hash\": \"370176b7f36f0e3af138d90eb08abfa2b86aeffaec86bbf5c08359b7fb3dd34a\", \"corpus_version\": \"docs-v1\", \"document_id\": \"doc-ebd8e3faef4e\", \"heading\": \"Streaming - Docs by LangChain\", \"kind\": \"chunk\", \"snapshot_date\": \"2026-10-26T08:00:00.095679+00:00\", \"text\": \"```\\nfrom langgraph.checkpoint.memory import MemorySaver\\n\\ngraph = (\\n    StateGraph(State)\\n  "
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 13,
+        "timestamp": "2026-10-26T09:00:48.355029+00:00",
+        "agent": "Research",
+        "selected_provider": "openai",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "reason": "Initial lookup for a technical concept definition. openai recommended for initial research to ensure comprehensive coverage and accurate terminology."
+      },
+      {
+        "type": "model_error",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 14,
+        "timestamp": "2026-10-26T09:01:08.831295+00:00",
+        "agent": "Research",
+        "provider": "openai",
+        "error": "HTTP 503",
+        "retry": true
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 15,
+        "timestamp": "2026-10-26T09:01:20.753376+00:00",
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "agent": "Research",
+        "seconds": 10.921,
+        "input_tokens": 3172,
+        "output_tokens": 207,
+        "usage_available": true,
+        "estimated_usd": 0.008414,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 16,
+        "timestamp": "2026-10-26T09:01:20.753470+00:00",
+        "agent": "Research",
+        "seconds": 62.057,
+        "finding": "LangGraph checkpoints are saved snapshots of a thread\u2019s graph state. A checkpointer persists these snapshots so an application can continue a conversation, resume after an interruption, recover from failures, and support human-in-the-loop workflows or time travel. [doc-99e58642fe77::0000]\n\nTo enable checkpointing, compile the graph with a checkpointer\u2014for example, `builder.compile(checkpointer=InMemorySaver())`\u2014and provide a thread identifier when invoking it, such as `{\"configurable\": {\"thread_id\": \"thread-1\"}}`. [doc-99e58642fe77::0001]\n\nCheckpoints provide thread-scoped persistence; they are distinct from stores, which hold application-defined, long-term information across threads, such as user preferences or shared knowledge. [doc-99e58642fe77::0000]\n\nSource basis: a static snapshot of the official LangChain documentation, not a live-page verification."
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 17,
+        "timestamp": "2026-10-26T09:01:20.754739+00:00",
+        "agent": "Supervisor",
+        "dispatches": 1
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 18,
+        "timestamp": "2026-10-26T09:01:20.754809+00:00",
+        "agent": "Supervisor",
+        "selected_provider": "nvidia",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "reason": "Low-cost orchestration classification"
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 19,
+        "timestamp": "2026-10-26T09:01:21.855402+00:00",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Supervisor",
+        "seconds": 1.101,
+        "input_tokens": 525,
+        "output_tokens": 50,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 20,
+        "timestamp": "2026-10-26T09:01:21.855528+00:00",
+        "agent": "Supervisor",
+        "decision": {
+          "next": "Summary",
+          "provider": "nvidia",
+          "reason": "User asks 'What are LangGraph checkpoints?'. The existing Research finding already defines them well. I will use Summary to cite the source and produce a concise answer."
+        }
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 21,
+        "timestamp": "2026-10-26T09:01:21.857375+00:00",
+        "agent": "Summary"
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 22,
+        "timestamp": "2026-10-26T09:01:21.857504+00:00",
+        "agent": "Summary",
+        "selected_provider": "nvidia",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "reason": "User asks 'What are LangGraph checkpoints?'. The existing Research finding already defines them well. I will use Summary to cite the source and produce a concise answer."
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 23,
+        "timestamp": "2026-10-26T09:01:25.049101+00:00",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Summary",
+        "seconds": 3.192,
+        "input_tokens": 829,
+        "output_tokens": 182,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 24,
+        "timestamp": "2026-10-26T09:01:25.049184+00:00",
+        "agent": "Summary",
+        "seconds": 3.192,
+        "finding": "LangGraph checkpoints are saved snapshots of a thread's graph state that enable persistence, resumption after interruption, failure recovery, and human\u2011in\u2011the\u2011loop or time\u2011travel workflows. They are thread\u2011scoped and distinct from stores that hold long\u2011term application data. To activate checkpointing, compile the graph with a checkpointer (e.g., `builder.compile(checkpointer=InMemorySaver())`) and supply a thread identifier when invoking the graph (`configurable: {thread_id: \"thread\u20111\"}`). [doc-99e58642fe77::0000] [doc-99e58642fe77::0001]"
+      },
+      {
+        "type": "agent_started",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 25,
+        "timestamp": "2026-10-26T09:01:25.050197+00:00",
+        "agent": "Supervisor",
+        "dispatches": 2
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 26,
+        "timestamp": "2026-10-26T09:01:25.050255+00:00",
+        "agent": "Supervisor",
+        "selected_provider": "nvidia",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "reason": "Low-cost orchestration classification"
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 27,
+        "timestamp": "2026-10-26T09:01:25.822678+00:00",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Supervisor",
+        "seconds": 0.772,
+        "input_tokens": 719,
+        "output_tokens": 32,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "type": "agent_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 28,
+        "timestamp": "2026-10-26T09:01:25.822795+00:00",
+        "agent": "Supervisor",
+        "decision": {
+          "next": "finish",
+          "provider": "nvidia",
+          "reason": "Provide concise explanation of LangGraph checkpoints using existing sources. Avoid repeating a completed worker; integrate its existing findings."
+        }
+      },
+      {
+        "type": "routing_decision",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 29,
+        "timestamp": "2026-10-26T09:01:25.825309+00:00",
+        "agent": "Answer",
+        "selected_provider": "nvidia",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "reason": "Provide concise explanation of LangGraph checkpoints using existing sources. Avoid repeating a completed worker; integrate its existing findings."
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 30,
+        "timestamp": "2026-10-26T09:01:26.110872+00:00",
+        "text": "Based"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 31,
+        "timestamp": "2026-10-26T09:01:26.183189+00:00",
+        "text": " on"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 32,
+        "timestamp": "2026-10-26T09:01:26.186367+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 33,
+        "timestamp": "2026-10-26T09:01:26.197016+00:00",
+        "text": " retrieved"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 34,
+        "timestamp": "2026-10-26T09:01:26.206337+00:00",
+        "text": " documentation"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 35,
+        "timestamp": "2026-10-26T09:01:26.215236+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 36,
+        "timestamp": "2026-10-26T09:01:26.228524+00:00",
+        "text": " here"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 37,
+        "timestamp": "2026-10-26T09:01:26.235705+00:00",
+        "text": " is"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 38,
+        "timestamp": "2026-10-26T09:01:26.321334+00:00",
+        "text": " an"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 39,
+        "timestamp": "2026-10-26T09:01:26.494279+00:00",
+        "text": " overview"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 40,
+        "timestamp": "2026-10-26T09:01:26.573433+00:00",
+        "text": " of"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 41,
+        "timestamp": "2026-10-26T09:01:26.577038+00:00",
+        "text": " Lang"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 42,
+        "timestamp": "2026-10-26T09:01:26.587475+00:00",
+        "text": "Graph"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 43,
+        "timestamp": "2026-10-26T09:01:26.597420+00:00",
+        "text": " check"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 44,
+        "timestamp": "2026-10-26T09:01:26.606496+00:00",
+        "text": "points"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 45,
+        "timestamp": "2026-10-26T09:01:26.616566+00:00",
+        "text": ":\n\n"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 46,
+        "timestamp": "2026-10-26T09:01:26.627189+00:00",
+        "text": "*"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 47,
+        "timestamp": "2026-10-26T09:01:26.636894+00:00",
+        "text": "  "
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 48,
+        "timestamp": "2026-10-26T09:01:26.646461+00:00",
+        "text": " **"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 49,
+        "timestamp": "2026-10-26T09:01:26.657800+00:00",
+        "text": "Definition"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 50,
+        "timestamp": "2026-10-26T09:01:26.666061+00:00",
+        "text": "**:"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 51,
+        "timestamp": "2026-10-26T09:01:26.676256+00:00",
+        "text": " Check"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 52,
+        "timestamp": "2026-10-26T09:01:26.686244+00:00",
+        "text": "points"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 53,
+        "timestamp": "2026-10-26T09:01:26.696641+00:00",
+        "text": " are"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 54,
+        "timestamp": "2026-10-26T09:01:26.706944+00:00",
+        "text": " saved"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 55,
+        "timestamp": "2026-10-26T09:01:26.717130+00:00",
+        "text": " snap"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 56,
+        "timestamp": "2026-10-26T09:01:26.812597+00:00",
+        "text": "shots"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 57,
+        "timestamp": "2026-10-26T09:01:26.816961+00:00",
+        "text": " of"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 58,
+        "timestamp": "2026-10-26T09:01:26.826921+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 59,
+        "timestamp": "2026-10-26T09:01:26.836773+00:00",
+        "text": " thread"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 60,
+        "timestamp": "2026-10-26T09:01:26.846340+00:00",
+        "text": "'s"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 61,
+        "timestamp": "2026-10-26T09:01:26.856735+00:00",
+        "text": " graph"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 62,
+        "timestamp": "2026-10-26T09:01:26.865704+00:00",
+        "text": " state"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 63,
+        "timestamp": "2026-10-26T09:01:26.876263+00:00",
+        "text": " ["
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 64,
+        "timestamp": "2026-10-26T09:01:26.886700+00:00",
+        "text": "doc"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 65,
+        "timestamp": "2026-10-26T09:01:26.896708+00:00",
+        "text": "-"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 66,
+        "timestamp": "2026-10-26T09:01:26.906268+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 67,
+        "timestamp": "2026-10-26T09:01:26.916302+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 68,
+        "timestamp": "2026-10-26T09:01:26.926039+00:00",
+        "text": "e"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 69,
+        "timestamp": "2026-10-26T09:01:26.935822+00:00",
+        "text": "5"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 70,
+        "timestamp": "2026-10-26T09:01:26.945494+00:00",
+        "text": "8"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 71,
+        "timestamp": "2026-10-26T09:01:26.955122+00:00",
+        "text": "6"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 72,
+        "timestamp": "2026-10-26T09:01:26.965106+00:00",
+        "text": "4"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 73,
+        "timestamp": "2026-10-26T09:01:26.973857+00:00",
+        "text": "2"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 74,
+        "timestamp": "2026-10-26T09:01:26.984593+00:00",
+        "text": "fe"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 75,
+        "timestamp": "2026-10-26T09:01:26.995126+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 76,
+        "timestamp": "2026-10-26T09:01:27.004120+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 77,
+        "timestamp": "2026-10-26T09:01:27.014779+00:00",
+        "text": "::"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 78,
+        "timestamp": "2026-10-26T09:01:27.023890+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 79,
+        "timestamp": "2026-10-26T09:01:27.034016+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 80,
+        "timestamp": "2026-10-26T09:01:27.044813+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 81,
+        "timestamp": "2026-10-26T09:01:27.054833+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 82,
+        "timestamp": "2026-10-26T09:01:27.064800+00:00",
+        "text": "].\n"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 83,
+        "timestamp": "2026-10-26T09:01:27.074579+00:00",
+        "text": "*"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 84,
+        "timestamp": "2026-10-26T09:01:27.084236+00:00",
+        "text": "  "
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 85,
+        "timestamp": "2026-10-26T09:01:27.094186+00:00",
+        "text": " **"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 86,
+        "timestamp": "2026-10-26T09:01:27.105016+00:00",
+        "text": "P"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 87,
+        "timestamp": "2026-10-26T09:01:27.114511+00:00",
+        "text": "urpose"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 88,
+        "timestamp": "2026-10-26T09:01:27.124153+00:00",
+        "text": "**:"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 89,
+        "timestamp": "2026-10-26T09:01:27.134506+00:00",
+        "text": " They"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 90,
+        "timestamp": "2026-10-26T09:01:27.143787+00:00",
+        "text": " enable"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 91,
+        "timestamp": "2026-10-26T09:01:27.153612+00:00",
+        "text": " thread"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 92,
+        "timestamp": "2026-10-26T09:01:27.163713+00:00",
+        "text": "-sc"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 93,
+        "timestamp": "2026-10-26T09:01:27.173053+00:00",
+        "text": "oped"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 94,
+        "timestamp": "2026-10-26T09:01:27.183483+00:00",
+        "text": " persistence"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 95,
+        "timestamp": "2026-10-26T09:01:27.192117+00:00",
+        "text": " for"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 96,
+        "timestamp": "2026-10-26T09:01:27.202889+00:00",
+        "text": " tasks"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 97,
+        "timestamp": "2026-10-26T09:01:27.213762+00:00",
+        "text": " such"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 98,
+        "timestamp": "2026-10-26T09:01:27.221955+00:00",
+        "text": " as"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 99,
+        "timestamp": "2026-10-26T09:01:27.231780+00:00",
+        "text": " continuing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 100,
+        "timestamp": "2026-10-26T09:01:27.241114+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 101,
+        "timestamp": "2026-10-26T09:01:27.251884+00:00",
+        "text": " conversation"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 102,
+        "timestamp": "2026-10-26T09:01:27.261288+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 103,
+        "timestamp": "2026-10-26T09:01:27.271235+00:00",
+        "text": " res"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 104,
+        "timestamp": "2026-10-26T09:01:27.280456+00:00",
+        "text": "uming"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 105,
+        "timestamp": "2026-10-26T09:01:27.291063+00:00",
+        "text": " after"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 106,
+        "timestamp": "2026-10-26T09:01:27.301449+00:00",
+        "text": " an"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 107,
+        "timestamp": "2026-10-26T09:01:27.311833+00:00",
+        "text": " interruption"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 108,
+        "timestamp": "2026-10-26T09:01:27.320497+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 109,
+        "timestamp": "2026-10-26T09:01:27.331381+00:00",
+        "text": " recovering"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 110,
+        "timestamp": "2026-10-26T09:01:27.340206+00:00",
+        "text": " from"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 111,
+        "timestamp": "2026-10-26T09:01:27.350841+00:00",
+        "text": " failures"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 112,
+        "timestamp": "2026-10-26T09:01:27.361232+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 113,
+        "timestamp": "2026-10-26T09:01:27.370359+00:00",
+        "text": " supporting"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 114,
+        "timestamp": "2026-10-26T09:01:27.380315+00:00",
+        "text": " human"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 115,
+        "timestamp": "2026-10-26T09:01:27.388840+00:00",
+        "text": "-in"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 116,
+        "timestamp": "2026-10-26T09:01:27.399305+00:00",
+        "text": "-the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 117,
+        "timestamp": "2026-10-26T09:01:27.409153+00:00",
+        "text": "-loop"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 118,
+        "timestamp": "2026-10-26T09:01:27.419260+00:00",
+        "text": " workflow"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 119,
+        "timestamp": "2026-10-26T09:01:27.428628+00:00",
+        "text": "s"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 120,
+        "timestamp": "2026-10-26T09:01:27.439442+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 121,
+        "timestamp": "2026-10-26T09:01:27.448345+00:00",
+        "text": " and"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 122,
+        "timestamp": "2026-10-26T09:01:27.458458+00:00",
+        "text": " implementing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 123,
+        "timestamp": "2026-10-26T09:01:27.467295+00:00",
+        "text": " time"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 124,
+        "timestamp": "2026-10-26T09:01:27.476512+00:00",
+        "text": "-t"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 125,
+        "timestamp": "2026-10-26T09:01:27.488012+00:00",
+        "text": "ravel"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 126,
+        "timestamp": "2026-10-26T09:01:27.497016+00:00",
+        "text": " capabilities"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 127,
+        "timestamp": "2026-10-26T09:01:27.507448+00:00",
+        "text": " ["
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 128,
+        "timestamp": "2026-10-26T09:01:27.518400+00:00",
+        "text": "doc"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 129,
+        "timestamp": "2026-10-26T09:01:27.527039+00:00",
+        "text": "-"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 130,
+        "timestamp": "2026-10-26T09:01:27.538220+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 131,
+        "timestamp": "2026-10-26T09:01:27.547659+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 132,
+        "timestamp": "2026-10-26T09:01:27.604899+00:00",
+        "text": "e5864"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 133,
+        "timestamp": "2026-10-26T09:01:27.607538+00:00",
+        "text": "2"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 134,
+        "timestamp": "2026-10-26T09:01:27.616724+00:00",
+        "text": "fe"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 135,
+        "timestamp": "2026-10-26T09:01:27.626338+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 136,
+        "timestamp": "2026-10-26T09:01:27.636090+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 137,
+        "timestamp": "2026-10-26T09:01:27.645655+00:00",
+        "text": "::"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 138,
+        "timestamp": "2026-10-26T09:01:27.654704+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 139,
+        "timestamp": "2026-10-26T09:01:27.664501+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 140,
+        "timestamp": "2026-10-26T09:01:27.674344+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 141,
+        "timestamp": "2026-10-26T09:01:27.683757+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 142,
+        "timestamp": "2026-10-26T09:01:27.694324+00:00",
+        "text": "].\n"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 143,
+        "timestamp": "2026-10-26T09:01:27.704651+00:00",
+        "text": "*"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 144,
+        "timestamp": "2026-10-26T09:01:27.714497+00:00",
+        "text": "  "
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 145,
+        "timestamp": "2026-10-26T09:01:27.723201+00:00",
+        "text": " **"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 146,
+        "timestamp": "2026-10-26T09:01:27.733082+00:00",
+        "text": "Dist"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 147,
+        "timestamp": "2026-10-26T09:01:27.743300+00:00",
+        "text": "inction"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 148,
+        "timestamp": "2026-10-26T09:01:27.752965+00:00",
+        "text": " from"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 149,
+        "timestamp": "2026-10-26T09:01:27.762259+00:00",
+        "text": " Stores"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 150,
+        "timestamp": "2026-10-26T09:01:27.771573+00:00",
+        "text": "**:"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 151,
+        "timestamp": "2026-10-26T09:01:27.781624+00:00",
+        "text": " Check"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 152,
+        "timestamp": "2026-10-26T09:01:27.790425+00:00",
+        "text": "points"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 153,
+        "timestamp": "2026-10-26T09:01:27.849740+00:00",
+        "text": " are"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 154,
+        "timestamp": "2026-10-26T09:01:27.854082+00:00",
+        "text": " distinct"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 155,
+        "timestamp": "2026-10-26T09:01:27.864044+00:00",
+        "text": " from"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 156,
+        "timestamp": "2026-10-26T09:01:27.873041+00:00",
+        "text": " stores"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 157,
+        "timestamp": "2026-10-26T09:01:27.881877+00:00",
+        "text": "."
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 158,
+        "timestamp": "2026-10-26T09:01:27.890730+00:00",
+        "text": " While"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 159,
+        "timestamp": "2026-10-26T09:01:27.900189+00:00",
+        "text": " check"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 160,
+        "timestamp": "2026-10-26T09:01:27.909887+00:00",
+        "text": "points"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 161,
+        "timestamp": "2026-10-26T09:01:27.919218+00:00",
+        "text": " persist"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 162,
+        "timestamp": "2026-10-26T09:01:27.930546+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 163,
+        "timestamp": "2026-10-26T09:01:27.936791+00:00",
+        "text": " graph"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 164,
+        "timestamp": "2026-10-26T09:01:27.947415+00:00",
+        "text": " state"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 165,
+        "timestamp": "2026-10-26T09:01:27.956291+00:00",
+        "text": " on"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 166,
+        "timestamp": "2026-10-26T09:01:27.966659+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 167,
+        "timestamp": "2026-10-26T09:01:27.976014+00:00",
+        "text": " per"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 168,
+        "timestamp": "2026-10-26T09:01:27.985085+00:00",
+        "text": "-thread"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 169,
+        "timestamp": "2026-10-26T09:01:27.995294+00:00",
+        "text": " basis"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 170,
+        "timestamp": "2026-10-26T09:01:28.003740+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 171,
+        "timestamp": "2026-10-26T09:01:28.013987+00:00",
+        "text": " stores"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 172,
+        "timestamp": "2026-10-26T09:01:28.023388+00:00",
+        "text": " hold"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 173,
+        "timestamp": "2026-10-26T09:01:28.032937+00:00",
+        "text": " application"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 174,
+        "timestamp": "2026-10-26T09:01:28.041005+00:00",
+        "text": "-defined"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 175,
+        "timestamp": "2026-10-26T09:01:28.051669+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 176,
+        "timestamp": "2026-10-26T09:01:28.060837+00:00",
+        "text": " long"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 177,
+        "timestamp": "2026-10-26T09:01:28.069571+00:00",
+        "text": "-term"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 178,
+        "timestamp": "2026-10-26T09:01:28.079428+00:00",
+        "text": " information"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 179,
+        "timestamp": "2026-10-26T09:01:28.088615+00:00",
+        "text": " across"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 180,
+        "timestamp": "2026-10-26T09:01:28.099170+00:00",
+        "text": " threads"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 181,
+        "timestamp": "2026-10-26T09:01:28.108418+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 182,
+        "timestamp": "2026-10-26T09:01:28.117416+00:00",
+        "text": " such"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 183,
+        "timestamp": "2026-10-26T09:01:28.127114+00:00",
+        "text": " as"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 184,
+        "timestamp": "2026-10-26T09:01:28.136620+00:00",
+        "text": " user"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 185,
+        "timestamp": "2026-10-26T09:01:28.147822+00:00",
+        "text": " preferences"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 186,
+        "timestamp": "2026-10-26T09:01:28.156324+00:00",
+        "text": " or"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 187,
+        "timestamp": "2026-10-26T09:01:28.165419+00:00",
+        "text": " shared"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 188,
+        "timestamp": "2026-10-26T09:01:28.175930+00:00",
+        "text": " knowledge"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 189,
+        "timestamp": "2026-10-26T09:01:28.184118+00:00",
+        "text": " ["
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 190,
+        "timestamp": "2026-10-26T09:01:28.194272+00:00",
+        "text": "doc"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 191,
+        "timestamp": "2026-10-26T09:01:28.204471+00:00",
+        "text": "-"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 192,
+        "timestamp": "2026-10-26T09:01:28.214035+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 193,
+        "timestamp": "2026-10-26T09:01:28.222421+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 194,
+        "timestamp": "2026-10-26T09:01:28.231566+00:00",
+        "text": "e"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 195,
+        "timestamp": "2026-10-26T09:01:28.243211+00:00",
+        "text": "5"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 196,
+        "timestamp": "2026-10-26T09:01:28.251449+00:00",
+        "text": "8"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 197,
+        "timestamp": "2026-10-26T09:01:28.261124+00:00",
+        "text": "6"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 198,
+        "timestamp": "2026-10-26T09:01:28.269783+00:00",
+        "text": "4"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 199,
+        "timestamp": "2026-10-26T09:01:28.278857+00:00",
+        "text": "2"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 200,
+        "timestamp": "2026-10-26T09:01:28.345158+00:00",
+        "text": "fe77::00"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 201,
+        "timestamp": "2026-10-26T09:01:28.346601+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 202,
+        "timestamp": "2026-10-26T09:01:28.355033+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 203,
+        "timestamp": "2026-10-26T09:01:28.365454+00:00",
+        "text": "].\n"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 204,
+        "timestamp": "2026-10-26T09:01:28.373716+00:00",
+        "text": "*"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 205,
+        "timestamp": "2026-10-26T09:01:28.383431+00:00",
+        "text": "  "
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 206,
+        "timestamp": "2026-10-26T09:01:28.391833+00:00",
+        "text": " **"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 207,
+        "timestamp": "2026-10-26T09:01:28.402212+00:00",
+        "text": "Configuration"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 208,
+        "timestamp": "2026-10-26T09:01:28.411967+00:00",
+        "text": "**:"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 209,
+        "timestamp": "2026-10-26T09:01:28.421984+00:00",
+        "text": " To"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 210,
+        "timestamp": "2026-10-26T09:01:28.430720+00:00",
+        "text": " enable"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 211,
+        "timestamp": "2026-10-26T09:01:28.445549+00:00",
+        "text": " checkpoint"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 212,
+        "timestamp": "2026-10-26T09:01:28.448975+00:00",
+        "text": "ing"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 213,
+        "timestamp": "2026-10-26T09:01:28.458564+00:00",
+        "text": ","
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 214,
+        "timestamp": "2026-10-26T09:01:28.466938+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 215,
+        "timestamp": "2026-10-26T09:01:28.477227+00:00",
+        "text": " graph"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 216,
+        "timestamp": "2026-10-26T09:01:28.488536+00:00",
+        "text": " must"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 217,
+        "timestamp": "2026-10-26T09:01:28.496226+00:00",
+        "text": " be"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 218,
+        "timestamp": "2026-10-26T09:01:28.507488+00:00",
+        "text": " compiled"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 219,
+        "timestamp": "2026-10-26T09:01:28.516391+00:00",
+        "text": " with"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 220,
+        "timestamp": "2026-10-26T09:01:28.525266+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 221,
+        "timestamp": "2026-10-26T09:01:28.534596+00:00",
+        "text": " check"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 222,
+        "timestamp": "2026-10-26T09:01:28.544946+00:00",
+        "text": "pointer"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 223,
+        "timestamp": "2026-10-26T09:01:28.554267+00:00",
+        "text": " ("
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 224,
+        "timestamp": "2026-10-26T09:01:28.564810+00:00",
+        "text": "e"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 225,
+        "timestamp": "2026-10-26T09:01:28.574110+00:00",
+        "text": ".g"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 226,
+        "timestamp": "2026-10-26T09:01:28.585701+00:00",
+        "text": ".,"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 227,
+        "timestamp": "2026-10-26T09:01:28.592151+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 228,
+        "timestamp": "2026-10-26T09:01:28.600677+00:00",
+        "text": "builder"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 229,
+        "timestamp": "2026-10-26T09:01:28.610249+00:00",
+        "text": ".compile"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 230,
+        "timestamp": "2026-10-26T09:01:28.618963+00:00",
+        "text": "(check"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 231,
+        "timestamp": "2026-10-26T09:01:28.628162+00:00",
+        "text": "pointer"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 232,
+        "timestamp": "2026-10-26T09:01:28.637842+00:00",
+        "text": "="
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 233,
+        "timestamp": "2026-10-26T09:01:28.646306+00:00",
+        "text": "In"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 234,
+        "timestamp": "2026-10-26T09:01:28.655665+00:00",
+        "text": "Memory"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 235,
+        "timestamp": "2026-10-26T09:01:28.663184+00:00",
+        "text": "S"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 236,
+        "timestamp": "2026-10-26T09:01:28.672603+00:00",
+        "text": "aver"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 237,
+        "timestamp": "2026-10-26T09:01:28.681351+00:00",
+        "text": "())"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 238,
+        "timestamp": "2026-10-26T09:01:28.689659+00:00",
+        "text": "`),"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 239,
+        "timestamp": "2026-10-26T09:01:28.697996+00:00",
+        "text": " and"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 240,
+        "timestamp": "2026-10-26T09:01:28.707687+00:00",
+        "text": " a"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 241,
+        "timestamp": "2026-10-26T09:01:28.714777+00:00",
+        "text": " thread"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 242,
+        "timestamp": "2026-10-26T09:01:28.724223+00:00",
+        "text": " identifier"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 243,
+        "timestamp": "2026-10-26T09:01:28.732708+00:00",
+        "text": " must"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 244,
+        "timestamp": "2026-10-26T09:01:28.740888+00:00",
+        "text": " be"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 245,
+        "timestamp": "2026-10-26T09:01:28.749541+00:00",
+        "text": " provided"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 246,
+        "timestamp": "2026-10-26T09:01:28.759288+00:00",
+        "text": " when"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 247,
+        "timestamp": "2026-10-26T09:01:28.770173+00:00",
+        "text": " invoking"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 248,
+        "timestamp": "2026-10-26T09:01:28.775470+00:00",
+        "text": " the"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 249,
+        "timestamp": "2026-10-26T09:01:28.785290+00:00",
+        "text": " graph"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 250,
+        "timestamp": "2026-10-26T09:01:28.938719+00:00",
+        "text": " ("
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 251,
+        "timestamp": "2026-10-26T09:01:28.945261+00:00",
+        "text": "e"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 252,
+        "timestamp": "2026-10-26T09:01:28.953426+00:00",
+        "text": ".g"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 253,
+        "timestamp": "2026-10-26T09:01:28.962517+00:00",
+        "text": ".,"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 254,
+        "timestamp": "2026-10-26T09:01:28.971542+00:00",
+        "text": " `"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 255,
+        "timestamp": "2026-10-26T09:01:28.980914+00:00",
+        "text": "{\""
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 256,
+        "timestamp": "2026-10-26T09:01:28.990466+00:00",
+        "text": "config"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 257,
+        "timestamp": "2026-10-26T09:01:28.999991+00:00",
+        "text": "urable"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 258,
+        "timestamp": "2026-10-26T09:01:29.008977+00:00",
+        "text": "\":"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 259,
+        "timestamp": "2026-10-26T09:01:29.019537+00:00",
+        "text": " {\""
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 260,
+        "timestamp": "2026-10-26T09:01:29.029653+00:00",
+        "text": "thread"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 261,
+        "timestamp": "2026-10-26T09:01:29.037381+00:00",
+        "text": "_id"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 262,
+        "timestamp": "2026-10-26T09:01:29.045801+00:00",
+        "text": "\":"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 263,
+        "timestamp": "2026-10-26T09:01:29.055042+00:00",
+        "text": " \""
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 264,
+        "timestamp": "2026-10-26T09:01:29.064462+00:00",
+        "text": "thread"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 265,
+        "timestamp": "2026-10-26T09:01:29.074469+00:00",
+        "text": "-"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 266,
+        "timestamp": "2026-10-26T09:01:29.083522+00:00",
+        "text": "1"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 267,
+        "timestamp": "2026-10-26T09:01:29.093298+00:00",
+        "text": "\"}}"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 268,
+        "timestamp": "2026-10-26T09:01:29.101871+00:00",
+        "text": "`)"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 269,
+        "timestamp": "2026-10-26T09:01:29.112270+00:00",
+        "text": " ["
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 270,
+        "timestamp": "2026-10-26T09:01:29.124130+00:00",
+        "text": "doc"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 271,
+        "timestamp": "2026-10-26T09:01:29.130293+00:00",
+        "text": "-"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 272,
+        "timestamp": "2026-10-26T09:01:29.140210+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 273,
+        "timestamp": "2026-10-26T09:01:29.149649+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 274,
+        "timestamp": "2026-10-26T09:01:29.159322+00:00",
+        "text": "e"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 275,
+        "timestamp": "2026-10-26T09:01:29.168321+00:00",
+        "text": "5"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 276,
+        "timestamp": "2026-10-26T09:01:29.177347+00:00",
+        "text": "8"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 277,
+        "timestamp": "2026-10-26T09:01:29.187125+00:00",
+        "text": "6"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 278,
+        "timestamp": "2026-10-26T09:01:29.196552+00:00",
+        "text": "4"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 279,
+        "timestamp": "2026-10-26T09:01:29.204880+00:00",
+        "text": "2"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 280,
+        "timestamp": "2026-10-26T09:01:29.216946+00:00",
+        "text": "fe"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 281,
+        "timestamp": "2026-10-26T09:01:29.224281+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 282,
+        "timestamp": "2026-10-26T09:01:29.233730+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 283,
+        "timestamp": "2026-10-26T09:01:29.243868+00:00",
+        "text": "::"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 284,
+        "timestamp": "2026-10-26T09:01:29.255018+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 285,
+        "timestamp": "2026-10-26T09:01:29.261333+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 286,
+        "timestamp": "2026-10-26T09:01:29.271931+00:00",
+        "text": "0"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 287,
+        "timestamp": "2026-10-26T09:01:29.280761+00:00",
+        "text": "1"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 288,
+        "timestamp": "2026-10-26T09:01:29.289540+00:00",
+        "text": "].\n\n"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 289,
+        "timestamp": "2026-10-26T09:01:29.298400+00:00",
+        "text": "["
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 290,
+        "timestamp": "2026-10-26T09:01:29.309433+00:00",
+        "text": "Source"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 291,
+        "timestamp": "2026-10-26T09:01:29.318187+00:00",
+        "text": ":"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 292,
+        "timestamp": "2026-10-26T09:01:29.326395+00:00",
+        "text": " doc"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 293,
+        "timestamp": "2026-10-26T09:01:29.336277+00:00",
+        "text": "-"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 294,
+        "timestamp": "2026-10-26T09:01:29.346224+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 295,
+        "timestamp": "2026-10-26T09:01:29.356705+00:00",
+        "text": "9"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 296,
+        "timestamp": "2026-10-26T09:01:29.366247+00:00",
+        "text": "e"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 297,
+        "timestamp": "2026-10-26T09:01:29.375400+00:00",
+        "text": "5"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 298,
+        "timestamp": "2026-10-26T09:01:29.384999+00:00",
+        "text": "8"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 299,
+        "timestamp": "2026-10-26T09:01:29.392085+00:00",
+        "text": "6"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 300,
+        "timestamp": "2026-10-26T09:01:29.402629+00:00",
+        "text": "4"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 301,
+        "timestamp": "2026-10-26T09:01:29.412480+00:00",
+        "text": "2"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 302,
+        "timestamp": "2026-10-26T09:01:29.422306+00:00",
+        "text": "fe"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 303,
+        "timestamp": "2026-10-26T09:01:29.475955+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 304,
+        "timestamp": "2026-10-26T09:01:29.480405+00:00",
+        "text": "7"
+      },
+      {
+        "type": "answer_delta",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 305,
+        "timestamp": "2026-10-26T09:01:29.488930+00:00",
+        "text": "]"
+      },
+      {
+        "type": "model_finished",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 306,
+        "timestamp": "2026-10-26T09:01:29.500278+00:00",
+        "provider": "nvidia",
+        "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+        "agent": "Answer",
+        "seconds": 3.675,
+        "input_tokens": 1585,
+        "output_tokens": 286,
+        "usage_available": true,
+        "estimated_usd": null,
+        "success": true
+      },
+      {
+        "type": "citations",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 307,
+        "timestamp": "2026-10-26T09:01:29.500776+00:00",
+        "sources": [
+          {
+            "id": "doc-99e58642fe77::0000",
+            "score": 0.677338421,
+            "chunk_order": 0,
+            "content_hash": "12065604856b8437c1d1d1f8c006dc0d466c88a7bbbdafeb9ac034618b16310b",
+            "corpus_version": "docs-v1",
+            "document_id": "doc-99e58642fe77",
+            "heading": "Quickstart",
+            "kind": "chunk",
+            "snapshot_date": "2026-10-26T07:59:59.902853+00:00",
+            "text": "Persistence lets LangGraph applications keep useful information beyond a single graph run. It matters when an agent needs to continue a conversation, resume after an interruption, recover from a failure, or remember information across interactions.\nLangGraph provides two complementary persistence systems:\nCheckpointers\npersist a thread\u2019s graph state as checkpoints. Use them for short-term, thread-scoped memory, including conversation continuity, human-in-the-loop workflows, time travel, and fault tolerance.\nStores\npersist application-defined data outside the graph state. Use them for long-term, cross-thread memory, including user preferences, facts, and shared knowledge.\nMost applications can use both: a\ncheckpointer\ntracks the current thread, and a\nstore\ntracks durable information across threads.\n##  Quickstart\nCompile your graph with a checkpointer, a store, or both:",
+            "title": "Persistence - Docs by LangChain",
+            "topic": "langgraph",
+            "url": "https://docs.langchain.com/oss/python/langgraph/persistence"
+          },
+          {
+            "id": "doc-99e58642fe77::0001",
+            "score": 0.552862644,
+            "chunk_order": 1,
+            "content_hash": "12065604856b8437c1d1d1f8c006dc0d466c88a7bbbdafeb9ac034618b16310b",
+            "corpus_version": "docs-v1",
+            "document_id": "doc-99e58642fe77",
+            "heading": "Persistence - Docs by LangChain",
+            "kind": "chunk",
+            "snapshot_date": "2026-10-26T07:59:59.902853+00:00",
+            "text": "```\nfrom langgraph.checkpoint.memory import InMemorySaver\nfrom langgraph.store.memory import InMemoryStore\n\ncheckpointer = InMemorySaver()\nstore = InMemoryStore()\n\ngraph = builder.compile(checkpointer=checkpointer, store=store)\n\nresult = graph.invoke(\n    {\"messages\": [{\"role\": \"user\", \"content\": \"Hi, my name is Bob.\"}]},\n    {\"configurable\": {\"thread_id\": \"thread-1\"}},\n)\n\n```",
+            "title": "Persistence - Docs by LangChain",
+            "topic": "langgraph",
+            "url": "https://docs.langchain.com/oss/python/langgraph/persistence"
+          }
+        ]
+      },
+      {
+        "type": "metrics",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 308,
+        "timestamp": "2026-10-26T09:01:29.502109+00:00",
+        "total_seconds": 74.196,
+        "ttft_seconds": 70.805,
+        "calls": [
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Supervisor",
+            "seconds": 2.989,
+            "input_tokens": 271,
+            "output_tokens": 45,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Research",
+            "seconds": 22.286,
+            "input_tokens": 1402,
+            "output_tokens": 30,
+            "usage_available": true,
+            "estimated_usd": 0.003104,
+            "success": true
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Research",
+            "seconds": 20.476,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "usage_available": false,
+            "estimated_usd": null,
+            "success": false
+          },
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "agent": "Research",
+            "seconds": 10.921,
+            "input_tokens": 3172,
+            "output_tokens": 207,
+            "usage_available": true,
+            "estimated_usd": 0.008414,
+            "success": true
+          },
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Supervisor",
+            "seconds": 1.101,
+            "input_tokens": 525,
+            "output_tokens": 50,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          },
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Summary",
+            "seconds": 3.192,
+            "input_tokens": 829,
+            "output_tokens": 182,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          },
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Supervisor",
+            "seconds": 0.772,
+            "input_tokens": 719,
+            "output_tokens": 32,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          },
+          {
+            "provider": "nvidia",
+            "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+            "agent": "Answer",
+            "seconds": 3.675,
+            "input_tokens": 1585,
+            "output_tokens": 286,
+            "usage_available": true,
+            "estimated_usd": null,
+            "success": true
+          }
+        ],
+        "tools": [
+          {
+            "tool": "search_corpus",
+            "seconds": 2.077,
+            "success": true
+          }
+        ],
+        "fallback": false,
+        "revision": "agentic-ai-00006-txv"
+      },
+      {
+        "type": "cleanup_warning",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 309,
+        "timestamp": "2026-10-26T09:01:30.179776+00:00",
+        "code": "RuntimeError",
+        "message": "Tool connection cleanup reported an issue after the conversation was saved."
+      },
+      {
+        "type": "done",
+        "turn_id": "6fc170a07dee4a01b2e3b8ec47b27fb8",
+        "sequence": 310,
+        "timestamp": "2026-10-26T09:01:30.179850+00:00",
+        "conversation_id": "2a3bfe88-2152-401f-aa53-09edc2d5e6e4",
+        "persisted": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,531 @@
+{
+  "health": {
+    "status": "ok",
+    "state_backend": "gcs",
+    "revision": "agentic-ai-00014-zx8",
+    "configured": {
+      "openai_api_key": true,
+      "nvidia_api_key": true,
+      "pinecone_api_key": true,
+      "tavily_api_key": true
+    }
+  },
+  "cross_revision": {
+    "passed": true,
+    "from": "agentic-ai-00008-dwf",
+    "to": "agentic-ai-00014-zx8",
+    "conversation_id": "fd88138c-4de1-4cf6-a60d-6798349dfdc4",
+    "turn": {
+      "events": [
+        {
+          "type": "turn_started",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 1,
+          "timestamp": "2026-10-26T18:25:26.822882+00:00",
+          "conversation_id": "fd88138c-4de1-4cf6-a60d-6798349dfdc4",
+          "state_backend": "gcs"
+        },
+        {
+          "type": "agent_started",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 2,
+          "timestamp": "2026-10-26T18:25:26.958033+00:00",
+          "agent": "Supervisor",
+          "dispatches": 0
+        },
+        {
+          "type": "routing_decision",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 3,
+          "timestamp": "2026-10-26T18:25:26.958148+00:00",
+          "agent": "Supervisor",
+          "selected_provider": "openai",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "reason": "Plan the next step from the request and completed work"
+        },
+        {
+          "type": "model_finished",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 4,
+          "timestamp": "2026-10-26T18:25:28.440135+00:00",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "agent": "Supervisor",
+          "seconds": 1.482,
+          "input_tokens": 550,
+          "output_tokens": 38,
+          "usage_available": true,
+          "estimated_usd": 7.4e-05,
+          "success": true
+        },
+        {
+          "type": "agent_finished",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 5,
+          "timestamp": "2026-10-26T18:25:28.440283+00:00",
+          "agent": "Supervisor",
+          "decision": {
+            "next": "finish",
+            "provider": "nvidia",
+            "reason": "The conversation history explicitly identifies the project nickname as Cedar; no research is needed."
+          }
+        },
+        {
+          "type": "routing_decision",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 6,
+          "timestamp": "2026-10-26T18:25:28.444110+00:00",
+          "agent": "Answer",
+          "selected_provider": "nvidia",
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "reason": "The conversation history explicitly identifies the project nickname as Cedar; no research is needed."
+        },
+        {
+          "type": "answer_delta",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 7,
+          "timestamp": "2026-10-26T18:25:28.682142+00:00",
+          "text": "C"
+        },
+        {
+          "type": "answer_delta",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 8,
+          "timestamp": "2026-10-26T18:25:28.689874+00:00",
+          "text": "ed"
+        },
+        {
+          "type": "answer_delta",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 9,
+          "timestamp": "2026-10-26T18:25:28.698951+00:00",
+          "text": "ar"
+        },
+        {
+          "type": "model_finished",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 10,
+          "timestamp": "2026-10-26T18:25:28.746226+00:00",
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Answer",
+          "seconds": 0.302,
+          "input_tokens": 394,
+          "output_tokens": 4,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        },
+        {
+          "type": "citations",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 11,
+          "timestamp": "2026-10-26T18:25:28.747071+00:00",
+          "sources": []
+        },
+        {
+          "type": "metrics",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 12,
+          "timestamp": "2026-10-26T18:25:28.747915+00:00",
+          "total_seconds": 1.952,
+          "ttft_seconds": 1.886,
+          "calls": [
+            {
+              "provider": "openai",
+              "model": "gpt-6-luna",
+              "agent": "Supervisor",
+              "seconds": 1.482,
+              "input_tokens": 550,
+              "output_tokens": 38,
+              "usage_available": true,
+              "estimated_usd": 7.4e-05,
+              "success": true
+            },
+            {
+              "provider": "nvidia",
+              "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+              "agent": "Answer",
+              "seconds": 0.302,
+              "input_tokens": 394,
+              "output_tokens": 4,
+              "usage_available": true,
+              "estimated_usd": null,
+              "success": true
+            }
+          ],
+          "tools": [],
+          "fallback": false,
+          "revision": "agentic-ai-00014-zx8"
+        },
+        {
+          "type": "done",
+          "turn_id": "be2c456d109f41e98295ee35391496e8",
+          "sequence": 13,
+          "timestamp": "2026-10-26T18:25:28.822355+00:00",
+          "conversation_id": "fd88138c-4de1-4cf6-a60d-6798349dfdc4",
+          "persisted": true
+        }
+      ],
+      "answer": "Cedar",
+      "arrivals": [
+        0.08730633300729096,
+        0.22343370801536366,
+        0.22343779099173844,
+        1.707636207982432,
+        1.7076446249848232,
+        1.7086544160265476,
+        2.032263041008264,
+        2.0324927080073394,
+        2.0325981249916367,
+        2.0327339160139672,
+        2.0327438749955036,
+        2.032863916014321,
+        2.0873978750314564
+      ]
+    }
+  },
+  "parallel_session_isolation": {
+    "passed": true,
+    "first": {
+      "events": [
+        {
+          "type": "turn_started",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 1,
+          "timestamp": "2026-10-26T18:25:28.907705+00:00",
+          "conversation_id": "c6303442-a232-4c63-a607-86eea18d65ca",
+          "state_backend": "gcs"
+        },
+        {
+          "type": "agent_started",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 2,
+          "timestamp": "2026-10-26T18:25:28.956550+00:00",
+          "agent": "Supervisor",
+          "dispatches": 0
+        },
+        {
+          "type": "routing_decision",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 3,
+          "timestamp": "2026-10-26T18:25:28.956649+00:00",
+          "agent": "Supervisor",
+          "selected_provider": "openai",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "reason": "Plan the next step from the request and completed work"
+        },
+        {
+          "type": "model_finished",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 4,
+          "timestamp": "2026-10-26T18:25:30.591758+00:00",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "agent": "Supervisor",
+          "seconds": 1.635,
+          "input_tokens": 349,
+          "output_tokens": 39,
+          "usage_available": true,
+          "estimated_usd": 5.44e-05,
+          "success": true
+        },
+        {
+          "type": "agent_finished",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 5,
+          "timestamp": "2026-10-26T18:25:30.591891+00:00",
+          "agent": "Supervisor",
+          "decision": {
+            "next": "finish",
+            "provider": "nvidia",
+            "reason": "The user explicitly requests a one-word acknowledgment; no research or code work is needed."
+          }
+        },
+        {
+          "type": "routing_decision",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 6,
+          "timestamp": "2026-10-26T18:25:30.597320+00:00",
+          "agent": "Answer",
+          "selected_provider": "nvidia",
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "reason": "The user explicitly requests a one-word acknowledgment; no research or code work is needed."
+        },
+        {
+          "type": "answer_delta",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 7,
+          "timestamp": "2026-10-26T18:25:30.981847+00:00",
+          "text": "Ruby"
+        },
+        {
+          "type": "model_finished",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 8,
+          "timestamp": "2026-10-26T18:25:31.069416+00:00",
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Answer",
+          "seconds": 0.472,
+          "input_tokens": 180,
+          "output_tokens": 2,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        },
+        {
+          "type": "citations",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 9,
+          "timestamp": "2026-10-26T18:25:31.070412+00:00",
+          "sources": []
+        },
+        {
+          "type": "metrics",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 10,
+          "timestamp": "2026-10-26T18:25:31.071887+00:00",
+          "total_seconds": 2.192,
+          "ttft_seconds": 2.102,
+          "calls": [
+            {
+              "provider": "openai",
+              "model": "gpt-6-luna",
+              "agent": "Supervisor",
+              "seconds": 1.635,
+              "input_tokens": 349,
+              "output_tokens": 39,
+              "usage_available": true,
+              "estimated_usd": 5.44e-05,
+              "success": true
+            },
+            {
+              "provider": "nvidia",
+              "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+              "agent": "Answer",
+              "seconds": 0.472,
+              "input_tokens": 180,
+              "output_tokens": 2,
+              "usage_available": true,
+              "estimated_usd": null,
+              "success": true
+            }
+          ],
+          "tools": [],
+          "fallback": false,
+          "revision": "agentic-ai-00014-zx8"
+        },
+        {
+          "type": "done",
+          "turn_id": "811367477a1b43c4a02c0d0763b43c1a",
+          "sequence": 11,
+          "timestamp": "2026-10-26T18:25:31.143038+00:00",
+          "conversation_id": "c6303442-a232-4c63-a607-86eea18d65ca",
+          "persisted": true
+        }
+      ],
+      "answer": "Ruby",
+      "arrivals": [
+        0.0870257499627769,
+        0.135777874966152,
+        0.13578533299732953,
+        1.7675359579734504,
+        1.7675399159779772,
+        1.774104583018925,
+        2.1615094160079025,
+        2.248953290982172,
+        2.2489660829887725,
+        2.249180915998295,
+        2.335833958000876
+      ]
+    },
+    "second": {
+      "events": [
+        {
+          "type": "turn_started",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 1,
+          "timestamp": "2026-10-26T18:25:29.048219+00:00",
+          "conversation_id": "76198504-32f9-4aa4-b9f8-6713d3c29598",
+          "state_backend": "gcs"
+        },
+        {
+          "type": "agent_started",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 2,
+          "timestamp": "2026-10-26T18:25:29.147115+00:00",
+          "agent": "Supervisor",
+          "dispatches": 0
+        },
+        {
+          "type": "routing_decision",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 3,
+          "timestamp": "2026-10-26T18:25:29.147203+00:00",
+          "agent": "Supervisor",
+          "selected_provider": "openai",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "reason": "Plan the next step from the request and completed work"
+        },
+        {
+          "type": "model_finished",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 4,
+          "timestamp": "2026-10-26T18:25:30.331345+00:00",
+          "provider": "openai",
+          "model": "gpt-6-luna",
+          "agent": "Supervisor",
+          "seconds": 1.184,
+          "input_tokens": 351,
+          "output_tokens": 38,
+          "usage_available": true,
+          "estimated_usd": 5.41e-05,
+          "success": true
+        },
+        {
+          "type": "agent_finished",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 5,
+          "timestamp": "2026-10-26T18:25:30.331532+00:00",
+          "agent": "Supervisor",
+          "decision": {
+            "next": "finish",
+            "provider": "nvidia",
+            "reason": "The user asks for a simple exact reply, with no research or code required."
+          }
+        },
+        {
+          "type": "routing_decision",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 6,
+          "timestamp": "2026-10-26T18:25:30.335166+00:00",
+          "agent": "Answer",
+          "selected_provider": "nvidia",
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "reason": "The user asks for a simple exact reply, with no research or code required."
+        },
+        {
+          "type": "answer_delta",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 7,
+          "timestamp": "2026-10-26T18:25:30.587629+00:00",
+          "text": "C"
+        },
+        {
+          "type": "answer_delta",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 8,
+          "timestamp": "2026-10-26T18:25:30.588163+00:00",
+          "text": "ob"
+        },
+        {
+          "type": "answer_delta",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 9,
+          "timestamp": "2026-10-26T18:25:30.588564+00:00",
+          "text": "alt"
+        },
+        {
+          "type": "model_finished",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 10,
+          "timestamp": "2026-10-26T18:25:30.619562+00:00",
+          "provider": "nvidia",
+          "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+          "agent": "Answer",
+          "seconds": 0.284,
+          "input_tokens": 182,
+          "output_tokens": 4,
+          "usage_available": true,
+          "estimated_usd": null,
+          "success": true
+        },
+        {
+          "type": "citations",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 11,
+          "timestamp": "2026-10-26T18:25:30.624690+00:00",
+          "sources": []
+        },
+        {
+          "type": "metrics",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 12,
+          "timestamp": "2026-10-26T18:25:30.625601+00:00",
+          "total_seconds": 1.652,
+          "ttft_seconds": 1.615,
+          "calls": [
+            {
+              "provider": "openai",
+              "model": "gpt-6-luna",
+              "agent": "Supervisor",
+              "seconds": 1.184,
+              "input_tokens": 351,
+              "output_tokens": 38,
+              "usage_available": true,
+              "estimated_usd": 5.41e-05,
+              "success": true
+            },
+            {
+              "provider": "nvidia",
+              "model": "nvidia/nemotron-3.5-lightning-30b-a3b",
+              "agent": "Answer",
+              "seconds": 0.284,
+              "input_tokens": 182,
+              "output_tokens": 4,
+              "usage_available": true,
+              "estimated_usd": null,
+              "success": true
+            }
+          ],
+          "tools": [],
+          "fallback": false,
+          "revision": "agentic-ai-00014-zx8"
+        },
+        {
+          "type": "done",
+          "turn_id": "7d5b701f39f24fffb34b64e1dd60d42c",
+          "sequence": 13,
+          "timestamp": "2026-10-26T18:25:30.697237+00:00",
+          "conversation_id": "76198504-32f9-4aa4-b9f8-6713d3c29598",
+          "persisted": true
+        }
+      ],
+      "answer": "Cobalt",
+      "arrivals": [
+        0.23234374995809048,
+        0.46965487499255687,
+        0.4696604579803534,
+        1.51682462496683,
+        1.5168402909766883,
+        1.5198359999922104,
+        1.7716739579918794,
+        1.7716763750067912,
+        1.771677999990061,
+        1.8063645829679444,
+        1.8074994999915361,
+        1.8075367079582065,
+        2.0398074580007233
+      ]
+    }
+  },
+  "source_endpoint": {
+    "passed": true,
+    "id": "doc-99e58642fe77::0000"
+  },
+  "static": {
+    "/": 200,
+    "/static/app.js": 200,
+    "/static/style.css": 200
+  },
+  "validation": {
+    "passed": true
+  }
+}
