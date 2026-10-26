@@ -76,15 +76,3 @@ Cloud Run defaults: 1 CPU, 1 GiB, min 0/max 2 instances, concurrency 5, request 
 After deployment, run behavioral checks against the live URL, inspect both providers and shared MCP calls, and create a conversation before deploying a new revision. Restore it afterward to verify actual instance-independent persistence. Record cold-start timing separately from warm requests; do not label local startup timing as a Cloud Run cold start. Use `/api/healthz` for the deployed connection check; `/healthz` is also registered locally, but the Cloud Run Google frontend returned its own 404 for that path during verification.
 
 For code/static-only updates, `bash scripts/redeploy-code.sh` reuses the current revision's immutable image digest as the dependency base. A fresh deployment or dependency change must use the full `scripts/deploy.sh` path.
-
-## Cost and access
-
-Model configuration: Supervisor `gpt-6-luna`, workers/answers `gpt-6.1-sol`, `nvidia/nemotron-3.5-lightning-30b-a3b`, `text-embedding-3-small`. API access was separately probed during development; access can change. NVIDIA price fields default to unknown rather than claiming free usage. Luna price fields are independently configurable; the verified Standard rate is $0.10 input/$0.50 output per million tokens ([model page](https://developers.openai.com/api/docs/models/gpt-6-luna), checked 2026-10-26). OpenAI generation estimates use configurable standard input/output rates; cached pricing, failed attempts with missing usage, and non-generation services are not fully accounted for.
-
-As of the development check on 2026-10-26, the OpenAI model page listed $2 input/$10 output per million tokens. Verify current terms before submission: [OpenAI](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [NVIDIA](https://build.nvidia.com/nvidia/nemotron-3.5-lightning-30b-a3b), [Pinecone](https://www.pinecone.io/pricing/), [Tavily](https://www.tavily.com/pricing), [Cloud Storage](https://cloud.google.com/storage/pricing), [Cloud Run](https://cloud.google.com/run/pricing).
-
-Education credits cover eligible GCP charges under their terms, not separately billed third-party API services. Create a $10 GCP budget alert in Billing; an alert does not enforce a spending cap. The image includes evaluation dependencies for a single reproducible dependency set; runtime optimization can separate those later.
-
-## Submission
-
-`python -m scripts.package` creates `output/assignment2-source.zip` from an allowlist. It excludes `.env`, virtual environments, local credentials, runtime state, and fetched index artifacts. Include the live Cloud Run URL separately. Do not submit until deployment and final evaluation requirements in `docs/evaluation.md` are completed. Update the process log with your own actual learning and verification; it does not invent a personal reflection.
