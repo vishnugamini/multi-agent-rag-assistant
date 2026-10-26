@@ -3,7 +3,7 @@ from pathlib import Path
 from zipfile import ZipFile, ZIP_DEFLATED
 
 root = Path(__file__).resolve().parent.parent
-files = ['pytest.ini', 'README.md', 'PROCESS_LOG.md', 'requirements.txt', 'requirements.in', '.env.example', 'Dockerfile', 'Dockerfile.update', '.dockerignore', '.gcloudignore', '.gitignore', 'corpus/ingestion-report.json']
+files = ['pytest.ini', 'README.md', 'requirements.txt', 'requirements.in', '.env.example', 'Dockerfile', 'Dockerfile.update', '.dockerignore', '.gcloudignore', '.gitignore', 'corpus/ingestion-report.json']
 folders = ['app', 'static', 'scripts', 'tests', 'docs', 'evaluation', 'corpus/snapshots']
 paths = [root / f for f in files] + [root / 'corpus/manifest.json']
 for folder in folders:

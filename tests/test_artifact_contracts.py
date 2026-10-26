@@ -13,12 +13,6 @@ def test_container_is_nonroot_and_honors_port():
     assert 'node_modules' not in source
 
 
-def test_process_log_has_required_sections_and_word_count():
-    source=Path('PROCESS_LOG.md').read_text()
-    assert len(re.findall(r'\S+',source)) in range(200,301)
-    assert sum(line.startswith('## ') for line in source.splitlines())==4
-
-
 def test_architecture_documents_memory_tools_and_state():
     source=Path('docs/architecture.md').read_text()
     for term in ['mermaid','Supervisor','Research','Code','Summary','Pinecone','Tavily','if_generation_match','provider','findings']:

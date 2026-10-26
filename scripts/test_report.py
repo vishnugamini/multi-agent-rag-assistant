@@ -72,7 +72,7 @@ def main():
     lines+=['','## Limits and submission checks','',
       'RAGAS is an automated judge, not a human correctness certificate. The weakest cases included an overextended JSON-body explanation and retrieval of streaming examples without the iterator-description prose. The measured context-recall score for the streaming question was 0.0. The report preserves these outcomes rather than excluding them.',
       'Completed GCS turns survive replacement; interrupted graph execution does not resume. Context is bounded. The public demo uses unguessable session IDs rather than account authentication. Some successful turns can report an MCP cleanup warning after durable save.',
-      'A clean ZIP extraction/dependency install passed the same tests. The archive excludes runtime state and working credentials. `PROCESS_LOG.md` has four sections and meets the 200–300-word requirement; the student must review and express the personal reflection truthfully before submission.','',
+      'A clean ZIP extraction/dependency install passed the same tests. The archive excludes runtime state and working credentials.','',
       '## Reproduce','',
       '```bash','python -m pytest -q','node tests/sse-parser.mjs',
       'python -m scripts.scenarios --base-url LIVE_URL --output output/scenarios-rubric-final.json',
